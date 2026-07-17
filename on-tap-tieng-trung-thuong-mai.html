@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商务汉语 · Ôn tập Tiếng Trung Thương Mại</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16232f;
+    --ink-soft:#2c3e4f;
+    --paper:#eef1ef;
+    --paper-card:#ffffff;
+    --line:#d6dbd6;
+    --seal:#b3261e;
+    --seal-soft:#e9d4d1;
+    --gold:#b8892f;
+    --jade:#3f6b52;
+    --jade-soft:#e4ece7;
+    --shadow: 0 10px 30px -12px rgba(22,35,47,0.25);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    background-position: -1px -1px;
+  }
+  .hanzi{font-family:'Noto Serif SC', serif;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:relative;
+    background: linear-gradient(160deg, var(--ink) 0%, #1f3244 60%, var(--ink) 100%);
+    color:#f4f2ea;
+    padding: 48px 24px 40px;
+    overflow:hidden;
+    border-bottom: 4px solid var(--gold);
+  }
+  header::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 18px);
+    pointer-events:none;
+  }
+  .header-inner{
+    max-width:980px; margin:0 auto; position:relative; z-index:1;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:#c9d6cf;
+    opacity:.85;
+    margin-bottom:10px;
+  }
+  h1.title{
+    font-family:'Noto Serif SC', serif;
+    font-weight:900;
+    font-size:clamp(38px, 7vw, 64px);
+    margin:0 0 6px;
+    line-height:1.05;
+    letter-spacing:.01em;
+  }
+  .title .vi{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size: clamp(15px, 2.4vw, 20px);
+    letter-spacing:.02em;
+    color:#d9e2dc;
+    margin-top:10px;
+  }
+  .seal{
+    position:absolute;
+    top:38px; right:6%;
+    width:104px; height:104px;
+    border:3px solid var(--seal);
+    border-radius:50%;
+    color:var(--seal);
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-9deg);
+    font-family:'Noto Serif SC', serif;
+    font-weight:900;
+    font-size:30px;
+    letter-spacing:2px;
+    background: rgba(179,38,30,0.06);
+    box-shadow: 0 0 0 3px rgba(179,38,30,0.08) inset;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    opacity:.92;
+  }
+  .stats-row{
+    display:flex; gap:28px; margin-top:28px; flex-wrap:wrap;
+  }
+  .stat{
+    font-family:'JetBrains Mono', monospace;
+  }
+  .stat b{
+    display:block; font-size:26px; color:#fff;
+  }
+  .stat span{
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#b9c7c0;
+  }
+
+  /* ---------- Tabs ---------- */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    background: rgba(238,241,239,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .tabbar-inner{
+    max-width:980px; margin:0 auto;
+    display:flex; gap:6px; padding:10px 24px; overflow-x:auto;
+  }
+  .tab-btn{
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    background:transparent;
+    border:1px solid transparent;
+    color:var(--ink-soft);
+    padding:9px 16px;
+    border-radius:100px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition: all .15s ease;
+  }
+  .tab-btn:hover{ background: rgba(63,107,82,0.08); }
+  .tab-btn.active{
+    background:var(--ink);
+    color:#f4f2ea;
+    border-color:var(--ink);
+  }
+
+  main{ max-width:980px; margin:0 auto; padding:36px 24px 100px; }
+  section.panel{ display:none; animation: fadeIn .25s ease; }
+  section.panel.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  h2.section-title{
+    font-family:'Noto Serif SC', serif;
+    font-size:26px;
+    margin:0 0 4px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  h2.section-title .num{
+    color:var(--seal); font-family:'JetBrains Mono', monospace; font-size:15px; font-weight:600;
+  }
+  .section-sub{
+    color:#5a6b64; font-size:14px; margin:0 0 24px; max-width:620px;
+  }
+
+  /* ---------- Vocab controls ---------- */
+  .vocab-toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    margin-bottom:20px;
+  }
+  .search-input{
+    flex:1; min-width:200px;
+    font-family:'Work Sans', sans-serif;
+    font-size:15px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .search-input:focus{ outline:2px solid var(--jade); outline-offset:1px; }
+  .chip-group{ display:flex; gap:6px; }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    color:var(--ink-soft);
+  }
+  .chip.active{ background:var(--jade); color:#fff; border-color:var(--jade); }
+
+  .mode-switch{ display:flex; gap:6px; margin-left:auto; }
+  .mode-btn{
+    font-size:13px; font-weight:600;
+    padding:9px 14px; border-radius:8px;
+    border:1px solid var(--line); background:#fff; cursor:pointer;
+    color:var(--ink-soft);
+  }
+  .mode-btn.active{ background:var(--seal); border-color:var(--seal); color:#fff; }
+
+  .result-count{ font-family:'JetBrains Mono', monospace; font-size:12px; color:#7a8a83; margin-bottom:10px;}
+
+  /* ---------- Vocab list (ledger) ---------- */
+  .ledger{ border-top:1px solid var(--ink); }
+  .ledger-row{
+    display:grid;
+    grid-template-columns: 40px 110px 130px 1fr 40px;
+    gap:12px;
+    align-items:center;
+    padding:11px 4px;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .ledger-row:hover{ background:rgba(63,107,82,0.05); }
+  .ledger-row .idx{ font-family:'JetBrains Mono', monospace; color:#9aa8a1; font-size:12px;}
+  .ledger-row .hz{ font-family:'Noto Serif SC', serif; font-size:19px; font-weight:700;}
+  .ledger-row .py{ font-family:'JetBrains Mono', monospace; color:var(--jade); font-size:13px;}
+  .ledger-row .vi{ color:var(--ink-soft); }
+  .ledger-row .bai-tag{
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+    color:var(--gold); text-align:right;
+  }
+  @media (max-width:600px){
+    .ledger-row{ grid-template-columns: 26px 76px 1fr; grid-template-areas: "idx hz bai" "idx py vi"; row-gap:2px;}
+    .ledger-row .idx{grid-area:idx;} .ledger-row .hz{grid-area:hz;} .ledger-row .py{grid-area:py;}
+    .ledger-row .vi{grid-area:vi;} .ledger-row .bai-tag{grid-area:bai; text-align:right;}
+  }
+
+  /* ---------- Flashcard mode ---------- */
+  .flash-wrap{ display:flex; flex-direction:column; align-items:center; gap:22px; padding:20px 0 10px;}
+  .flash-progress{ font-family:'JetBrains Mono', monospace; font-size:12px; color:#7a8a83;}
+  .card-scene{ perspective: 1400px; width:100%; max-width:380px; height:240px; }
+  .biz-card{
+    position:relative; width:100%; height:100%;
+    transform-style:preserve-3d;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    cursor:pointer;
+  }
+  .biz-card.flipped{ transform: rotateY(180deg); }
+  .card-face{
+    position:absolute; inset:0;
+    border-radius:14px;
+    backface-visibility:hidden;
+    box-shadow: var(--shadow);
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    padding:26px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center;
+  }
+  .card-face.front::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:10px;
+    background: linear-gradient(var(--seal), #7c1712);
+    border-radius:14px 0 0 14px;
+  }
+  .card-face .mini-seal{
+    position:absolute; top:14px; right:16px;
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid var(--seal); color:var(--seal);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif SC', serif; font-size:13px; font-weight:900;
+    transform:rotate(-8deg);
+    opacity:.8;
+  }
+  .card-hanzi{ font-family:'Noto Serif SC', serif; font-weight:900; font-size:52px; line-height:1;}
+  .card-pinyin{ font-family:'JetBrains Mono', monospace; color:var(--jade); margin-top:14px; font-size:15px;}
+  .card-face.back{ transform: rotateY(180deg); }
+  .card-back-label{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#9aa8a1; margin-bottom:10px;}
+  .card-meaning{ font-size:19px; font-weight:600; color:var(--ink); max-width:280px;}
+  .card-bai{ margin-top:16px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gold); border:1px solid var(--gold); padding:3px 10px; border-radius:100px;}
+  .flash-controls{ display:flex; gap:10px; align-items:center; }
+  .flash-btn{
+    font-family:'Work Sans', sans-serif; font-weight:600; font-size:14px;
+    padding:10px 18px; border-radius:8px; border:1px solid var(--ink); background:var(--ink); color:#fff; cursor:pointer;
+  }
+  .flash-btn.secondary{ background:#fff; color:var(--ink); }
+  .flash-btn.mastered{ background:var(--jade); border-color:var(--jade); }
+  .hint{ font-size:12px; color:#7a8a83; }
+
+  /* ---------- Quiz mode ---------- */
+  .quiz-wrap{ max-width:520px; margin:0 auto; text-align:center; }
+  .quiz-score{ font-family:'JetBrains Mono', monospace; font-size:13px; color:#7a8a83; margin-bottom:18px;}
+  .quiz-card{
+    background:var(--paper-card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:34px 24px; margin-bottom:22px;
+  }
+  .quiz-hanzi{ font-family:'Noto Serif SC', serif; font-weight:900; font-size:46px; }
+  .quiz-pinyin{ font-family:'JetBrains Mono', monospace; color:var(--jade); margin-top:10px;}
+  .quiz-options{ display:grid; gap:10px; }
+  .quiz-opt{
+    font-size:15px; text-align:left;
+    padding:13px 16px; border-radius:10px; border:1px solid var(--line);
+    background:#fff; cursor:pointer; transition: all .12s;
+  }
+  .quiz-opt:hover{ border-color:var(--jade); }
+  .quiz-opt.correct{ background:var(--jade-soft); border-color:var(--jade); font-weight:600;}
+  .quiz-opt.wrong{ background:var(--seal-soft); border-color:var(--seal); }
+  .quiz-next{ margin-top:18px; }
+
+  /* ---------- Dialogue ---------- */
+  .toggle-row{ display:flex; gap:10px; margin-bottom:18px; }
+  .dialogue-block{ margin-bottom:34px; }
+  .dialogue-title{ font-weight:700; margin-bottom:4px; font-size:16px;}
+  .dialogue-context{ font-size:13px; color:#7a8a83; margin-bottom:14px; }
+  .line{ display:flex; gap:12px; padding:10px 0; border-bottom:1px dashed var(--line); }
+  .line .role{
+    flex:0 0 68px; font-family:'JetBrains Mono', monospace; font-weight:700; font-size:12px;
+    color:#fff; background:var(--ink); border-radius:6px; height:26px; display:flex; align-items:center; justify-content:center;
+  }
+  .line .content .hz{ font-family:'Noto Serif SC', serif; font-size:16px; }
+  .line .content .py{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--jade); margin-top:3px; }
+  .line .content .vi{ font-size:13.5px; color:var(--ink-soft); margin-top:3px; }
+  .hideable.hidden{ filter: blur(5px); user-select:none; opacity:.6; cursor:pointer;}
+
+  /* ---------- Grammar ---------- */
+  .gpoint{ border:1px solid var(--line); border-radius:10px; margin-bottom:12px; background:#fff; overflow:hidden;}
+  .gpoint-head{
+    padding:14px 16px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .gpoint-head .struct{ font-family:'Noto Serif SC', serif; font-weight:700; font-size:16px; }
+  .gpoint-head .meaning{ font-size:12.5px; color:#7a8a83; font-style:italic; }
+  .gpoint-head .arrow{ transition: transform .2s; color:var(--seal); flex-shrink:0; }
+  .gpoint.open .arrow{ transform:rotate(90deg); }
+  .gpoint-body{ max-height:0; overflow:hidden; transition: max-height .3s ease; padding:0 16px;}
+  .gpoint.open .gpoint-body{ padding:0 16px 14px; }
+  .ex{ padding:8px 0; border-top:1px solid var(--line); }
+  .ex:first-child{ border-top:none; }
+  .ex .hz{ font-family:'Noto Serif SC', serif; font-size:14.5px; }
+  .ex .py{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--jade); margin-top:2px;}
+  .ex .vi{ font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+  .grammar-sub{ font-weight:700; margin: 24px 0 12px; font-size:15px; color:var(--ink-soft);}
+
+  /* ---------- Passage ---------- */
+  .passage-item{ padding:12px 0; border-bottom:1px dashed var(--line); }
+  .passage-item .hz{ font-family:'Noto Serif SC', serif; font-size:16px; }
+  .passage-item .py{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--jade); margin-top:4px;}
+  .passage-item .vi{ font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
+  .passage-title{ font-weight:700; font-size:16px; margin:26px 0 10px; }
+
+  footer{
+    text-align:center; padding:30px 20px 50px; font-size:12px; color:#8a9790;
+    font-family:'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="seal">总复习</div>
+  <div class="header-inner">
+    <div class="eyebrow">Business Chinese · 商务汉语总复习</div>
+    <h1 class="title">谈生意<span class="vi">Ôn tập Tiếng Trung Thương Mại — Bài 1 &amp; Bài 2</span></h1>
+    <div class="stats-row">
+      <div class="stat"><b id="stat-vocab">0</b><span>Từ vựng</span></div>
+      <div class="stat"><b id="stat-dialogue">5</b><span>Đoạn hội thoại</span></div>
+      <div class="stat"><b id="stat-grammar">37</b><span>Điểm ngữ pháp</span></div>
+      <div class="stat"><b id="stat-passage">29</b><span>Câu ứng dụng</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="tabbar">
+  <div class="tabbar-inner">
+    <button class="tab-btn active" data-tab="vocab">词汇 Từ vựng</button>
+    <button class="tab-btn" data-tab="dialogue">对话 Hội thoại</button>
+    <button class="tab-btn" data-tab="grammar">语法 Ngữ pháp</button>
+    <button class="tab-btn" data-tab="passage">课文 Đoạn văn</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============ VOCAB PANEL ============ -->
+  <section class="panel active" id="panel-vocab">
+    <h2 class="section-title"><span class="num">I.</span> Từ vựng</h2>
+    <p class="section-sub">Tra cứu, luyện thẻ ghi nhớ (flashcard) hoặc làm trắc nghiệm với toàn bộ từ vựng Bài 1 &amp; Bài 2.</p>
+
+    <div class="vocab-toolbar">
+      <input class="search-input" id="search" type="text" placeholder="Tìm theo chữ Hán, pinyin hoặc nghĩa...">
+      <div class="chip-group">
+        <button class="chip active" data-filter="all">Tất cả</button>
+        <button class="chip" data-filter="1">Bài 1</button>
+        <button class="chip" data-filter="2">Bài 2</button>
+      </div>
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="list">Danh sách</button>
+        <button class="mode-btn" data-mode="flash">Flashcard</button>
+        <button class="mode-btn" data-mode="quiz">Trắc nghiệm</button>
+      </div>
+    </div>
+
+    <div id="mode-list">
+      <div class="result-count" id="result-count"></div>
+      <div class="ledger" id="ledger"></div>
+    </div>
+
+    <div id="mode-flash" style="display:none;">
+      <div class="flash-wrap">
+        <div class="flash-progress" id="flash-progress"></div>
+        <div class="card-scene">
+          <div class="biz-card" id="biz-card">
+            <div class="card-face front">
+              <div class="mini-seal">商</div>
+              <div class="card-hanzi" id="card-hanzi">安全</div>
+              <div class="card-pinyin" id="card-pinyin">ānquán</div>
+            </div>
+            <div class="card-face back">
+              <div class="card-back-label">Nghĩa</div>
+              <div class="card-meaning" id="card-meaning">an toàn</div>
+              <div class="card-bai" id="card-bai">Bài 1</div>
+            </div>
+          </div>
+        </div>
+        <div class="hint">Chạm vào thẻ để lật · dùng phím ← →</div>
+        <div class="flash-controls">
+          <button class="flash-btn secondary" id="flash-prev">← Trước</button>
+          <button class="flash-btn mastered" id="flash-master">✓ Đã thuộc</button>
+          <button class="flash-btn secondary" id="flash-shuffle">⟳ Trộn</button>
+          <button class="flash-btn" id="flash-next">Tiếp →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mode-quiz" style="display:none;">
+      <div class="quiz-wrap">
+        <div class="quiz-score" id="quiz-score">Điểm: 0 / 0</div>
+        <div class="quiz-card">
+          <div class="quiz-hanzi" id="quiz-hanzi">安全</div>
+          <div class="quiz-pinyin" id="quiz-pinyin">ānquán</div>
+        </div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <button class="flash-btn quiz-next" id="quiz-next" style="display:none;">Câu tiếp theo →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIALOGUE PANEL ============ -->
+  <section class="panel" id="panel-dialogue">
+    <h2 class="section-title"><span class="num">II.</span> Đoạn hội thoại</h2>
+    <p class="section-sub">Nhấn vào phần mờ để hiện pinyin &amp; nghĩa — dùng để tự kiểm tra khả năng đọc hiểu.</p>
+    <div class="toggle-row">
+      <button class="flash-btn secondary" id="dlg-hide-all">Ẩn hết pinyin/nghĩa</button>
+      <button class="flash-btn secondary" id="dlg-show-all">Hiện hết</button>
+    </div>
+    <div id="dialogue-content"></div>
+  </section>
+
+  <!-- ============ GRAMMAR PANEL ============ -->
+  <section class="panel" id="panel-grammar">
+    <h2 class="section-title"><span class="num">III.</span> Ngữ pháp</h2>
+    <p class="section-sub">37 cấu trúc trọng tâm của Bài 1 &amp; Bài 2. Nhấn vào từng mục để xem ví dụ.</p>
+    <div id="grammar-content"></div>
+  </section>
+
+  <!-- ============ PASSAGE PANEL ============ -->
+  <section class="panel" id="panel-passage">
+    <h2 class="section-title"><span class="num">IV.</span> Đoạn văn</h2>
+    <p class="section-sub">Câu ứng dụng ngữ pháp và hai đoạn văn giới thiệu dựng từ vốn từ đã học.</p>
+    <div id="passage-content"></div>
+  </section>
+
+</main>
+
+<footer>制作于 2026 · Tổng hợp từ Giáo trình Tiếng Trung Thương Mại Bài 1 &amp; Bài 2</footer>
+
+<script>
+const VOCAB = [{"hanzi":"安排","pinyin":"ānpái","nghia":"sắp xếp","bai":"2"},{"hanzi":"安全","pinyin":"ānquán","nghia":"an toàn","bai":"1"},{"hanzi":"八","pinyin":"bā","nghia":"tám (8)","bai":"1"},{"hanzi":"吧","pinyin":"ba","nghia":"trợ từ (đề nghị/phỏng đoán)","bai":"1"},{"hanzi":"百","pinyin":"bǎi","nghia":"trăm (100)","bai":"1"},{"hanzi":"办","pinyin":"bàn","nghia":"làm, xử lý (công việc)","bai":"2"},{"hanzi":"帮忙","pinyin":"bāngmáng","nghia":"giúp đỡ","bai":"1, 2"},{"hanzi":"办公室","pinyin":"bàngōngshì","nghia":"văn phòng","bai":"1"},{"hanzi":"保持","pinyin":"bǎochí","nghia":"duy trì, giữ","bai":"2"},{"hanzi":"北京烤鸭","pinyin":"Běijīng kǎoyā","nghia":"vịt quay Bắc Kinh","bai":"1"},{"hanzi":"表示感谢","pinyin":"biǎoshì gǎnxiè","nghia":"tỏ lòng cảm ơn","bai":"2"},{"hanzi":"比较","pinyin":"bǐjiào","nghia":"tương đối, khá","bai":"2"},{"hanzi":"不错","pinyin":"búcuò","nghia":"không tệ, khá tốt","bai":"2"},{"hanzi":"部长","pinyin":"bùzhǎng","nghia":"trưởng phòng","bai":"1"},{"hanzi":"才","pinyin":"cái","nghia":"mới, chỉ khi đó (nhấn mạnh muộn)","bai":"1"},{"hanzi":"采购部","pinyin":"cǎigòubù","nghia":"phòng mua hàng","bai":"1"},{"hanzi":"财务部","pinyin":"cáiwùbù","nghia":"phòng tài chính","bai":"1"},{"hanzi":"仓库","pinyin":"cāngkù","nghia":"kho, nhà kho","bai":"1"},{"hanzi":"仓库员工","pinyin":"cāngkù yuángōng","nghia":"nhân viên kho","bai":"1"},{"hanzi":"操作","pinyin":"cāozuò","nghia":"thao tác, vận hành","bai":"1"},{"hanzi":"茶","pinyin":"chá","nghia":"trà","bai":"1"},{"hanzi":"叉车","pinyin":"chāchē","nghia":"xe nâng","bai":"1"},{"hanzi":"叉车司机","pinyin":"chāchē sījī","nghia":"tài xế xe nâng","bai":"1"},{"hanzi":"长","pinyin":"cháng","nghia":"dài","bai":"1"},{"hanzi":"常常","pinyin":"chángcháng","nghia":"thường thường","bai":"1, 2"},{"hanzi":"厂长","pinyin":"chǎngzhǎng","nghia":"giám đốc nhà máy","bai":"1"},{"hanzi":"产品","pinyin":"chǎnpǐn","nghia":"sản phẩm","bai":"1"},{"hanzi":"称呼","pinyin":"chēnghu","nghia":"xưng hô, gọi (ai đó)","bai":"1"},{"hanzi":"吃","pinyin":"chī","nghia":"ăn","bai":"1"},{"hanzi":"吃饭","pinyin":"chīfàn","nghia":"ăn cơm","bai":"1, 2"},{"hanzi":"出席","pinyin":"chūxí","nghia":"tham dự, có mặt","bai":"2"},{"hanzi":"次","pinyin":"cì","nghia":"lần, lượt (lượng từ)","bai":"1, 2"},{"hanzi":"大","pinyin":"dà","nghia":"to, lớn","bai":"1"},{"hanzi":"打","pinyin":"dǎ","nghia":"gọi (điện thoại), đánh","bai":"2"},{"hanzi":"打电话","pinyin":"dǎ diànhuà","nghia":"gọi điện thoại","bai":"2"},{"hanzi":"戴","pinyin":"dài","nghia":"đeo, mang (khẩu trang, kính...)","bai":"1"},{"hanzi":"大家","pinyin":"dàjiā","nghia":"mọi người","bai":"1, 2"},{"hanzi":"当然","pinyin":"dāngrán","nghia":"tất nhiên","bai":"2"},{"hanzi":"但是","pinyin":"dànshì","nghia":"nhưng","bai":"1, 2"},{"hanzi":"道歉","pinyin":"dàoqiàn","nghia":"xin lỗi","bai":"2"},{"hanzi":"的","pinyin":"de","nghia":"trợ từ sở hữu (của)","bai":"1"},{"hanzi":"得","pinyin":"de","nghia":"trợ từ bổ ngữ mức độ (VD: 说得很好)","bai":"1, 2"},{"hanzi":"等","pinyin":"děng","nghia":"đợi","bai":"1"},{"hanzi":"电","pinyin":"diàn","nghia":"điện","bai":"2"},{"hanzi":"电话","pinyin":"diànhuà","nghia":"điện thoại","bai":"2"},{"hanzi":"电影","pinyin":"diànyǐng","nghia":"phim, điện ảnh","bai":"1"},{"hanzi":"电邮地址","pinyin":"diànyóu dìzhǐ","nghia":"địa chỉ email","bai":"2"},{"hanzi":"电子","pinyin":"diànzǐ","nghia":"điện tử","bai":"2"},{"hanzi":"电子邮件","pinyin":"diànzǐ yóujiàn","nghia":"thư điện tử/email","bai":"2"},{"hanzi":"电子邮箱","pinyin":"diànzǐ yóuxiāng","nghia":"hộp thư điện tử","bai":"2"},{"hanzi":"订单","pinyin":"dìngdān","nghia":"đơn hàng","bai":"2"},{"hanzi":"都","pinyin":"dōu","nghia":"đều","bai":"1, 2"},{"hanzi":"多大","pinyin":"duōdà","nghia":"bao nhiêu tuổi / bao nhiêu lớn","bai":"1"},{"hanzi":"二","pinyin":"èr","nghia":"hai (2)","bai":"1"},{"hanzi":"房间","pinyin":"fángjiān","nghia":"phòng","bai":"2"},{"hanzi":"方式","pinyin":"fāngshì","nghia":"phương thức/cách thức","bai":"2"},{"hanzi":"翻译人员","pinyin":"fānyì rényuán","nghia":"nhân viên phiên dịch","bai":"1"},{"hanzi":"分钟","pinyin":"fēnzhōng","nghia":"phút","bai":"2"},{"hanzi":"高","pinyin":"gāo","nghia":"cao","bai":"1"},{"hanzi":"高兴","pinyin":"gāoxìng","nghia":"vui, vui mừng","bai":"2"},{"hanzi":"哥","pinyin":"gē","nghia":"anh (cách xưng hô thân mật)","bai":"1"},{"hanzi":"个","pinyin":"gè","nghia":"cái, con (lượng từ)","bai":"2"},{"hanzi":"给","pinyin":"gěi","nghia":"cho","bai":"2"},{"hanzi":"工人","pinyin":"gōngrén","nghia":"công nhân","bai":"1"},{"hanzi":"公司","pinyin":"gōngsī","nghia":"công ty","bai":"1"},{"hanzi":"工作","pinyin":"gōngzuò","nghia":"công việc/làm việc","bai":"2"},{"hanzi":"管理","pinyin":"guǎnlǐ","nghia":"quản lý","bai":"2"},{"hanzi":"管理层","pinyin":"guǎnlǐcéng","nghia":"cấp quản lý, ban quản lý","bai":"1"},{"hanzi":"贵姓","pinyin":"guìxìng","nghia":"quý tính (cách hỏi họ lịch sự)","bai":"1"},{"hanzi":"过","pinyin":"guò","nghia":"đã từng, từng trải nghiệm","bai":"1"},{"hanzi":"还没有","pinyin":"hái méiyǒu","nghia":"vẫn chưa","bai":"1"},{"hanzi":"还行","pinyin":"hái xíng","nghia":"cũng được, tạm ổn","bai":"2"},{"hanzi":"还有","pinyin":"hái yǒu","nghia":"còn có, ngoài ra","bai":"2"},{"hanzi":"韩国","pinyin":"Hánguó","nghia":"Hàn Quốc","bai":"1"},{"hanzi":"汉语","pinyin":"Hànyǔ","nghia":"tiếng Hán, tiếng Trung","bai":"1"},{"hanzi":"号","pinyin":"hào","nghia":"ngày, số (ngày trong tháng)","bai":"1"},{"hanzi":"好","pinyin":"hǎo","nghia":"tốt, được","bai":"2"},{"hanzi":"号码","pinyin":"hàomǎ","nghia":"số (điện thoại/phòng...)","bai":"2"},{"hanzi":"喝","pinyin":"hē","nghia":"uống","bai":"1"},{"hanzi":"和","pinyin":"hé","nghia":"và, cùng","bai":"1, 2"},{"hanzi":"很","pinyin":"hěn","nghia":"rất","bai":"1"},{"hanzi":"合适","pinyin":"héshì","nghia":"thích hợp, phù hợp","bai":"1"},{"hanzi":"合作","pinyin":"hézuò","nghia":"hợp tác","bai":"1"},{"hanzi":"欢迎光临","pinyin":"huānyíng guānglín","nghia":"hoan nghênh, chào đón","bai":"2"},{"hanzi":"货","pinyin":"huò","nghia":"hàng hóa","bai":"1"},{"hanzi":"护照","pinyin":"hùzhào","nghia":"hộ chiếu","bai":"2"},{"hanzi":"检查","pinyin":"jiǎnchá","nghia":"kiểm tra","bai":"1"},{"hanzi":"奖金","pinyin":"jiǎngjīn","nghia":"tiền thưởng","bai":"1"},{"hanzi":"见面","pinyin":"jiànmiàn","nghia":"gặp mặt","bai":"2"},{"hanzi":"叫","pinyin":"jiào","nghia":"gọi (tên), tên là","bai":"1"},{"hanzi":"交换","pinyin":"jiāohuàn","nghia":"trao đổi","bai":"2"},{"hanzi":"姐","pinyin":"jiě","nghia":"chị (cách xưng hô thân mật)","bai":"1"},{"hanzi":"介绍","pinyin":"jièshào","nghia":"giới thiệu","bai":"1, 2"},{"hanzi":"接受","pinyin":"jiēshòu","nghia":"tiếp nhận, chấp nhận","bai":"2"},{"hanzi":"经理","pinyin":"jīnglǐ","nghia":"giám đốc, quản lý (manager)","bai":"1"},{"hanzi":"今年","pinyin":"jīnnián","nghia":"năm nay","bai":"1"},{"hanzi":"进去","pinyin":"jìnqù","nghia":"đi vào","bai":"1"},{"hanzi":"今天","pinyin":"jīntiān","nghia":"hôm nay","bai":"1"},{"hanzi":"机器","pinyin":"jīqì","nghia":"máy móc","bai":"1"},{"hanzi":"技术员","pinyin":"jìshùyuán","nghia":"kỹ thuật viên","bai":"1"},{"hanzi":"九","pinyin":"jiǔ","nghia":"chín (9)","bai":"1"},{"hanzi":"就行了","pinyin":"jiùxíngle","nghia":"như vậy là được rồi","bai":"1"},{"hanzi":"聚会","pinyin":"jùhuì","nghia":"buổi họp mặt, tụ họp","bai":"2"},{"hanzi":"开会","pinyin":"kāihuì","nghia":"họp","bai":"2"},{"hanzi":"看","pinyin":"kàn","nghia":"xem, nhìn","bai":"1"},{"hanzi":"客服部","pinyin":"kèfúbù","nghia":"phòng chăm sóc khách hàng","bai":"1"},{"hanzi":"客户","pinyin":"kèhù","nghia":"khách hàng","bai":"1, 2"},{"hanzi":"可以","pinyin":"kěyǐ","nghia":"có thể, được phép","bai":"1"},{"hanzi":"口罩","pinyin":"kǒuzhào","nghia":"khẩu trang","bai":"1"},{"hanzi":"快递","pinyin":"kuàidì","nghia":"chuyển phát nhanh","bai":"2"},{"hanzi":"宽","pinyin":"kuān","nghia":"rộng","bai":"1"},{"hanzi":"来","pinyin":"lái","nghia":"đến (để làm gì)","bai":"1"},{"hanzi":"来不及","pinyin":"láibují","nghia":"không kịp","bai":"2"},{"hanzi":"来的","pinyin":"láide","nghia":"đến từ (nơi nào)","bai":"1"},{"hanzi":"来得及","pinyin":"láidejí","nghia":"kịp","bai":"2"},{"hanzi":"老板","pinyin":"lǎobǎn","nghia":"ông chủ, chủ công ty","bai":"1"},{"hanzi":"老师","pinyin":"lǎoshī","nghia":"giáo viên","bai":"1"},{"hanzi":"老总","pinyin":"lǎozǒng","nghia":"tổng giám đốc, sếp lớn","bai":"1"},{"hanzi":"了","pinyin":"le","nghia":"trợ từ chỉ sự hoàn thành/thay đổi","bai":"1"},{"hanzi":"冷","pinyin":"lěng","nghia":"lạnh","bai":"1"},{"hanzi":"联络","pinyin":"liánluò","nghia":"liên lạc","bai":"2"},{"hanzi":"联系","pinyin":"liánxì","nghia":"liên hệ","bai":"1, 2"},{"hanzi":"礼拜","pinyin":"lǐbài","nghia":"tuần (khẩu ngữ)","bai":"2"},{"hanzi":"六","pinyin":"liù","nghia":"sáu (6)","bai":"1"},{"hanzi":"留","pinyin":"liú","nghia":"để lại, giữ lại","bai":"2"},{"hanzi":"吗","pinyin":"ma","nghia":"trợ từ nghi vấn (cuối câu hỏi)","bai":"1"},{"hanzi":"猫","pinyin":"māo","nghia":"mèo","bai":"1"},{"hanzi":"没","pinyin":"méi","nghia":"chưa, không","bai":"1"},{"hanzi":"没关系","pinyin":"méi guānxi","nghia":"không sao","bai":"2"},{"hanzi":"美国","pinyin":"Měiguó","nghia":"Mỹ, Hoa Kỳ","bai":"1"},{"hanzi":"每天","pinyin":"měitiān","nghia":"mỗi ngày","bai":"1"},{"hanzi":"名片","pinyin":"míngpiàn","nghia":"danh thiếp","bai":"2"},{"hanzi":"名字","pinyin":"míngzi","nghia":"tên","bai":"1"},{"hanzi":"目前","pinyin":"mùqián","nghia":"hiện tại","bai":"2"},{"hanzi":"拿","pinyin":"ná","nghia":"cầm, lấy","bai":"1"},{"hanzi":"哪里","pinyin":"nǎlǐ","nghia":"ở đâu","bai":"1"},{"hanzi":"那位","pinyin":"nàwèi","nghia":"vị kia, người kia","bai":"1"},{"hanzi":"呢","pinyin":"ne","nghia":"trợ từ (câu hỏi/nhấn mạnh)","bai":"1"},{"hanzi":"能","pinyin":"néng","nghia":"có thể, có khả năng","bai":"2"},{"hanzi":"你","pinyin":"nǐ","nghia":"bạn","bai":"1"},{"hanzi":"年","pinyin":"nián","nghia":"năm","bai":"1"},{"hanzi":"你们","pinyin":"nǐmen","nghia":"các bạn","bai":"1"},{"hanzi":"您贵姓","pinyin":"nín guìxìng","nghia":"quý tính của ngài là gì","bai":"1"},{"hanzi":"女士","pinyin":"nǚshì","nghia":"bà, cô (lịch sự)","bai":"1"},{"hanzi":"怕","pinyin":"pà","nghia":"sợ","bai":"1"},{"hanzi":"拍照","pinyin":"pāizhào","nghia":"chụp ảnh","bai":"1"},{"hanzi":"品检员","pinyin":"pǐnjiǎnyuán","nghia":"nhân viên kiểm tra chất lượng","bai":"1"},{"hanzi":"七","pinyin":"qī","nghia":"bảy (7)","bai":"1"},{"hanzi":"钱","pinyin":"qián","nghia":"tiền","bai":"1"},{"hanzi":"签名","pinyin":"qiānmíng","nghia":"ký tên","bai":"2"},{"hanzi":"请","pinyin":"qǐng","nghia":"mời, xin","bai":"1"},{"hanzi":"请教","pinyin":"qǐngjiào","nghia":"thỉnh giáo/xin ý kiến","bai":"2"},{"hanzi":"请进","pinyin":"qǐngjìn","nghia":"mời vào","bai":"1"},{"hanzi":"请问","pinyin":"qǐngwèn","nghia":"xin hỏi","bai":"1"},{"hanzi":"起色","pinyin":"qǐsè","nghia":"khởi sắc, tiến triển tốt","bai":"2"},{"hanzi":"其他","pinyin":"qítā","nghia":"khác","bai":"2"},{"hanzi":"去","pinyin":"qù","nghia":"đi","bai":"1"},{"hanzi":"热","pinyin":"rè","nghia":"nóng","bai":"1"},{"hanzi":"认识","pinyin":"rènshi","nghia":"quen biết, nhận biết","bai":"2"},{"hanzi":"人事部","pinyin":"rénshìbù","nghia":"phòng nhân sự","bai":"1"},{"hanzi":"日本","pinyin":"Rìběn","nghia":"Nhật Bản","bai":"1"},{"hanzi":"如果","pinyin":"rúguǒ","nghia":"nếu","bai":"2"},{"hanzi":"三","pinyin":"sān","nghia":"ba (3)","bai":"1"},{"hanzi":"上班","pinyin":"shàngbān","nghia":"đi làm","bai":"1"},{"hanzi":"上次","pinyin":"shàngcì","nghia":"lần trước","bai":"2"},{"hanzi":"上午","pinyin":"shàngwǔ","nghia":"buổi sáng","bai":"2"},{"hanzi":"谁","pinyin":"shéi","nghia":"ai","bai":"1"},{"hanzi":"生产","pinyin":"shēngchǎn","nghia":"sản xuất","bai":"1, 2"},{"hanzi":"生产员工","pinyin":"shēngchǎn yuángōng","nghia":"nhân viên sản xuất","bai":"1, 2"},{"hanzi":"生意","pinyin":"shēngyi","nghia":"việc buôn bán, kinh doanh","bai":"2"},{"hanzi":"什么","pinyin":"shénme","nghia":"gì, cái gì","bai":"1"},{"hanzi":"十","pinyin":"shí","nghia":"mười (10)","bai":"1"},{"hanzi":"是","pinyin":"shì","nghia":"là","bai":"1"},{"hanzi":"市场","pinyin":"shìchǎng","nghia":"thị trường","bai":"2"},{"hanzi":"时候","pinyin":"shíhòu","nghia":"lúc, khi","bai":"1"},{"hanzi":"时间","pinyin":"shíjiān","nghia":"thời gian","bai":"1"},{"hanzi":"收到","pinyin":"shōudào","nghia":"nhận được","bai":"2"},{"hanzi":"手机","pinyin":"shǒujī","nghia":"điện thoại di động","bai":"1, 2"},{"hanzi":"书","pinyin":"shū","nghia":"sách","bai":"1"},{"hanzi":"水果","pinyin":"shuǐguǒ","nghia":"trái cây","bai":"1"},{"hanzi":"说","pinyin":"shuō","nghia":"nói","bai":"1"},{"hanzi":"四","pinyin":"sì","nghia":"bốn (4)","bai":"1"},{"hanzi":"岁","pinyin":"suì","nghia":"tuổi","bai":"1"},{"hanzi":"虽然","pinyin":"suīrán","nghia":"tuy","bai":"1, 2"},{"hanzi":"他","pinyin":"tā","nghia":"anh ấy, anh ta","bai":"1"},{"hanzi":"她","pinyin":"tā","nghia":"cô ấy","bai":"1"},{"hanzi":"它","pinyin":"tā","nghia":"nó (đồ vật, động vật)","bai":"1"},{"hanzi":"泰国","pinyin":"Tàiguó","nghia":"Thái Lan","bai":"1"},{"hanzi":"他们","pinyin":"tāmen","nghia":"họ (nam/nhóm chung)","bai":"1"},{"hanzi":"她们","pinyin":"tāmen","nghia":"họ (nữ)","bai":"1"},{"hanzi":"它们","pinyin":"tāmen","nghia":"chúng nó (đồ vật, động vật)","bai":"1"},{"hanzi":"听说","pinyin":"tīngshuō","nghia":"nghe nói","bai":"2"},{"hanzi":"同事","pinyin":"tóngshì","nghia":"đồng nghiệp","bai":"1"},{"hanzi":"晚","pinyin":"wǎn","nghia":"muộn","bai":"1"},{"hanzi":"晚上","pinyin":"wǎnshang","nghia":"buổi tối","bai":"2"},{"hanzi":"微信","pinyin":"wēixìn","nghia":"WeChat","bai":"2"},{"hanzi":"问好","pinyin":"wènhǎo","nghia":"hỏi thăm/chào hỏi","bai":"2"},{"hanzi":"问题","pinyin":"wèntí","nghia":"vấn đề/câu hỏi","bai":"2"},{"hanzi":"我","pinyin":"wǒ","nghia":"tôi","bai":"1"},{"hanzi":"我们","pinyin":"wǒmen","nghia":"chúng tôi, chúng ta","bai":"1"},{"hanzi":"五","pinyin":"wǔ","nghia":"năm (5)","bai":"1"},{"hanzi":"务必","pinyin":"wùbì","nghia":"nhất định phải","bai":"2"},{"hanzi":"下班","pinyin":"xiàbān","nghia":"tan làm","bai":"1"},{"hanzi":"下次","pinyin":"xiàcì","nghia":"lần sau","bai":"2"},{"hanzi":"向","pinyin":"xiàng","nghia":"hướng về, với","bai":"2"},{"hanzi":"先生","pinyin":"xiānsheng","nghia":"ông, ngài","bai":"1, 2"},{"hanzi":"现在","pinyin":"xiànzài","nghia":"bây giờ","bai":"2"},{"hanzi":"小","pinyin":"xiǎo","nghia":"nhỏ; tiền tố xưng hô thân mật","bai":"1"},{"hanzi":"小姐","pinyin":"xiǎojiě","nghia":"cô","bai":"1"},{"hanzi":"小时","pinyin":"xiǎoshí","nghia":"giờ","bai":"2"},{"hanzi":"销售","pinyin":"xiāoshòu","nghia":"bán hàng","bai":"2"},{"hanzi":"销售部","pinyin":"xiāoshòubù","nghia":"phòng bán hàng","bai":"1"},{"hanzi":"下午","pinyin":"xiàwǔ","nghia":"buổi chiều","bai":"2"},{"hanzi":"新","pinyin":"xīn","nghia":"mới","bai":"1"},{"hanzi":"姓","pinyin":"xìng","nghia":"họ","bai":"1"},{"hanzi":"星期","pinyin":"xīngqī","nghia":"thứ (trong tuần)","bai":"1"},{"hanzi":"星期二","pinyin":"xīngqī èr","nghia":"Thứ Ba","bai":"1"},{"hanzi":"星期六","pinyin":"xīngqī liù","nghia":"Thứ Bảy","bai":"1"},{"hanzi":"星期日","pinyin":"xīngqī rì","nghia":"Chủ Nhật","bai":"1"},{"hanzi":"星期三","pinyin":"xīngqī sān","nghia":"Thứ Tư","bai":"1"},{"hanzi":"星期四","pinyin":"xīngqī sì","nghia":"Thứ Năm","bai":"1"},{"hanzi":"星期五","pinyin":"xīngqī wǔ","nghia":"Thứ Sáu","bai":"1"},{"hanzi":"星期一","pinyin":"xīngqī yī","nghia":"Thứ Hai","bai":"1"},{"hanzi":"行政部","pinyin":"xíngzhèngbù","nghia":"phòng hành chính","bai":"1"},{"hanzi":"新年","pinyin":"xīnnián","nghia":"năm mới","bai":"1"},{"hanzi":"洗手间","pinyin":"xǐshǒujiān","nghia":"nhà vệ sinh","bai":"1"},{"hanzi":"休息","pinyin":"xiūxi","nghia":"nghỉ ngơi","bai":"1"},{"hanzi":"希望","pinyin":"xīwàng","nghia":"hy vọng","bai":"1, 2"},{"hanzi":"学习","pinyin":"xuéxí","nghia":"học tập","bai":"1, 2"},{"hanzi":"需要","pinyin":"xūyào","nghia":"cần","bai":"2"},{"hanzi":"要","pinyin":"yào","nghia":"cần, muốn","bai":"1"},{"hanzi":"要是","pinyin":"yàoshi","nghia":"nếu như","bai":"2"},{"hanzi":"也","pinyin":"yě","nghia":"cũng","bai":"1, 2"},{"hanzi":"业务","pinyin":"yèwù","nghia":"nghiệp vụ, kinh doanh","bai":"1"},{"hanzi":"业务合作人","pinyin":"yèwù hézuò rén","nghia":"đối tác hợp tác kinh doanh","bai":"1"},{"hanzi":"业务部","pinyin":"yèwùbù","nghia":"phòng kinh doanh","bai":"1"},{"hanzi":"一","pinyin":"yī","nghia":"một (1)","bai":"1"},{"hanzi":"一定","pinyin":"yídìng","nghia":"nhất định, chắc chắn","bai":"2"},{"hanzi":"遗憾","pinyin":"yíhàn","nghia":"tiếc, đáng tiếc","bai":"2"},{"hanzi":"以后","pinyin":"yǐhòu","nghia":"sau này","bai":"2"},{"hanzi":"应酬","pinyin":"yìngchou","nghia":"tiếp khách, giao tế","bai":"2"},{"hanzi":"应该","pinyin":"yīnggāi","nghia":"nên, cần nên","bai":"1"},{"hanzi":"一起","pinyin":"yīqǐ","nghia":"cùng nhau","bai":"1, 2"},{"hanzi":"一下","pinyin":"yīxià","nghia":"một chút, thử một chút","bai":"1"},{"hanzi":"用","pinyin":"yòng","nghia":"dùng, sử dụng","bai":"1"},{"hanzi":"有","pinyin":"yǒu","nghia":"có","bai":"1"},{"hanzi":"有空","pinyin":"yǒu kòng","nghia":"có rảnh","bai":"2"},{"hanzi":"员工","pinyin":"yuángōng","nghia":"nhân viên","bai":"1"},{"hanzi":"月","pinyin":"yuè","nghia":"tháng","bai":"1"},{"hanzi":"越南","pinyin":"Yuènán","nghia":"Việt Nam","bai":"1"},{"hanzi":"愉快","pinyin":"yúkuài","nghia":"vui vẻ","bai":"1, 2"},{"hanzi":"运输","pinyin":"yùnshū","nghia":"vận chuyển","bai":"2"},{"hanzi":"早上","pinyin":"zǎoshang","nghia":"sáng sớm","bai":"2"},{"hanzi":"怎么","pinyin":"zěnme","nghia":"như thế nào, làm sao","bai":"1"},{"hanzi":"怎么样","pinyin":"zěnmeyàng","nghia":"thế nào, như thế nào","bai":"2"},{"hanzi":"照片","pinyin":"zhàopiàn","nghia":"ảnh","bai":"2"},{"hanzi":"这","pinyin":"zhè","nghia":"này","bai":"2"},{"hanzi":"这个","pinyin":"zhège","nghia":"cái này","bai":"1"},{"hanzi":"这里","pinyin":"zhèlǐ","nghia":"ở đây","bai":"1"},{"hanzi":"真","pinyin":"zhēn","nghia":"thật","bai":"2"},{"hanzi":"这位","pinyin":"zhèwèi","nghia":"vị này, người này","bai":"1"},{"hanzi":"支持","pinyin":"zhīchí","nghia":"hỗ trợ","bai":"2"},{"hanzi":"知道","pinyin":"zhīdào","nghia":"biết","bai":"1"},{"hanzi":"支付","pinyin":"zhīfù","nghia":"thanh toán","bai":"2"},{"hanzi":"之后","pinyin":"zhīhòu","nghia":"sau đó","bai":"2"},{"hanzi":"重","pinyin":"zhòng","nghia":"nặng","bai":"1"},{"hanzi":"中国","pinyin":"Zhōngguó","nghia":"Trung Quốc","bai":"1"},{"hanzi":"重视","pinyin":"zhòngshì","nghia":"coi trọng","bai":"1, 2"},{"hanzi":"中午","pinyin":"zhōngwǔ","nghia":"buổi trưa","bai":"2"},{"hanzi":"重要","pinyin":"zhòngyào","nghia":"quan trọng","bai":"1"},{"hanzi":"周","pinyin":"zhōu","nghia":"tuần","bai":"2"},{"hanzi":"周末","pinyin":"zhōumò","nghia":"cuối tuần","bai":"2"},{"hanzi":"主管","pinyin":"zhǔguǎn","nghia":"chủ quản, giám sát viên (supervisor)","bai":"1"},{"hanzi":"助理","pinyin":"zhùlǐ","nghia":"trợ lý","bai":"1"},{"hanzi":"准时","pinyin":"zhǔnshí","nghia":"đúng giờ","bai":"1"},{"hanzi":"主要","pinyin":"zhǔyào","nghia":"chủ yếu","bai":"1, 2"},{"hanzi":"注意","pinyin":"zhùyì","nghia":"chú ý","bai":"1"},{"hanzi":"自己","pinyin":"zìjǐ","nghia":"bản thân","bai":"1"},{"hanzi":"组长","pinyin":"zǔzhǎng","nghia":"tổ trưởng","bai":"1"}];
+
+const DIALOGUES = [{"title":"Bài 1 — Hội thoại: Giới thiệu đối tác công ty Thái Lan","context":"Bối cảnh: Trợ lý giới thiệu đoàn khách công ty Thái Lan với Giám đốc Lâm (林经理).","lines":[{"role":"助理","hz":"林经理我来介绍一下他们的公司，他们的公司是泰国公司。","py":"Zhùlǐ: Lín jīnglǐ wǒ lái jièshào yīxià tāmen de gōngsī, tāmen de gōngsī shì Tàiguó gōngsī.","vi":"Giám đốc Lâm, tôi xin giới thiệu một chút về công ty của họ, công ty của họ là công ty Thái Lan."},{"role":"林经理","hz":"好的，我知道了，这位先生是他们公司的组长吗？我应该怎么称呼他才合适？","py":"Lín jīnglǐ: Hǎo de, wǒ zhīdào le, zhè wèi xiānsheng shì tāmen gōngsī de zǔzhǎng ma? Wǒ yīnggāi zěnme chēnghu tā cái héshì?","vi":"Được, tôi biết rồi. Vị này là tổ trưởng của công ty họ đúng không? Tôi nên xưng hô với anh ấy thế nào mới phù hợp?"},{"role":"助理","hz":"不是，他是泰国公司的主管，他的中文名字是阮高林，叫他阮总就行。","py":"Zhùlǐ: Bù shì, tā shì Tàiguó gōngsī de zhǔguǎn, tā de Zhōngwén míngzi shì Ruǎn Gāolín, jiào tā Ruǎn zǒng jiù xíng.","vi":"Không phải, anh ấy là chủ quản của công ty Thái Lan, tên tiếng Trung của anh ấy là Nguyễn Cao Lâm, cứ gọi anh ấy là Tổng Nguyễn là được."},{"role":"林经理","hz":"好的，你知道那位女士叫什么名字吗？","py":"Lín jīnglǐ: Hǎo de, nǐ zhīdào nà wèi nǚshì jiào shénme míngzi ma?","vi":"Được, bạn có biết vị nữ sĩ kia tên là gì không?"},{"role":"助理","hz":"那位女士是阮总的翻译人员，叫她高小美。","py":"Zhùlǐ: Nà wèi nǚshì shì Ruǎn zǒng de fānyì rényuán, jiào tā Gāo Xiǎoměi.","vi":"Vị nữ sĩ kia là nhân viên phiên dịch của Tổng Nguyễn, gọi cô ấy là Cao Tiểu Mỹ."},{"role":"林经理","hz":"我们公司今年6月13日生产新产品，我请我们公司的业务合作人来开会。","py":"Lín jīnglǐ: Wǒmen gōngsī jīnnián 6 yuè 13 rì shēngchǎn xīn chǎnpǐn, wǒ qǐng wǒmen gōngsī de yèwù hézuò rén lái kāihuì.","vi":"Công ty chúng ta năm nay ngày 13 tháng 6 sản xuất sản phẩm mới, tôi mời đối tác kinh doanh của công ty chúng ta đến họp."},{"role":"助理","hz":"好，我知道了。","py":"Zhùlǐ: Hǎo, wǒ zhīdào le.","vi":"Được, tôi biết rồi."}]},{"title":"Bài 2 — Hội thoại 1 (slide 52)","lines":[{"role":"A","hz":"欢迎光临！听说您是我们的新客户，真高兴认识您。","py":"Huānyíng guānglín! Tīngshuō nín shì wǒmen de xīn kèhù, zhēn gāoxìng rènshi nín.","vi":"Chào mừng! Nghe nói anh/chị là khách hàng mới, thật vui được gặp."},{"role":"B","hz":"谢谢，我也很高兴。","py":"Xièxie, wǒ yě hěn gāoxìng.","vi":"Cảm ơn, tôi cũng rất vui."},{"role":"A","hz":"能交换名片吗？","py":"Néng jiāohuàn míngpiàn ma?","vi":"Có thể trao đổi danh thiếp không?"},{"role":"B","hz":"当然可以，这是我的名片，请留下您的联系方式。","py":"Dāngrán kěyǐ, zhè shì wǒ de míngpiàn, qǐng liú xià nín de liánxì fāngshì.","vi":"Tất nhiên được, đây là danh thiếp của tôi, xin để lại thông tin liên lạc."}]},{"title":"Bài 2 — Hội thoại 2 (slide 53)","lines":[{"role":"A","hz":"下次的聚会您能出席吗？","py":"Xiàcì de jùhuì nín néng chūxí ma?","vi":"Buổi họp mặt lần sau anh/chị có thể tham dự không?"},{"role":"B","hz":"很遗憾，我来不及了，我还要安排其他业务。","py":"Hěn yíhàn, wǒ láibují le, wǒ hái yào ānpái qítā yèwù.","vi":"Rất tiếc, tôi không kịp rồi, tôi còn phải sắp xếp việc kinh doanh khác."},{"role":"A","hz":"没关系，务必下次光临。","py":"Méi guānxi, wùbì xiàcì guānglín.","vi":"Không sao, nhất định lần sau ghé qua nhé."},{"role":"B","hz":"一定，我一定出席。","py":"Yídìng, wǒ yídìng chūxí.","vi":"Chắc chắn, tôi nhất định sẽ tham dự."}]},{"title":"Bài 2 — Hội thoại 3 (slide 54)","lines":[{"role":"A","hz":"听说您的生意有起色，真好！","py":"Tīngshuō nín de shēngyi yǒu qǐsè, zhēn hǎo!","vi":"Nghe nói việc làm ăn của anh/chị khởi sắc, thật tốt quá!"},{"role":"B","hz":"还行，目前市场比较好，销售也不错。","py":"Hái xíng, mùqián shìchǎng bǐjiào hǎo, xiāoshòu yě búcuò.","vi":"Cũng tạm ổn, hiện tại thị trường khá tốt, doanh số cũng không tệ."},{"role":"A","hz":"如果有需要的话，务必联系我们，我们一定支持您。","py":"Rúguǒ yǒu xūyào de huà, wùbì liánxì wǒmen, wǒmen yídìng zhīchí nín.","vi":"Nếu có nhu cầu, nhất định hãy liên hệ chúng tôi, chúng tôi chắc chắn sẽ hỗ trợ anh/chị."},{"role":"B","hz":"谢谢，我一定保持联系。","py":"Xièxie, wǒ yídìng bǎochí liánxì.","vi":"Cảm ơn, tôi nhất định sẽ giữ liên lạc."}]},{"title":"Bài 2 — Hội thoại 4 (slide 55)","lines":[{"role":"A","hz":"下次有空，我们聚一聚吧。","py":"Xiàcì yǒu kòng, wǒmen jù yī jù ba.","vi":"Lần sau có rảnh, chúng ta họp mặt nhé."},{"role":"B","hz":"好啊，周末您有空吗？","py":"Hǎo a, zhōumò nín yǒu kòng ma?","vi":"Được đó, cuối tuần anh/chị có rảnh không?"},{"role":"A","hz":"周末我还要安排应酬，之后我给您打个电话。","py":"Zhōumò wǒ hái yào ānpái yìngchou, zhīhòu wǒ gěi nín dǎ gè diànhuà.","vi":"Cuối tuần tôi còn phải sắp xếp tiếp khách, sau đó tôi sẽ gọi điện cho anh/chị."},{"role":"B","hz":"好的，我一定等您的电话。","py":"Hǎo de, wǒ yídìng děng nín de diànhuà.","vi":"Được, tôi nhất định sẽ đợi điện thoại của anh/chị."}]}];
+
+const GRAMMAR = [{"title":"A. Ngữ pháp Bài 1 (17 cấu trúc trọng tâm)","points":[{"num":1,"structure":"姓 + Họ / 叫 + Tên","meaning":"Giới thiệu họ / tên","examples":[["我姓王，叫王志远。","Wǒ xìng Wáng, jiào Wáng Zhìyuǎn.","Tôi họ Vương, tên là Vương Chí Viễn."],["我的中文名字叫史强生。","Wǒ de Zhōngwén míngzi jiào Shǐ Qiángshēng.","Tên tiếng Trung của tôi là Sử Cường Sinh."]]},{"num":2,"structure":"Đại từ + 的 + Danh từ","meaning":"Sở hữu (của)","examples":[["我的越南名字","wǒ de Yuènán míngzi","Tên tiếng Việt của tôi"],["你的书","nǐ de shū","Quyển sách của bạn"],["她的猫","tā de māo","Con mèo của cô ấy"]]},{"num":3,"structure":"[Số tuổi] + 岁","meaning":"Nói tuổi","examples":[["今年我十岁了。","Jīnnián wǒ shí suì le.","Năm nay tôi 10 tuổi rồi."]]},{"num":4,"structure":"来 + Động từ","meaning":"Đến để làm gì (mục đích)","examples":[["我是新来的员工，我来介绍一下我自己。","Wǒ shì xīn lái de yuángōng, wǒ lái jièshào yīxià wǒ zìjǐ.","Tôi là nhân viên mới đến, tôi đến để giới thiệu bản thân."],["来帮忙","lái bāngmáng","Đến để giúp đỡ"],["来开会","lái kāihuì","Đến để họp"],["来上班","lái shàngbān","Đến để đi làm"],["来学习汉语","lái xuéxí Hànyǔ","Đến để học tiếng Trung"]]},{"num":5,"structure":"Động từ + 一下","meaning":"Làm một chút / thử một chút","examples":[["看一下","kàn yīxià","Xem một chút"],["等一下","děng yīxià","Đợi một chút"],["介绍一下","jièshào yīxià","Giới thiệu một chút"],["说一下","shuō yīxià","Nói một chút"],["检查一下","jiǎnchá yīxià","Kiểm tra một chút"],["休息一下","xiūxi yīxià","Nghỉ một chút"]]},{"num":6,"structure":"Chủ ngữ + Động từ + 什么 + (Danh từ)？","meaning":"Hỏi về đối tượng của hành động","examples":[["你吃什么水果？","Nǐ chī shénme shuǐguǒ?","Bạn ăn trái cây gì?"],["他拿什么？他拿手机。","Tā ná shénme? Tā ná shǒujī.","Anh ấy cầm gì? — Anh ấy cầm điện thoại."],["你怕什么？我怕新年没有奖金。","Nǐ pà shénme? Wǒ pà xīnnián méiyǒu jiǎngjīn.","Bạn sợ gì? — Tôi sợ năm mới không có tiền thưởng."],["他学习什么？他学习汉语。","Tā xuéxí shénme? Tā xuéxí Hànyǔ.","Anh ấy học gì? — Anh ấy học tiếng Trung."],["他有什么？他有钱。","Tā yǒu shénme? Tā yǒu qián.","Anh ấy có gì? — Anh ấy có tiền."]]},{"num":7,"structure":"请 + Động từ","meaning":"Mời / xin (lịch sự)","examples":[["请问，洗手间在哪里？","Qǐngwèn, xǐshǒujiān zài nǎlǐ?","Xin hỏi, nhà vệ sinh ở đâu?"],["请喝茶。","Qǐng hē chá.","Mời uống trà."],["请进！","Qǐng jìn!","Mời vào!"]]},{"num":8,"structure":"怎么 + Động từ？","meaning":"Hỏi cách làm / phương pháp","examples":[["你怎么知道？","Nǐ zěnme zhīdào?","Bạn làm sao biết?"],["我怎么称呼你？","Wǒ zěnme chēnghu nǐ?","Tôi nên xưng hô với bạn thế nào?"],["你怎么学习汉语？","Nǐ zěnme xuéxí Hànyǔ?","Bạn học tiếng Trung như thế nào?"]]},{"num":9,"structure":"叫 + xưng hô/tên + 就行了","meaning":"Gọi như vậy là được rồi","examples":[["你叫我小王就行了。","Nǐ jiào wǒ Xiǎo Wáng jiù xíng le.","Bạn cứ gọi tôi là Tiểu Vương là được rồi."],["叫我老师就行了。","Jiào wǒ lǎoshī jiù xíng le.","Cứ gọi tôi là giáo viên là được rồi."],["你叫她阿美就行了。","Nǐ jiào tā Āměi jiù xíng le.","Bạn cứ gọi cô ấy là A Mỹ là được."],["叫中文名字就行了。","Jiào Zhōngwén míngzi jiù xíng le.","Gọi bằng tên tiếng Trung là được rồi."]]},{"num":10,"structure":"这位 / 那位 + 先生 / 女士","meaning":"Cách gọi lịch sự chỉ người","examples":[["这位先生，你好。","Zhè wèi xiānsheng, nǐ hǎo.","Chào ông này / anh này."],["那位女士是谁？","Nà wèi nǚshì shì shéi?","Vị nữ sĩ kia là ai?"],["请问，这位女士怎么称呼？","Qǐngwèn, zhè wèi nǚshì zěnme chēnghu?","Xin hỏi vị nữ sĩ này nên xưng hô thế nào?"],["那位先生是我们的老师。","Nà wèi xiānsheng shì wǒmen de lǎoshī.","Vị tiên sinh kia là giáo viên của chúng tôi."]]},{"num":11,"structure":"Đại từ + 们","meaning":"Số nhiều của đại từ","examples":[["我们","wǒmen","Chúng tôi / chúng ta"],["你们","nǐmen","Các bạn"],["他们","tāmen","Họ (nam / nhóm chung)"],["她们","tāmen","Họ (nữ)"],["它们","tāmen","Chúng nó (đồ vật, động vật)"]]},{"num":12,"structure":"Chủ ngữ + 应该 + Động từ","meaning":"Nên / cần nên","examples":[["应该是戴口罩。","Yīnggāi dài kǒuzhào.","Nên đeo khẩu trang."],["应该准时上班。","Yīnggāi zhǔnshí shàngbān.","Nên đi làm đúng giờ."],["应该学习机器操作。","Yīnggāi xuéxí jīqì cāozuò.","Nên học vận hành máy móc."],["应该检查机器。","Yīnggāi jiǎnchá jīqì.","Nên kiểm tra máy móc."],["应该注意安全。","Yīnggāi zhùyì ānquán.","Nên chú ý an toàn."],["应该休息。","Yīnggāi xiūxi.","Nên nghỉ ngơi."]]},{"num":13,"structure":"Chủ ngữ + 才 + Động từ","meaning":"Nhấn mạnh hành động xảy ra muộn / chỉ khi đó","examples":[["我现在才知道。","Wǒ xiànzài cái zhīdào.","Bây giờ tôi mới biết."],["他开会的时候才说。","Tā kāihuì de shíhòu cái shuō.","Anh ấy mới nói khi đang họp."],["工人晚上八点才上班。","Gōngrén wǎnshàng bā diǎn cái shàngbān.","Công nhân mới bắt đầu làm ca đêm lúc 8 giờ tối."],["他每天很晚才下班。","Tā měitiān hěn wǎn cái xiàbān.","Mỗi ngày anh ấy tan làm rất muộn."],["这个时间才合适。","Zhège shíjiān cái héshì.","Chỉ vào lúc này mới thích hợp."]]},{"num":14,"structure":"Chủ ngữ + 过 + Động từ","meaning":"Đã từng làm gì / 没 + Động từ + 过 = chưa từng","examples":[["我去过中国。","Wǒ qù guò Zhōngguó.","Tôi đã từng đi Trung Quốc."],["你吃过北京烤鸭吗？","Nǐ chī guò Běijīng kǎoyā ma?","Bạn đã từng ăn vịt quay Bắc Kinh chưa?"],["我看过这个电影。","Wǒ kàn guò zhège diànyǐng.","Tôi đã từng xem bộ phim này."],["我们合作过。","Wǒmen hézuò guò.","Chúng tôi đã từng hợp tác."],["他学过汉语。","Tā xué guò Hànyǔ.","Anh ấy đã từng học tiếng Trung."],["我没用过这个机器。","Wǒ méi yòng guò zhège jīqì.","Tôi chưa từng dùng máy này."]]},{"num":15,"structure":"Chủ ngữ + 还没有 + Động từ / Danh từ","meaning":"Vẫn chưa","examples":[["我还没有下班。","Wǒ hái méiyǒu xiàbān.","Tôi vẫn chưa tan làm."],["他还没有来。","Tā hái méiyǒu lái.","Anh ấy vẫn chưa đến."],["仓库还没有货。","Cāngkù hái méiyǒu huò.","Kho vẫn chưa có hàng."],["我还没有吃饭。","Wǒ hái méiyǒu chīfàn.","Tôi vẫn chưa ăn cơm."]]},{"num":16,"structure":"Chủ ngữ + 可以 + Động từ","meaning":"Có thể / được phép","examples":[["你可以进去。","Nǐ kěyǐ jìnqù.","Bạn có thể vào."],["这里可以拍照。","Zhèlǐ kěyǐ pāizhào.","Ở đây có thể chụp ảnh."],["你可以问主管。","Nǐ kěyǐ wèn zhǔguǎn.","Bạn có thể hỏi chủ quản."],["现在可以下班了。","Xiànzài kěyǐ xiàbān le.","Bây giờ có thể tan làm rồi."]]},{"num":17,"structure":"Quốc gia + 来的 + Họ tên","meaning":"Đến từ quốc gia nào","examples":[["我是越南来的小王。","Wǒ shì Yuènán lái de Xiǎo Wáng.","Tôi là Tiểu Vương đến từ Việt Nam."],["中国来的李经理","Zhōngguó lái de Lǐ jīnglǐ","Quản lý Lý đến từ Trung Quốc"],["泰国来的王小姐","Tàiguó lái de Wáng xiǎojiě","Cô Vương đến từ Thái Lan"],["韩国来的金先生","Hánguó lái de Jīn xiānsheng","Ông Kim đến từ Hàn Quốc"],["日本来的田中先生","Rìběn lái de Tiánzhōng xiānsheng","Ông Tanaka đến từ Nhật Bản"]]}]},{"title":"B. Ngữ pháp Bài 2 (20 cấu trúc trọng tâm, slide 1-31)","points":[{"num":1,"structure":"动词 + 个 + 名词","meaning":"Động từ + lượng từ 个 + Danh từ","examples":[["打个电话","dǎ gè diànhuà","Gọi một cuộc điện thoại"]]},{"num":2,"structure":"向 + 人 + 请教/道歉/学习/表示感谢/介绍/问好","meaning":"Hướng tới ai đó để làm hành động","examples":[["我想向您请教一个问题。","Wǒ xiǎng xiàng nín qǐngjiào yī gè wèntí.","Tôi muốn xin ý kiến anh/chị về một vấn đề."],["他向客户道歉。","Tā xiàng kèhù dàoqiàn.","Anh ấy xin lỗi khách hàng."]]},{"num":3,"structure":"Danh từ + 号码","meaning":"Số (điện thoại/hộ chiếu...)","examples":[["电话号码","diànhuà hàomǎ","Số điện thoại"],["护照号码","hùzhào hàomǎ","Số hộ chiếu"]]},{"num":4,"structure":"早上/上午/下午/晚上 + hành động","meaning":"Buổi sáng sớm/sáng/chiều/tối + hành động","examples":[["早上开会","zǎoshang kāihuì","Sáng sớm họp"],["晚上打电话","wǎnshang dǎ diànhuà","Buổi tối gọi điện thoại"]]},{"num":5,"structure":"中午 + 吃饭/休息","meaning":"Buổi trưa + ăn cơm/nghỉ ngơi","examples":[["中午吃饭","zhōngwǔ chīfàn","Buổi trưa ăn cơm"]]},{"num":6,"structure":"需要/还有 + số + 小时/分钟","meaning":"Cần/còn có + số + giờ/phút","examples":[["还有十分钟。","Hái yǒu shí fēnzhōng.","Còn 10 phút nữa."],["需要两个小时。","Xūyào liǎng gè xiǎoshí.","Cần 2 tiếng đồng hồ."]]},{"num":7,"structure":"上次/下次 + địa điểm/hành động","meaning":"Lần trước/lần sau + địa điểm/hành động","examples":[["下次的聚会您能出席吗？","Xiàcì de jùhuì nín néng chūxí ma?","Buổi họp mặt lần sau anh/chị có thể tham dự không?"]]},{"num":8,"structure":"Động từ + 之后/以后 + kết quả","meaning":"Sau khi làm gì thì...","examples":[["周末我还要安排应酬，之后我给您打个电话。","Zhōumò wǒ hái yào ānpái yìngchou, zhīhòu wǒ gěi nín dǎ gè diànhuà.","Cuối tuần tôi còn phải sắp xếp tiếp khách, sau đó tôi sẽ gọi điện cho anh/chị."]]},{"num":9,"structure":"目前/现在 + trạng thái","meaning":"Hiện tại/bây giờ + trạng thái","examples":[["目前市场比较好，销售也不错。","Mùqián shìchǎng bǐjiào hǎo, xiāoshòu yě búcuò.","Hiện tại thị trường khá tốt, doanh số cũng không tệ."]]},{"num":10,"structure":"周末 + kế hoạch","meaning":"Cuối tuần + kế hoạch","examples":[["周末您有空吗？","Zhōumò nín yǒu kòng ma?","Cuối tuần anh/chị có rảnh không?"]]},{"num":11,"structure":"A 给 B + 动词","meaning":"A làm gì đó cho B","examples":[["之后我给您打个电话。","Zhīhòu wǒ gěi nín dǎ gè diànhuà.","Sau đó tôi sẽ gọi điện cho anh/chị."]]},{"num":12,"structure":"如果/要是......的话","meaning":"Nếu... thì...","examples":[["如果有需要的话，务必联系我们。","Rúguǒ yǒu xūyào de huà, wùbì liánxì wǒmen.","Nếu có nhu cầu, nhất định hãy liên hệ chúng tôi."]]},{"num":13,"structure":"能......吗?","meaning":"Có thể... không?","examples":[["下次的聚会您能出席吗？","Xiàcì de jùhuì nín néng chūxí ma?","Buổi họp mặt lần sau anh/chị có thể tham dự không?"],["能交换名片吗？","Néng jiāohuàn míngpiàn ma?","Có thể trao đổi danh thiếp không?"]]},{"num":14,"structure":"来得及/来不及","meaning":"Kịp / không kịp","examples":[["很遗憾，我来不及了。","Hěn yíhàn, wǒ láibují le.","Rất tiếc, tôi không kịp rồi."]]},{"num":15,"structure":"Danh từ + 怎么样?","meaning":"... thế nào?","examples":[["这个产品怎么样？","Zhège chǎnpǐn zěnmeyàng?","Sản phẩm này thế nào?"]]},{"num":16,"structure":"有 + Danh từ","meaning":"Có...","examples":[["周末您有空吗？","Zhōumò nín yǒu kòng ma?","Cuối tuần anh/chị có rảnh không?"]]},{"num":17,"structure":"你的 + Danh từ + 很 + Tính từ","meaning":"... của bạn rất...","examples":[["听说您的生意有起色，真好！","Tīngshuō nín de shēngyi yǒu qǐsè, zhēn hǎo!","Nghe nói việc làm ăn của anh/chị khởi sắc, thật tốt quá!"]]},{"num":18,"structure":"接受/收到 + Danh từ","meaning":"Tiếp nhận/nhận được...","examples":[["谢谢您，我收到您的名片了。","Xièxie nín, wǒ shōudào nín de míngpiàn le.","Cảm ơn anh/chị, tôi đã nhận được danh thiếp của anh/chị rồi."]]},{"num":19,"structure":"这是 + Danh từ","meaning":"Đây là...","examples":[["这是我的名片，请留下您的联系方式。","Zhè shì wǒ de míngpiàn, qǐng liú xià nín de liánxì fāngshì.","Đây là danh thiếp của tôi, xin để lại thông tin liên lạc."]]},{"num":20,"structure":"办/留/保持 + ngữ cảnh","meaning":"Xử lý / để lại / duy trì...","examples":[["请留下您的联系方式。","Qǐng liú xià nín de liánxì fāngshì.","Xin để lại thông tin liên lạc."],["谢谢，我一定保持联系。","Xièxie, wǒ yídìng bǎochí liánxì.","Cảm ơn, tôi nhất định sẽ giữ liên lạc."]]}]}];
+
+const PASSAGES = [{"title":"Bài 1 — Câu ứng dụng ngữ pháp","items":[["林哥，你应该检查一下机器。","Lín gē, nǐ yīnggāi jiǎnchá yīxià jīqì.","Anh Lâm, anh nên kiểm tra máy móc một chút."],["林姐，晚上八点你有时间吗？","Lín jiě, wǎnshàng bā diǎn nǐ yǒu shíjiān ma?","Chị Lâm, 8 giờ tối chị có thời gian không?"],["你知道那位组长叫什么名字吗？","Nǐ zhīdào nà wèi zǔzhǎng jiào shénme míngzi ma?","Bạn biết vị tổ trưởng kia tên là gì không?"],["我每天准时上班。","Wǒ měitiān zhǔnshí shàngbān.","Mỗi ngày tôi đi làm đúng giờ."],["他知道这个机器的操作。","Tā zhīdào zhège jīqì de cāozuò.","Anh ấy biết thao tác máy móc này."],["叫她小林就行了，她是我们公司的经理。","Jiào tā Xiǎo Lín jiù xíng le, tā shì wǒmen gōngsī de jīnglǐ.","Gọi cô ấy là Tiểu Lâm là được, cô ấy là giám đốc của công ty chúng tôi."],["6月25号有一位重要的客户来帮忙。","6 yuè 25 hào yǒu yī wèi zhòngyào de kèhù lái bāngmáng.","Ngày 25/6 có 1 vị khách hàng quan trọng đến để giúp đỡ."],["他是泰国人，是我们公司的重要客户。","Tā shì Tàiguó rén, shì wǒmen gōngsī de zhòngyào kèhù.","Anh ấy là người Thái Lan, là khách hàng quan trọng của công ty chúng ta."],["这段时间你不应该联系他。","Zhè duàn shíjiān nǐ bù yīnggāi liánxì tā.","Thời gian này bạn không nên liên lạc với anh ấy."],["请问这位主管怎么称呼？","Qǐngwèn zhè wèi zhǔguǎn zěnme chēnghu?","Xin hỏi vị chủ quản này xưng hô như thế nào?"],["开会的时候你应该问经理今年有没有奖金。","Kāihuì de shíhòu nǐ yīnggāi wèn jīnglǐ jīnnián yǒu méiyǒu jiǎngjīn.","Lúc họp bạn nên hỏi giám đốc năm nay có tiền thưởng không."],["检查机器的时候你应该注意安全。","Jiǎnchá jīqì de shíhòu nǐ yīnggāi zhùyì ānquán.","Lúc kiểm tra máy móc bạn nên chú ý an toàn."],["这是我们公司生产的产品。","Zhè shì wǒmen gōngsī shēngchǎn de chǎnpǐn.","Đây là sản phẩm mà công ty chúng tôi sản xuất."]]},{"title":"1. Đoạn giới thiệu bản thân","items":[["你们好！我叫陈氏梅，是越南来的员工。","Nǐmen hǎo! Wǒ jiào Chén Shì Méi, shì Yuènán lái de yuángōng.","Xin chào các bạn! Tôi tên là Trần Thị Mai, là nhân viên đến từ Việt Nam."],["你们可以叫我小梅就行了。","Nǐmen kěyǐ jiào wǒ Xiǎo Méi jiù xíng le.","Các bạn có thể gọi tôi là Tiểu Mai là được rồi."],["今年我二十五岁，在公司的行政部工作，是助理。","Jīnnián wǒ èrshíwǔ suì, zài gōngsī de xíngzhèngbù gōngzuò, shì zhùlǐ.","Năm nay tôi 25 tuổi, làm việc ở phòng hành chính của công ty, là trợ lý."],["我每天准时上班，也应该检查机器、注意安全。","Wǒ měitiān zhǔnshí shàngbān, yě yīnggāi jiǎnchá jīqì, zhùyì ānquán.","Mỗi ngày tôi đi làm đúng giờ, cũng nên kiểm tra máy móc, chú ý an toàn."],["下班以后，我常常和同事一起吃饭、休息。","Xiàbān yǐhòu, wǒ chángcháng hé tóngshì yīqǐ chīfàn, xiūxi.","Sau khi tan làm, tôi thường cùng đồng nghiệp ăn cơm, nghỉ ngơi."],["周末有空的时候，我在学习汉语，虽然还没有说得很好，但是我很喜欢。","Zhōumò yǒu kòng de shíhòu, wǒ zài xuéxí Hànyǔ, suīrán hái méiyǒu shuō de hěn hǎo, dànshì wǒ hěn xǐhuan.","Lúc cuối tuần có rảnh, tôi đang học tiếng Trung, tuy vẫn chưa nói tốt lắm, nhưng tôi rất thích."],["如果你们需要联系我，可以打我的手机，号码在名片上。","Rúguǒ nǐmen xūyào liánxì wǒ, kěyǐ dǎ wǒ de shǒujī, hàomǎ zài míngpiàn shàng.","Nếu các bạn cần liên hệ với tôi, có thể gọi điện thoại di động của tôi, số điện thoại có trên danh thiếp."],["很高兴认识你们！","Hěn gāoxìng rènshi nǐmen!","Rất vui được quen biết các bạn!"]]},{"title":"2. Đoạn giới thiệu đối tác / công ty hợp tác","items":[["这位是我们公司新的业务合作人，他是泰国来的阮先生。","Zhè wèi shì wǒmen gōngsī xīn de yèwù hézuò rén, tā shì Tàiguó lái de Ruǎn xiānsheng.","Vị này là đối tác hợp tác kinh doanh mới của công ty chúng tôi, anh ấy là ông Nguyễn đến từ Thái Lan."],["阮先生是他们公司的主管，请问应该怎么称呼他才合适？","Ruǎn xiānsheng shì tāmen gōngsī de zhǔguǎn, qǐngwèn yīnggāi zěnme chēnghu tā cái héshì?","Ông Nguyễn là chủ quản của công ty họ, xin hỏi nên xưng hô với ông ấy thế nào mới phù hợp?"],["叫他阮总就行了。","Jiào tā Ruǎn zǒng jiù xíng le.","Cứ gọi ông ấy là Tổng Nguyễn là được rồi."],["他们公司主要生产产品，也很重视检查和安全。","Tāmen gōngsī zhǔyào shēngchǎn chǎnpǐn, yě hěn zhòngshì jiǎnchá hé ānquán.","Công ty họ chủ yếu sản xuất sản phẩm, cũng rất coi trọng kiểm tra và an toàn."],["我们公司和他们公司合作过很多次，现在他们是我们很重要的客户。","Wǒmen gōngsī hé tāmen gōngsī hézuò guò hěn duō cì, xiànzài tāmen shì wǒmen hěn zhòngyào de kèhù.","Công ty chúng tôi và công ty họ đã hợp tác nhiều lần, hiện tại họ là khách hàng rất quan trọng của chúng tôi."],["如果你们有问题，可以联系阮先生，他的电话号码和电子邮箱都在名片上。","Rúguǒ nǐmen yǒu wèntí, kěyǐ liánxì Ruǎn xiānsheng, tā de diànhuà hàomǎ hé diànzǐ yóuxiāng dōu zài míngpiàn shàng.","Nếu các bạn có vấn đề, có thể liên hệ ông Nguyễn, số điện thoại và hộp thư điện tử của ông ấy đều có trên danh thiếp."],["下次开会的时候，请大家准时出席。","Xiàcì kāihuì de shíhòu, qǐng dàjiā zhǔnshí chūxí.","Lần họp sau, xin mọi người tham dự đúng giờ."],["很高兴向大家介绍阮先生，希望我们合作愉快！","Hěn gāoxìng xiàng dàjiā jièshào Ruǎn xiānsheng, xīwàng wǒmen hézuò yúkuài!","Rất vui được giới thiệu ông Nguyễn với mọi người, hy vọng chúng ta hợp tác vui vẻ!"]]}];
+
+/* ============ TAB SWITCHING ============ */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ============ VOCAB: STATE ============ */
+let currentFilter = 'all';
+let currentSearch = '';
+let currentMode = 'list';
+const mastered = new Set();
+
+document.getElementById('stat-vocab').textContent = VOCAB.length;
+
+function getFiltered(){
+  return VOCAB.filter(v=>{
+    if(currentFilter !== 'all' && !v.bai.split(', ').includes(currentFilter)) return false;
+    if(currentSearch){
+      const s = currentSearch.toLowerCase();
+      return v.hanzi.includes(currentSearch) || v.pinyin.toLowerCase().includes(s) || v.nghia.toLowerCase().includes(s);
+    }
+    return true;
+  });
+}
+
+function renderList(){
+  const data = getFiltered();
+  document.getElementById('result-count').textContent = data.length + ' từ';
+  const ledger = document.getElementById('ledger');
+  ledger.innerHTML = data.map((v,i)=>`
+    <div class="ledger-row">
+      <div class="idx">${i+1}</div>
+      <div class="hz">${v.hanzi}</div>
+      <div class="py">${v.pinyin}</div>
+      <div class="vi">${v.nghia}</div>
+      <div class="bai-tag">B${v.bai}</div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('search').addEventListener('input', e=>{
+  currentSearch = e.target.value.trim();
+  renderList();
+  if(currentMode==='flash') resetFlash();
+});
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    currentFilter = chip.dataset.filter;
+    renderList();
+    if(currentMode==='flash') resetFlash();
+    if(currentMode==='quiz') newQuizQuestion();
+  });
+});
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    document.getElementById('mode-list').style.display = currentMode==='list' ? 'block':'none';
+    document.getElementById('mode-flash').style.display = currentMode==='flash' ? 'block':'none';
+    document.getElementById('mode-quiz').style.display = currentMode==='quiz' ? 'block':'none';
+    if(currentMode==='flash') resetFlash();
+    if(currentMode==='quiz') { quizScore={correct:0,total:0}; newQuizQuestion(); }
+  });
+});
+
+/* ============ FLASHCARD ============ */
+let flashDeck = [];
+let flashIndex = 0;
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function resetFlash(){
+  flashDeck = getFiltered();
+  flashIndex = 0;
+  document.getElementById('biz-card').classList.remove('flipped');
+  renderFlash();
+}
+function renderFlash(){
+  if(flashDeck.length===0){
+    document.getElementById('card-hanzi').textContent = '—';
+    document.getElementById('card-pinyin').textContent = '';
+    document.getElementById('card-meaning').textContent = 'Không có thẻ nào khớp bộ lọc';
+    document.getElementById('card-bai').textContent = '';
+    document.getElementById('flash-progress').textContent = '0 / 0';
+    return;
+  }
+  const v = flashDeck[flashIndex];
+  document.getElementById('card-hanzi').textContent = v.hanzi;
+  document.getElementById('card-pinyin').textContent = v.pinyin;
+  document.getElementById('card-meaning').textContent = v.nghia;
+  document.getElementById('card-bai').textContent = 'Bài ' + v.bai;
+  const key = v.hanzi+v.pinyin;
+  document.getElementById('flash-progress').textContent = (flashIndex+1)+' / '+flashDeck.length+'   ·   Đã thuộc: '+mastered.size;
+  document.getElementById('flash-master').classList.toggle('mastered', mastered.has(key));
+}
+document.getElementById('biz-card').addEventListener('click', ()=>{
+  document.getElementById('biz-card').classList.toggle('flipped');
+});
+document.getElementById('flash-next').addEventListener('click', ()=>{
+  if(flashDeck.length===0) return;
+  flashIndex = (flashIndex+1)%flashDeck.length;
+  document.getElementById('biz-card').classList.remove('flipped');
+  renderFlash();
+});
+document.getElementById('flash-prev').addEventListener('click', ()=>{
+  if(flashDeck.length===0) return;
+  flashIndex = (flashIndex-1+flashDeck.length)%flashDeck.length;
+  document.getElementById('biz-card').classList.remove('flipped');
+  renderFlash();
+});
+document.getElementById('flash-shuffle').addEventListener('click', ()=>{
+  flashDeck = shuffle(flashDeck);
+  flashIndex = 0;
+  document.getElementById('biz-card').classList.remove('flipped');
+  renderFlash();
+});
+document.getElementById('flash-master').addEventListener('click', ()=>{
+  if(flashDeck.length===0) return;
+  const v = flashDeck[flashIndex];
+  const key = v.hanzi+v.pinyin;
+  if(mastered.has(key)) mastered.delete(key); else mastered.add(key);
+  renderFlash();
+});
+document.addEventListener('keydown', e=>{
+  if(currentMode!=='flash') return;
+  if(e.key==='ArrowRight') document.getElementById('flash-next').click();
+  if(e.key==='ArrowLeft') document.getElementById('flash-prev').click();
+  if(e.key===' '){ e.preventDefault(); document.getElementById('biz-card').classList.toggle('flipped'); }
+});
+
+/* ============ QUIZ ============ */
+let quizScore = {correct:0, total:0};
+let quizCurrent = null;
+function newQuizQuestion(){
+  const pool = getFiltered();
+  document.getElementById('quiz-next').style.display='none';
+  if(pool.length < 4){
+    document.getElementById('quiz-hanzi').textContent='—';
+    document.getElementById('quiz-pinyin').textContent='';
+    document.getElementById('quiz-options').innerHTML = '<p style="color:#7a8a83;">Cần ít nhất 4 từ trong bộ lọc hiện tại để làm trắc nghiệm.</p>';
+    return;
+  }
+  const correctItem = pool[Math.floor(Math.random()*pool.length)];
+  quizCurrent = correctItem;
+  document.getElementById('quiz-hanzi').textContent = correctItem.hanzi;
+  document.getElementById('quiz-pinyin').textContent = correctItem.pinyin;
+  const distractors = shuffle(pool.filter(v=>v!==correctItem)).slice(0,3);
+  const options = shuffle([correctItem, ...distractors]);
+  const optDiv = document.getElementById('quiz-options');
+  optDiv.innerHTML='';
+  options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className='quiz-opt';
+    btn.textContent = opt.nghia;
+    btn.addEventListener('click', ()=>{
+      const isCorrect = opt===correctItem;
+      quizScore.total++;
+      if(isCorrect) quizScore.correct++;
+      document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+      btn.classList.add(isCorrect?'correct':'wrong');
+      if(!isCorrect){
+        [...optDiv.children].find(b=>b.textContent===correctItem.nghia).classList.add('correct');
+      }
+      document.getElementById('quiz-score').textContent = `Điểm: ${quizScore.correct} / ${quizScore.total}`;
+      document.getElementById('quiz-next').style.display='inline-block';
+    });
+    optDiv.appendChild(btn);
+  });
+}
+document.getElementById('quiz-next').addEventListener('click', newQuizQuestion);
+
+/* ============ DIALOGUE RENDER ============ */
+function renderDialogues(){
+  const container = document.getElementById('dialogue-content');
+  container.innerHTML = DIALOGUES.map(block=>`
+    <div class="dialogue-block">
+      <div class="dialogue-title">${block.title}</div>
+      ${block.context ? `<div class="dialogue-context">${block.context}</div>` : ''}
+      ${block.lines.map(l=>`
+        <div class="line">
+          <div class="role">${l.role}</div>
+          <div class="content">
+            <div class="hz">${l.hz}</div>
+            <div class="hideable">
+              <div class="py">${l.py}</div>
+              <div class="vi">${l.vi}</div>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+  container.querySelectorAll('.hideable').forEach(el=>{
+    el.addEventListener('click', ()=> el.classList.toggle('hidden'));
+  });
+}
+document.getElementById('dlg-hide-all').addEventListener('click', ()=>{
+  document.querySelectorAll('.hideable').forEach(el=>el.classList.add('hidden'));
+});
+document.getElementById('dlg-show-all').addEventListener('click', ()=>{
+  document.querySelectorAll('.hideable').forEach(el=>el.classList.remove('hidden'));
+});
+
+/* ============ GRAMMAR RENDER ============ */
+function renderGrammar(){
+  const container = document.getElementById('grammar-content');
+  let html = '';
+  GRAMMAR.forEach(group=>{
+    html += `<div class="grammar-sub">${group.title}</div>`;
+    group.points.forEach((pt,i)=>{
+      html += `
+        <div class="gpoint">
+          <div class="gpoint-head">
+            <div>
+              <div class="struct">${pt.num}. ${pt.structure}</div>
+              <div class="meaning">${pt.meaning}</div>
+            </div>
+            <div class="arrow">▶</div>
+          </div>
+          <div class="gpoint-body">
+            ${pt.examples.map(ex=>`
+              <div class="ex">
+                <div class="hz">${ex[0]}</div>
+                <div class="py">${ex[1]}</div>
+                <div class="vi">→ ${ex[2]}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    });
+  });
+  container.innerHTML = html;
+  container.querySelectorAll('.gpoint-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      const parent = head.parentElement;
+      parent.classList.toggle('open');
+      const body = parent.querySelector('.gpoint-body');
+      body.style.maxHeight = parent.classList.contains('open') ? body.scrollHeight+'px' : '0';
+    });
+  });
+}
+
+/* ============ PASSAGE RENDER ============ */
+function renderPassages(){
+  const container = document.getElementById('passage-content');
+  let html='';
+  PASSAGES.forEach(sec=>{
+    html += `<div class="passage-title">${sec.title}</div>`;
+    sec.items.forEach(it=>{
+      html += `
+        <div class="passage-item">
+          <div class="hz">${it[0]}</div>
+          <div class="py">${it[1]}</div>
+          <div class="vi">→ ${it[2]}</div>
+        </div>
+      `;
+    });
+  });
+  container.innerHTML = html;
+}
+
+/* ============ INIT ============ */
+renderList();
+resetFlash();
+renderDialogues();
+renderGrammar();
+renderPassages();
+</script>
+</body>
+</html>
