@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>食堂课 · Ôn tập tiếng Trung Nhà hàng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lacquer:#a3232c;
+  --lacquer-deep:#7c1a21;
+  --ink:#1c1815;
+  --ink-soft:#2b2420;
+  --gold:#c79a3d;
+  --gold-soft:#e3c477;
+  --jade:#3f6b52;
+  --paper:#efe6d3;
+  --paper-dim:#d9cba9;
+  --paper-line: rgba(239,230,211,0.12);
+  --shadow: 0 14px 30px rgba(0,0,0,0.35);
+  --radius: 4px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(ellipse at top left, rgba(163,35,44,0.10), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(63,107,82,0.10), transparent 55%),
+    var(--ink);
+  color:var(--paper);
+  font-family:'Manrope', 'Segoe UI', sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px; margin:0 auto; padding:28px 20px 80px;}
+
+/* ---------- Header : bảng hiệu tiệm ăn ---------- */
+header.shop-sign{
+  position:relative;
+  border:1px solid rgba(199,154,61,0.35);
+  border-radius:6px;
+  padding:34px 30px 26px;
+  margin-bottom:26px;
+  background:
+    linear-gradient(180deg, rgba(163,35,44,0.14), rgba(163,35,44,0) 60%),
+    var(--ink-soft);
+  overflow:hidden;
+}
+header.shop-sign::before{
+  content:"";
+  position:absolute; inset:8px;
+  border:1px solid rgba(199,154,61,0.22);
+  border-radius:3px;
+  pointer-events:none;
+}
+.stamp{
+  position:absolute; top:20px; right:26px;
+  width:64px; height:64px;
+  border:2px solid var(--lacquer);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--lacquer);
+  font-family:'Noto Serif SC', serif;
+  font-weight:900; font-size:22px;
+  transform:rotate(-8deg);
+  opacity:0.85;
+  letter-spacing:-2px;
+}
+.eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold-soft); margin:0 0 10px;
+}
+h1.title{
+  font-family:'Noto Serif SC', serif;
+  font-weight:900;
+  font-size:clamp(30px,5vw,46px);
+  margin:0 0 6px;
+  color:var(--paper);
+  line-height:1.15;
+}
+h1.title small{
+  display:block;
+  font-family:'Manrope',sans-serif;
+  font-weight:600;
+  font-size:16px;
+  color:var(--paper-dim);
+  margin-top:8px;
+  letter-spacing:.01em;
+}
+.menu-strip{
+  display:flex; flex-wrap:wrap; gap:8px 18px;
+  margin-top:18px; padding-top:16px;
+  border-top:1px dashed rgba(199,154,61,0.35);
+  font-family:'JetBrains Mono',monospace;
+  font-size:12.5px; color:var(--paper-dim);
+}
+.menu-strip span b{color:var(--gold-soft); font-weight:600;}
+
+/* ---------- Nav: order-ticket tabs ---------- */
+nav.tabs{
+  display:flex; flex-wrap:wrap; gap:0;
+  margin-bottom:24px;
+  border-bottom:2px solid rgba(199,154,61,0.3);
+}
+nav.tabs button{
+  appearance:none; border:none; cursor:pointer;
+  background:transparent;
+  color:var(--paper-dim);
+  font-family:'Manrope',sans-serif;
+  font-weight:700; font-size:14px;
+  padding:12px 18px;
+  position:relative;
+  border-radius:6px 6px 0 0;
+  transition:color .15s, background .15s;
+}
+nav.tabs button .num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; color:var(--gold);
+  display:block; margin-bottom:2px; letter-spacing:.1em;
+}
+nav.tabs button:hover{color:var(--paper); background:rgba(199,154,61,0.08);}
+nav.tabs button.active{
+  color:var(--paper);
+  background:linear-gradient(180deg, rgba(163,35,44,0.35), rgba(163,35,44,0.12));
+}
+nav.tabs button.active::after{
+  content:"";
+  position:absolute; left:10px; right:10px; bottom:-2px; height:2px;
+  background:var(--lacquer);
+}
+
+/* ---------- Panels ---------- */
+.panel{display:none; animation:fade .25s ease;}
+.panel.active{display:block;}
+@keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+.section-title{
+  font-family:'Noto Serif SC', serif;
+  font-weight:700;
+  font-size:22px;
+  color:var(--gold-soft);
+  margin:0 0 4px;
+  display:flex; align-items:baseline; gap:10px;
+}
+.section-title .cn{color:var(--lacquer); font-weight:900;}
+.section-sub{color:var(--paper-dim); font-size:14px; margin:0 0 22px; line-height:1.6;}
+
+/* ---------- Overview lesson cards ---------- */
+.grid-lessons{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px;}
+.lesson-card{
+  border:1px solid rgba(199,154,61,0.25);
+  border-radius:var(--radius);
+  padding:16px 16px 14px;
+  background:rgba(255,255,255,0.02);
+  cursor:pointer;
+  transition:transform .15s, border-color .15s, background .15s;
+}
+.lesson-card:hover{transform:translateY(-3px); border-color:var(--gold); background:rgba(199,154,61,0.06);}
+.lesson-card .no{
+  font-family:'JetBrains Mono',monospace; color:var(--lacquer); font-size:12px; letter-spacing:.15em;
+}
+.lesson-card h3{
+  font-family:'Noto Serif SC',serif; margin:6px 0 6px; font-size:17px; color:var(--paper);
+}
+.lesson-card p{margin:0; font-size:12.5px; color:var(--paper-dim); line-height:1.5;}
+.lesson-card .tag{
+  display:inline-block; margin-top:10px; font-size:10.5px;
+  font-family:'JetBrains Mono',monospace; color:var(--jade);
+  border:1px solid rgba(63,107,82,0.45); border-radius:20px; padding:2px 9px;
+}
+
+/* ---------- Vocab / Flashcards ---------- */
+.controls-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:18px;}
+select, .btn{
+  font-family:'Manrope',sans-serif; font-weight:600; font-size:13px;
+  background:var(--ink-soft); color:var(--paper);
+  border:1px solid rgba(199,154,61,0.35);
+  border-radius:20px; padding:9px 16px; cursor:pointer;
+}
+select{padding:9px 12px; border-radius:6px;}
+.btn:hover{border-color:var(--gold); color:var(--gold-soft);}
+.btn.primary{background:var(--lacquer); border-color:var(--lacquer); color:#fff;}
+.btn.primary:hover{background:var(--lacquer-deep); color:#fff;}
+.btn.ghost{background:transparent;}
+.counter-pill{
+  margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold-soft);
+  border:1px dashed rgba(199,154,61,0.4); border-radius:20px; padding:7px 14px;
+}
+
+.card-stage{display:flex; justify-content:center; margin-bottom:16px;}
+.flashcard{
+  width:100%; max-width:420px; height:250px;
+  perspective:1200px; cursor:pointer;
+}
+.flashcard-inner{
+  position:relative; width:100%; height:100%;
+  transform-style:preserve-3d; transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+.face{
+  position:absolute; inset:0; backface-visibility:hidden;
+  border-radius:10px; border:1px solid rgba(199,154,61,0.4);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:24px; text-align:center;
+  background:linear-gradient(160deg, rgba(199,154,61,0.08), rgba(163,35,44,0.08)), var(--ink-soft);
+  box-shadow:var(--shadow);
+}
+.face.back{transform:rotateY(180deg);}
+.face .hanzi{font-family:'Noto Serif SC',serif; font-weight:900; font-size:52px; color:var(--paper);}
+.face .pinyin{font-family:'JetBrains Mono',monospace; color:var(--gold-soft); font-size:15px; margin-top:10px;}
+.face .vi{font-size:19px; font-weight:700; color:var(--paper);}
+.face .lessontag{
+  position:absolute; top:10px; left:14px; font-family:'JetBrains Mono',monospace;
+  font-size:10px; color:var(--jade); letter-spacing:.1em;
+}
+.face .hint{position:absolute; bottom:10px; font-size:10.5px; color:var(--paper-dim); font-family:'JetBrains Mono',monospace;}
+.flash-nav{display:flex; gap:10px; justify-content:center; margin-top:6px;}
+
+/* ---------- Grammar & Idiom cards ---------- */
+.gram-card, .idiom-card{
+  border:1px solid rgba(199,154,61,0.25); border-radius:8px;
+  padding:18px 20px; margin-bottom:16px;
+  background:rgba(255,255,255,0.02);
+}
+.gram-card h4, .idiom-card h4{
+  font-family:'Noto Serif SC',serif; font-size:20px; margin:0 0 4px; color:var(--gold-soft);
+}
+.gram-card .pattern{
+  font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--paper);
+  background:rgba(163,35,44,0.16); border-left:3px solid var(--lacquer);
+  padding:8px 12px; margin:10px 0; border-radius:0 4px 4px 0;
+}
+.gram-card .meaning, .idiom-card .meaning{color:var(--paper-dim); font-size:13.5px; margin-bottom:8px;}
+.ex-row{padding:8px 0; border-top:1px solid rgba(255,255,255,0.06);}
+.ex-row:first-of-type{border-top:none;}
+.ex-row .cn{font-weight:700; color:var(--paper); font-size:15px;}
+.ex-row .py{font-family:'JetBrains Mono',monospace; color:var(--gold-soft); font-size:12.5px; margin:2px 0;}
+.ex-row .vi{color:var(--paper-dim); font-size:13px;}
+.lesson-badge{
+  display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+  color:var(--lacquer); border:1px solid rgba(163,35,44,0.5); border-radius:20px; padding:2px 10px; margin-bottom:10px;
+}
+
+/* ---------- Dialogue ---------- */
+.dlg-select{margin-bottom:18px;}
+.dlg-line{
+  display:flex; gap:14px; padding:12px 0; border-top:1px solid rgba(255,255,255,0.06);
+}
+.dlg-line:first-of-type{border-top:none;}
+.dlg-speaker{
+  flex:0 0 78px; font-weight:800; color:var(--gold-soft); font-family:'Noto Serif SC',serif; font-size:15px;
+}
+.dlg-body .cn{font-size:16px; color:var(--paper); font-weight:600;}
+.dlg-body .py, .dlg-body .vi{
+  font-size:13px; color:var(--paper-dim); margin-top:3px;
+  max-height:200px; overflow:hidden; transition:max-height .25s, opacity .25s;
+}
+.dlg-body .py{font-family:'JetBrains Mono',monospace; color:var(--gold-soft);}
+body.hide-hints .dlg-body .py, body.hide-hints .dlg-body .vi{max-height:0; opacity:0; margin:0;}
+
+/* ---------- Reading ---------- */
+.passage{
+  border:1px solid rgba(199,154,61,0.25); border-radius:8px; padding:20px;
+  background:rgba(255,255,255,0.02); margin-bottom:18px;
+}
+.passage p.cn{font-size:16.5px; line-height:1.9; color:var(--paper); font-weight:600;}
+.passage p.py{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--gold-soft); line-height:1.7;}
+.passage p.vi{font-size:14px; color:var(--paper-dim); line-height:1.75; border-top:1px dashed rgba(199,154,61,0.25); padding-top:10px; margin-top:10px;}
+.vocab-mini{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+.vocab-mini span{
+  font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--jade);
+  border:1px solid rgba(63,107,82,0.4); border-radius:20px; padding:3px 10px;
+}
+.qa-item{margin-bottom:10px;}
+.qa-item .q{font-weight:700; color:var(--paper); font-size:14px;}
+.qa-item .a{
+  color:var(--gold-soft); font-size:13.5px; margin-top:4px; padding-left:14px;
+  border-left:2px solid var(--gold); display:none;
+}
+.qa-item.shown .a{display:block;}
+.qa-item .toggle{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--paper-dim); cursor:pointer; margin-top:4px; display:inline-block;}
+
+/* ---------- Quiz ---------- */
+.quiz-modes{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px;}
+.quiz-modes button.mode{
+  border:1px solid rgba(199,154,61,0.35); background:transparent; color:var(--paper-dim);
+  border-radius:20px; padding:8px 16px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Manrope',sans-serif;
+}
+.quiz-modes button.mode.active{background:var(--jade); border-color:var(--jade); color:#fff;}
+
+.ticket{
+  border:1px dashed rgba(199,154,61,0.4); border-radius:8px;
+  background:rgba(255,255,255,0.02); padding:24px; position:relative;
+}
+.ticket::before,.ticket::after{
+  content:""; position:absolute; width:16px; height:16px; background:var(--ink); border-radius:50%;
+  top:50%; transform:translateY(-50%);
+}
+.ticket::before{left:-8px;} .ticket::after{right:-8px;}
+.q-progress{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--paper-dim); margin-bottom:8px; letter-spacing:.08em;}
+.q-prompt{font-family:'Noto Serif SC',serif; font-size:15px; color:var(--gold-soft); margin-bottom:6px;}
+.q-hanzi{font-size:38px; font-weight:900; color:var(--paper); margin-bottom:22px; font-family:'Noto Serif SC',serif;}
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+@media(max-width:520px){.opts{grid-template-columns:1fr;}}
+.opt{
+  text-align:left; border:1px solid rgba(199,154,61,0.3); background:rgba(255,255,255,0.02); color:var(--paper);
+  border-radius:6px; padding:12px 14px; font-size:14px; cursor:pointer; font-family:'Manrope',sans-serif; font-weight:600;
+  transition:all .12s;
+}
+.opt:hover{border-color:var(--gold);}
+.opt.correct{background:rgba(63,107,82,0.35); border-color:var(--jade); color:#dff2e6;}
+.opt.wrong{background:rgba(163,35,44,0.35); border-color:var(--lacquer); color:#f7dede;}
+.opt[disabled]{cursor:default;}
+.quiz-footer{display:flex; justify-content:space-between; align-items:center; margin-top:20px;}
+.score-pill{font-family:'JetBrains Mono',monospace; color:var(--gold-soft); font-size:13px;}
+
+.receipt{
+  max-width:340px; margin:0 auto; background:var(--paper); color:var(--ink);
+  border-radius:2px; padding:26px 22px; font-family:'JetBrains Mono',monospace;
+  box-shadow:var(--shadow);
+  background-image:repeating-linear-gradient(transparent,transparent 27px, rgba(0,0,0,0.05) 28px);
+}
+.receipt h3{font-family:'Noto Serif SC',serif; text-align:center; margin:0 0 4px; font-size:18px;}
+.receipt .sub{text-align:center; font-size:11px; color:#6b5f4a; margin-bottom:14px;}
+.receipt .line{display:flex; justify-content:space-between; font-size:12.5px; padding:3px 0;}
+.receipt hr{border:none; border-top:1px dashed #8a7a5c; margin:10px 0;}
+.receipt .total{font-weight:700; font-size:15px;}
+.receipt .stampword{
+  text-align:center; margin-top:14px; font-family:'Noto Serif SC',serif; font-weight:900; font-size:16px;
+  color:var(--lacquer); border:2px solid var(--lacquer); display:inline-block; padding:4px 14px; transform:rotate(-4deg); border-radius:4px;
+}
+.receipt-wrap{text-align:center;}
+
+footer.note{
+  text-align:center; color:var(--paper-dim); font-size:12px; margin-top:50px;
+  font-family:'JetBrains Mono',monospace; letter-spacing:.05em;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="shop-sign">
+    <div class="stamp">餐</div>
+    <p class="eyebrow">Lớp học tiếng Trung ngành nhà hàng · 8 bài · Chị San</p>
+    <h1 class="title">服务生的中文课
+      <small>Ôn tập &amp; luyện thi tiếng Trung chủ đề Nhà hàng — Từ vựng · Ngữ pháp · Thành ngữ · Hội thoại · Đọc hiểu · Trắc nghiệm</small>
+    </h1>
+    <div class="menu-strip" id="menuStrip"></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-panel="overview" class="active"><span class="num">01</span>Tổng quan</button>
+    <button data-panel="vocab"><span class="num">02</span>Từ vựng</button>
+    <button data-panel="grammar"><span class="num">03</span>Ngữ pháp</button>
+    <button data-panel="idiom"><span class="num">04</span>Thành ngữ</button>
+    <button data-panel="dialogue"><span class="num">05</span>Hội thoại</button>
+    <button data-panel="reading"><span class="num">06</span>Đọc hiểu</button>
+    <button data-panel="quiz"><span class="num">07</span>Trắc nghiệm</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="panel active" id="panel-overview">
+    <p class="section-title"><span class="cn">目录</span>Tổng quan chương trình</p>
+    <p class="section-sub">Bấm vào một bài để nhảy nhanh tới phần từ vựng của bài đó. Toàn bộ 8 bài xoay quanh chủ đề phục vụ &amp; vận hành nhà hàng.</p>
+    <div class="grid-lessons" id="lessonGrid"></div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="panel" id="panel-vocab">
+    <p class="section-title"><span class="cn">词汇</span>Từ vựng — Flashcard</p>
+    <p class="section-sub">Bấm vào thẻ để lật xem nghĩa. Dùng bộ lọc để ôn theo từng bài.</p>
+    <div class="controls-row">
+      <select id="vocabLessonFilter"></select>
+      <button class="btn" id="shuffleBtn">🔀 Xáo bài</button>
+      <button class="btn" id="markKnownBtn">✓ Đã thuộc</button>
+      <span class="counter-pill" id="vocabCounter">1 / 1</span>
+    </div>
+    <div class="card-stage">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-inner">
+          <div class="face front">
+            <span class="lessontag" id="cardLessonFront"></span>
+            <div class="hanzi" id="cardHanzi"></div>
+            <div class="pinyin" id="cardPinyin"></div>
+            <span class="hint">bấm để xem nghĩa</span>
+          </div>
+          <div class="face back">
+            <span class="lessontag" id="cardLessonBack"></span>
+            <div class="vi" id="cardVi"></div>
+            <span class="hint">bấm để quay lại</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flash-nav">
+      <button class="btn ghost" id="prevCard">‹ Trước</button>
+      <button class="btn ghost" id="nextCard">Sau ›</button>
+    </div>
+  </section>
+
+  <!-- GRAMMAR -->
+  <section class="panel" id="panel-grammar">
+    <p class="section-title"><span class="cn">语法</span>Ngữ pháp — Gia vị của câu</p>
+    <p class="section-sub">Mỗi cấu trúc là một "gia vị" nêm vào câu văn. Học đúng liều lượng, dùng đúng chỗ.</p>
+    <div id="grammarList"></div>
+  </section>
+
+  <!-- IDIOM -->
+  <section class="panel" id="panel-idiom">
+    <p class="section-title"><span class="cn">俗语</span>Thành ngữ khẩu ngữ nhà hàng</p>
+    <p class="section-sub">Những câu nói cửa miệng dân trong nghề hay dùng — nói đúng câu, nghe "sành" liền.</p>
+    <div id="idiomList"></div>
+  </section>
+
+  <!-- DIALOGUE -->
+  <section class="panel" id="panel-dialogue">
+    <p class="section-title"><span class="cn">对话</span>Hội thoại thực tế</p>
+    <p class="section-sub">Chọn hội thoại, đọc phần chữ Hán trước, sau đó bấm nút để kiểm tra phiên âm &amp; nghĩa.</p>
+    <div class="controls-row dlg-select">
+      <select id="dlgSelect"></select>
+      <button class="btn primary" id="toggleHints">Ẩn phiên âm / nghĩa</button>
+    </div>
+    <div id="dlgBody"></div>
+  </section>
+
+  <!-- READING -->
+  <section class="panel" id="panel-reading">
+    <p class="section-title"><span class="cn">阅读</span>Đọc hiểu</p>
+    <p class="section-sub">Đọc đoạn văn, thử trả lời câu hỏi trong đầu, rồi bấm "Xem gợi ý trả lời" để tự kiểm tra.</p>
+    <div id="readingList"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="panel" id="panel-quiz">
+    <p class="section-title"><span class="cn">考试</span>Trắc nghiệm — Gọi món kiểm tra</p>
+    <p class="section-sub">Trả lời hết các câu hỏi trong phiếu, cuối cùng bấm "结账 Thanh toán" để xem hoá đơn kết quả.</p>
+    <div class="quiz-modes">
+      <button class="mode active" data-mode="vocab">词汇 Từ vựng</button>
+      <button class="mode" data-mode="grammar">语法 Ngữ pháp</button>
+      <button class="mode" data-mode="idiom">俗语 Thành ngữ</button>
+    </div>
+    <div class="controls-row">
+      <select id="quizLessonFilter"></select>
+      <select id="quizLenSelect">
+        <option value="8">8 câu</option>
+        <option value="12" selected>12 câu</option>
+        <option value="20">20 câu</option>
+      </select>
+      <button class="btn primary" id="startQuiz">Bắt đầu gọi món</button>
+    </div>
+    <div id="quizArea"></div>
+  </section>
+
+  <footer class="note">手艺不怕难，功夫不怕慢 · luyện đều mỗi ngày, tay nghề tự lên</footer>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const LESSONS = [
+  {id:1, title:"Tiêu tiền & từ 给", cn:"花钱与"+"“给”", desc:"Quyền tự do lựa chọn, tiền lương, làm gì đó cho ai."},
+  {id:2, title:"一…就… Vừa … thì …", cn:"一…就…", desc:"Hai hành động xảy ra liền tiếp nhau; ưng một quán/món ngay khi nhìn thấy."},
+  {id:3, title:"Từ vựng chủ đề Nhà hàng", cn:"餐厅词汇", desc:"Từ vựng nền tảng: gọi món, thanh toán, môi trường, khách hàng…"},
+  {id:4, title:"Đoạn văn & cấu trúc mở rộng", cn:"扩展句型", desc:"不仅…而且…, 您瞧…怎么样？, 一眼就…, 不就是…吗？"},
+  {id:5, title:"要是……就…… Nếu … thì …", cn:"要是…就…", desc:"Câu điều kiện – kết quả, hội thoại mẹ con đi ăn nhà hàng, bài đọc giới thiệu quán."},
+  {id:6, title:"Thành ngữ khẩu ngữ", cn:"俗语", desc:"说白了, 一把好手, 露一手, 小菜一碟儿, 往心里去, 走下坡路."},
+  {id:7, title:"Bài đọc: Nhà hàng có không gian đẹp", cn:"阅读理解", desc:"Đọc hiểu 2 đoạn văn giới thiệu nhà hàng, quan sát & trả lời câu hỏi."},
+  {id:8, title:"Xử lý khiếu nại của khách", cn:"处理投诉", desc:"Hội thoại thực tế giữa nhân viên và quản lý khi khách phàn nàn."},
+];
+
+const VOCAB = [
+ // Lesson 1
+ {l:1,h:"自己",p:"zìjǐ",v:"bản thân, tự mình"},
+ {l:1,h:"长大",p:"zhǎng dà",v:"lớn lên, trưởng thành"},
+ {l:1,h:"花钱",p:"huā qián",v:"tiêu tiền"},
+ {l:1,h:"工资",p:"gōngzī",v:"tiền lương"},
+ {l:1,h:"发工资",p:"fā gōngzī",v:"phát lương, trả lương"},
+ {l:1,h:"领工资",p:"lǐng gōngzī",v:"nhận lương"},
+ {l:1,h:"员工",p:"yuángōng",v:"nhân viên"},
+ {l:1,h:"知道",p:"zhīdào",v:"biết"},
+ {l:1,h:"已经",p:"yǐjīng",v:"đã (rồi)"},
+ {l:1,h:"但是",p:"dànshì",v:"nhưng mà"},
+ {l:1,h:"每",p:"měi",v:"mỗi, từng"},
+ {l:1,h:"什么时候",p:"shénme shíhou",v:"khi nào, bao giờ"},
+ {l:1,h:"微信",p:"Wēixìn",v:"WeChat"},
+ {l:1,h:"介绍",p:"jièshào",v:"giới thiệu"},
+ {l:1,h:"穿",p:"chuān",v:"mặc (quần áo)"},
+ {l:1,h:"想",p:"xiǎng",v:"muốn / nghĩ / nhớ"},
+ // Lesson 2
+ {l:2,h:"看上",p:"kànshàng",v:"ưng, thích (nhìn thấy là thích)"},
+ {l:2,h:"小店",p:"xiǎodiàn",v:"quán nhỏ"},
+ {l:2,h:"路过",p:"lùguò",v:"đi ngang qua"},
+ {l:2,h:"的时候",p:"de shíhou",v:"khi, lúc"},
+ {l:2,h:"靠窗",p:"kào chuāng",v:"cạnh cửa sổ"},
+ {l:2,h:"座位",p:"zuòwèi",v:"chỗ ngồi"},
+ {l:2,h:"菜单",p:"càidān",v:"thực đơn"},
+ {l:2,h:"招牌菜",p:"zhāopái cài",v:"món đặc sản / món nổi tiếng"},
+ {l:2,h:"甜点",p:"tiándiǎn",v:"món tráng miệng"},
+ {l:2,h:"餐厅",p:"cāntīng",v:"nhà hàng"},
+ {l:2,h:"实际上",p:"shíjì shàng",v:"thực ra"},
+ {l:2,h:"逛街",p:"guàng jiē",v:"đi dạo phố, mua sắm"},
+ {l:2,h:"刚开",p:"gāng kāi",v:"mới mở"},
+ {l:2,h:"于是",p:"yúshì",v:"thế là, do đó"},
+ {l:2,h:"决定",p:"juédìng",v:"quyết định"},
+ {l:2,h:"进来尝尝",p:"jìnlái cháng cháng",v:"vào ăn thử"},
+ {l:2,h:"越南牛肉粉",p:"Yuènán niúròu fěn",v:"phở bò Việt Nam"},
+ {l:2,h:"越南河粉",p:"Yuènán héfěn",v:"bánh phở / hủ tiếu Việt Nam"},
+ // Lesson 3
+ {l:3,h:"饭店",p:"fàndiàn",v:"quán ăn"},
+ {l:3,h:"服务员",p:"fúwùyuán",v:"nhân viên phục vụ"},
+ {l:3,h:"点菜",p:"diǎncài",v:"gọi món"},
+ {l:3,h:"买单",p:"mǎidān",v:"thanh toán"},
+ {l:3,h:"结账",p:"jiézhàng",v:"tính tiền"},
+ {l:3,h:"味道",p:"wèidào",v:"hương vị"},
+ {l:3,h:"好吃",p:"hǎochī",v:"ngon"},
+ {l:3,h:"不好吃",p:"bù hǎochī",v:"dở, không ngon"},
+ {l:3,h:"难吃",p:"nánchī",v:"dở, khó ăn"},
+ {l:3,h:"便宜",p:"piányi",v:"rẻ"},
+ {l:3,h:"贵",p:"guì",v:"đắt"},
+ {l:3,h:"环境",p:"huánjìng",v:"môi trường, không gian"},
+ {l:3,h:"顾客",p:"gùkè",v:"khách hàng"},
+ {l:3,h:"包间",p:"bāojiān",v:"phòng riêng"},
+ {l:3,h:"排队",p:"páiduì",v:"xếp hàng"},
+ {l:3,h:"订",p:"dìng",v:"đặt (trước)"},
+ {l:3,h:"翻译",p:"fānyì",v:"dịch"},
+ {l:3,h:"句子",p:"jùzi",v:"câu"},
+ {l:3,h:"帮忙",p:"bāngmáng",v:"giúp đỡ"},
+ {l:3,h:"选择",p:"xuǎnzé",v:"lựa chọn"},
+ {l:3,h:"比较",p:"bǐjiào",v:"khá, tương đối"},
+ {l:3,h:"有点儿",p:"yǒudiǎnr",v:"hơi, có hơi"},
+ {l:3,h:"所以",p:"suǒyǐ",v:"cho nên, nên"},
+ {l:3,h:"因为",p:"yīnwèi",v:"vì"},
+ {l:3,h:"周末",p:"zhōumò",v:"cuối tuần"},
+ {l:3,h:"每天",p:"měitiān",v:"mỗi ngày"},
+ {l:3,h:"地方",p:"dìfāng",v:"nơi, chỗ, địa điểm"},
+ {l:3,h:"别的",p:"biéde",v:"khác, cái khác"},
+ // Lesson 4
+ {l:4,h:"不仅",p:"bùjǐn",v:"không những"},
+ {l:4,h:"而且",p:"érqiě",v:"mà còn"},
+ {l:4,h:"瞧",p:"qiáo",v:"xem, nhìn (=看)"},
+ {l:4,h:"看出",p:"kànchū",v:"nhìn ra"},
+ {l:4,h:"网红",p:"wǎnghóng",v:"nổi tiếng trên mạng"},
+ {l:4,h:"门口",p:"ménkǒu",v:"cửa, cổng"},
+ {l:4,h:"我觉得",p:"wǒ juéde",v:"tôi cảm thấy"},
+ {l:4,h:"我认为",p:"wǒ rènwéi",v:"tôi cho rằng"},
+ {l:4,h:"依我看",p:"yī wǒ kàn",v:"theo tôi thấy"},
+ {l:4,h:"不能总",p:"bù néng zǒng",v:"không thể lúc nào cũng"},
+ {l:4,h:"不一定",p:"bù yídìng",v:"chưa chắc"},
+ // Lesson 5
+ {l:5,h:"要是",p:"yàoshi",v:"nếu, giả sử"},
+ {l:5,h:"不用",p:"búyòng",v:"không cần"},
+ {l:5,h:"经常",p:"jīngcháng",v:"thường xuyên"},
+ {l:5,h:"咱们",p:"zánmen",v:"chúng ta (gồm cả người nghe)"},
+ {l:5,h:"上个星期",p:"shàng ge xīngqī",v:"tuần trước"},
+ {l:5,h:"下个星期",p:"xià ge xīngqī",v:"tuần sau"},
+ {l:5,h:"早就",p:"zǎojiù",v:"đã từ lâu, sớm rồi"},
+ {l:5,h:"省",p:"shěng",v:"tiết kiệm"},
+ {l:5,h:"人家",p:"rénjiā",v:"người ta"},
+ {l:5,h:"饿",p:"è",v:"đói"},
+ {l:5,h:"丰富",p:"fēngfù",v:"phong phú"},
+ {l:5,h:"推荐",p:"tuījiàn",v:"giới thiệu, đề xuất"},
+ {l:5,h:"特色菜",p:"tèsè cài",v:"món đặc sắc, món tủ"},
+ {l:5,h:"新鲜",p:"xīnxiān",v:"tươi, mới"},
+ {l:5,h:"满意",p:"mǎnyì",v:"hài lòng, vừa ý"},
+ {l:5,h:"预约",p:"yùyuē",v:"đặt trước, đặt hẹn"},
+ {l:5,h:"空位",p:"kòngwèi",v:"chỗ trống"},
+ {l:5,h:"打包",p:"dǎbāo",v:"gói mang về"},
+ {l:5,h:"合适",p:"héshì",v:"phù hợp, vừa phải"},
+ {l:5,h:"消费",p:"xiāofèi",v:"chi tiêu"},
+ {l:5,h:"受欢迎",p:"shòu huānyíng",v:"được yêu thích, được chào đón"},
+ // Lesson 6 idiom-related vocab
+ {l:6,h:"重要",p:"zhòngyào",v:"quan trọng"},
+ {l:6,h:"态度",p:"tàidù",v:"thái độ"},
+ {l:6,h:"红烧肉",p:"hóngshāoròu",v:"thịt kho tàu"},
+ {l:6,h:"炒饭",p:"chǎofàn",v:"cơm chiên"},
+ {l:6,h:"开玩笑",p:"kāi wánxiào",v:"đùa giỡn"},
+ {l:6,h:"同事",p:"tóngshì",v:"đồng nghiệp"},
+ {l:6,h:"生意",p:"shēngyi",v:"việc buôn bán, kinh doanh"},
+ {l:6,h:"肯定",p:"kěndìng",v:"chắc chắn"},
+ // Lesson 8
+ {l:8,h:"说不出口",p:"shuō bù chū kǒu",v:"không nói ra được"},
+ {l:8,h:"发生",p:"fāshēng",v:"xảy ra"},
+ {l:8,h:"投诉",p:"tóusù",v:"tố cáo, khiếu nại"},
+ {l:8,h:"一而再，再而三",p:"yì ér zài, zài ér sān",v:"hết lần này đến lần khác"},
+ {l:8,h:"咸",p:"xián",v:"mặn"},
+ {l:8,h:"情况",p:"qíngkuàng",v:"tình hình, tình trạng"},
+ {l:8,h:"睁一只眼闭一只眼",p:"zhēng yī zhī yǎn bì yī zhī yǎn",v:"làm ngơ"},
+ {l:8,h:"道歉",p:"dàoqiàn",v:"xin lỗi"},
+ {l:8,h:"一来二去",p:"yī lái èr qù",v:"dần dần"},
+ {l:8,h:"厨师长",p:"chúshīzhǎng",v:"đầu bếp trưởng"},
+ {l:8,h:"闹意见",p:"nào yìjiàn",v:"mâu thuẫn"},
+ {l:8,h:"脸红脖子粗",p:"liǎn hóng bó zi cū",v:"cãi nhau đến mặt đỏ tía tai"},
+ {l:8,h:"伤脑筋",p:"shāng nǎojīn",v:"đau đầu, nan giải, khó xử"},
+ {l:8,h:"后来",p:"hòulái",v:"sau đó"},
+ {l:8,h:"看不下去",p:"kàn bú xiàqù",v:"xem không nổi nữa"},
+ {l:8,h:"赶紧",p:"gǎnjǐn",v:"vội vã"},
+ {l:8,h:"劝",p:"quàn",v:"khuyên"},
+ {l:8,h:"打折",p:"dǎzhé",v:"giảm giá"},
+ {l:8,h:"处理",p:"chǔlǐ",v:"xử lý"},
+ {l:8,h:"新员工",p:"xīn yuángōng",v:"nhân viên mới"},
+ {l:8,h:"捅娄子",p:"tǒng lóuzi",v:"gây chuyện"},
+ {l:8,h:"吃苦头",p:"chī kǔtou",v:"chịu hậu quả"},
+ {l:8,h:"掏腰包",p:"tāo yāobāo",v:"tự móc tiền túi ra trả"},
+ {l:8,h:"赔偿",p:"péicháng",v:"bồi thường"},
+ {l:8,h:"失误",p:"shīwù",v:"sai sót"},
+ {l:8,h:"提醒",p:"tíxǐng",v:"nhắc nhở"},
+];
+
+const GRAMMAR = [
+ {l:1, title:"爱怎么…就怎么…", pattern:"A 爱怎么 + [động từ] 就怎么 + [động từ]",
+  meaning:"Diễn đạt sự tự do lựa chọn: 'muốn làm gì thì làm vậy'. Khi động từ có 2 âm tiết trở lên → thay 怎么 bằng 什么 + danh từ (VD: 爱看什么电影就看什么电影).",
+  examples:[
+    {cn:"你爱怎么说就怎么说。", py:"Nǐ ài zěnme shuō jiù zěnme shuō.", vi:"Muốn nói thế nào thì nói thế ấy."},
+    {cn:"她爱怎么穿就怎么穿。", py:"Tā ài zěnme chuān jiù zěnme chuān.", vi:"Cô ấy thích mặc thế nào thì mặc thế ấy."},
+    {cn:"小孩儿长大了，她爱去哪儿就去哪儿。", py:"Xiǎoháir zhǎngdà le, tā ài qù nǎr jiù qù nǎr.", vi:"Đứa trẻ lớn rồi, muốn đi đâu thì đi đó."},
+  ]},
+ {l:1, title:"给 + B + động từ", pattern:"(A) 给 + B + 动词 (+ 宾语)",
+  meaning:"Biểu đạt hành động hướng tới người nhận — A làm gì đó cho B.",
+  examples:[
+    {cn:"妈妈给我买衣服。", py:"Māma gěi wǒ mǎi yīfu.", vi:"Mẹ mua quần áo cho tôi."},
+    {cn:"老板给员工发工资。", py:"Lǎobǎn gěi yuángōng fā gōngzī.", vi:"Sếp trả lương cho nhân viên."},
+    {cn:"这个月公司给我们发工资了。", py:"Zhège yuè gōngsī gěi wǒmen fā gōngzī le.", vi:"Tháng này công ty đã phát lương cho chúng tôi."},
+  ]},
+ {l:1, title:"…之后 / …后", pattern:"[Hành động / Thời gian] + 之后 / 后 + [Mệnh đề chính]",
+  meaning:"Diễn đạt điều xảy ra SAU một hành động hoặc thời điểm nào đó. 之后 trang trọng hơn 后 một chút.",
+  examples:[
+    {cn:"领工资之后，我想买一台电脑。", py:"Lǐng gōngzī zhīhòu, wǒ xiǎng mǎi yì tái diànnǎo.", vi:"Sau khi nhận lương, tôi muốn mua một chiếc máy tính."},
+    {cn:"吃饭之后，我们去散步。", py:"Chīfàn zhīhòu, wǒmen qù sànbù.", vi:"Sau khi ăn xong, chúng tôi đi dạo."},
+  ]},
+ {l:2, title:"一……就……", pattern:"一 (yī) + [Hành động 1] + 就 (jiù) + [Hành động 2]",
+  meaning:"'Vừa … thì …' — diễn tả hai hành động xảy ra liền tiếp nhau.",
+  examples:[
+    {cn:"一看菜单就喜欢这道招牌菜。", py:"Yī kàn càidān jiù xǐhuān zhè dào zhāopái cài.", vi:"Vừa nhìn thực đơn đã thích món đặc sản này."},
+    {cn:"刚进餐厅就看上靠窗的座位。", py:"Gāng jìn cāntīng jiù kànshàng kào chuāng de zuòwèi.", vi:"Vừa vào nhà hàng đã ưng ngay chỗ ngồi cạnh cửa sổ."},
+    {cn:"路过的时候，一眼就喜欢这家小店。", py:"Lùguò de shíhou, yī yǎn jiù xǐhuān zhè jiā xiǎodiàn.", vi:"Lúc đi ngang qua, vừa nhìn đã thích quán nhỏ này."},
+  ]},
+ {l:3, title:"虽然……但是……", pattern:"虽然 + [vế nhượng bộ] + 但是 + [vế đối lập]",
+  meaning:"'Mặc dù… nhưng…' — nêu một sự thật rồi đưa ra điều trái ngược với kỳ vọng.",
+  examples:[
+    {cn:"虽然这家餐厅有点儿贵，但是菜很好吃。", py:"Suīrán zhè jiā cāntīng yǒudiǎnr guì, dànshì cài hěn hǎochī.", vi:"Mặc dù nhà hàng này hơi đắt, nhưng đồ ăn rất ngon."},
+  ]},
+ {l:3, title:"因为……所以……", pattern:"因为 + [nguyên nhân] + 所以 + [kết quả]",
+  meaning:"'Vì… nên…' — trình bày quan hệ nhân quả.",
+  examples:[
+    {cn:"因为今天是周末，所以我们排了三十分钟的队。", py:"Yīnwèi jīntiān shì zhōumò, suǒyǐ wǒmen pái le sānshí fēnzhōng de duì.", vi:"Vì hôm nay là cuối tuần nên chúng tôi phải xếp hàng ba mươi phút."},
+  ]},
+ {l:3, title:"没有 + động từ + 过", pattern:"没有 + [động từ] + 过",
+  meaning:"Diễn tả 'chưa từng làm gì'.",
+  examples:[
+    {cn:"我在别的地方没有吃过。", py:"Wǒ zài biéde dìfāng méiyǒu chīguò.", vi:"Tôi chưa từng ăn ở nơi khác."},
+  ]},
+ {l:4, title:"不仅……而且……", pattern:"不仅 + [vế 1] + 而且 + [vế 2]",
+  meaning:"'Không những… mà còn…' — bổ sung thêm một ý tăng tiến.",
+  examples:[
+    {cn:"这家餐厅不仅环境好，而且服务也很好。", py:"Zhè jiā cāntīng bùjǐn huánjìng hǎo, érqiě fúwù yě hěn hǎo.", vi:"Nhà hàng này không những môi trường tốt mà phục vụ cũng rất tốt."},
+    {cn:"他不仅会中文，而且会英文。", py:"Tā bùjǐn huì Zhōngwén, érqiě huì Yīngwén.", vi:"Anh ấy không những biết tiếng Trung mà còn biết tiếng Anh."},
+  ]},
+ {l:4, title:"您瞧……怎么样？", pattern:"您瞧 + [đối tượng] + 怎么样？（瞧 = 看）",
+  meaning:"'Ngài xem … thế nào?' — hỏi ý kiến một cách lịch sự, thân mật.",
+  examples:[
+    {cn:"您瞧这个招牌菜怎么样？", py:"Nín qiáo zhège zhāopái cài zěnmeyàng?", vi:"Ông thấy món đặc trưng này thế nào?"},
+    {cn:"您瞧这份菜单怎么样？菜品很丰富。", py:"Nín qiáo zhè fèn càidān zěnmeyàng? Càipǐn hěn fēngfù.", vi:"Ngài xem thực đơn này thế nào? Món ăn rất phong phú."},
+  ]},
+ {l:4, title:"一眼就……", pattern:"一眼就 + [động từ]",
+  meaning:"'Vừa nhìn đã…' — nhấn mạnh tốc độ nhận ra/ thích ngay lập tức.",
+  examples:[
+    {cn:"我一眼就看上这家餐厅了。", py:"Wǒ yì yǎn jiù kànshàng zhè jiā cāntīng le.", vi:"Tôi vừa nhìn đã thích nhà hàng này."},
+    {cn:"他一眼就觉得这里的环境比较好。", py:"Tā yì yǎn jiù juéde zhèlǐ de huánjìng bǐjiào hǎo.", vi:"Anh ấy nhìn một cái là thấy môi trường ở đây khá tốt."},
+  ]},
+ {l:4, title:"不就是……吗？", pattern:"不就是 + [đối tượng] + 吗？",
+  meaning:"'Chẳng phải là … sao?' — khẳng định nhấn mạnh bằng câu hỏi tu từ.",
+  examples:[
+    {cn:"这不就是那家网红餐厅吗？", py:"Zhè bù jiù shì nà jiā wǎnghóng cāntīng ma?", vi:"Đây chẳng phải là nhà hàng nổi tiếng trên mạng sao?"},
+    {cn:"他不就是今天的客人吗？", py:"Tā bù jiù shì jīntiān de kèrén ma?", vi:"Anh ấy chẳng phải là vị khách hôm nay sao?"},
+  ]},
+ {l:5, title:"要是……就……", pattern:"要是 + [điều kiện] + 就 + [kết quả]",
+  meaning:"Diễn đạt điều kiện — kết quả. Tương đương 如果……就…… nhưng mang tính khẩu ngữ hơn.",
+  examples:[
+    {cn:"要是现在去就不用排队。", py:"Yàoshi xiànzài qù jiù bú yòng páiduì.", vi:"Nếu đi bây giờ thì không cần xếp hàng."},
+    {cn:"要是这家餐厅便宜一点我就经常来。", py:"Yàoshi zhè jiā cāntīng piányi yìdiǎn wǒ jiù jīngcháng lái.", vi:"Nếu nhà hàng này rẻ hơn một chút thì tôi sẽ thường xuyên đến."},
+    {cn:"要是菜的味道好吃就有很多顾客。", py:"Yàoshi cài de wèidào hǎochī jiù yǒu hěn duō gùkè.", vi:"Nếu hương vị món ăn ngon thì sẽ có nhiều khách hơn."},
+  ]},
+];
+
+const IDIOMS = [
+ {h:"说白了", p:"shuō báile", v:"Nói trắng ra, nói thẳng ra",
+  examples:[{cn:"说白了，做服务最重要的是态度。", py:"Shuō báile, zuò fúwù zuì zhòngyào de shì tàidù.", vi:"Nói trắng ra, làm dịch vụ quan trọng nhất là thái độ."}]},
+ {h:"一把好手", p:"yì bǎ hǎoshǒu", v:"Rất giỏi, cao thủ",
+  examples:[
+    {cn:"她一把好手，只用10分钟就做完5道菜。", py:"Tā yì bǎ hǎoshǒu, zhǐ yòng shí fēnzhōng jiù zuò wán wǔ dào cài.", vi:"Cô ấy tay nghề rất giỏi, chỉ mất 10 phút đã làm xong 5 món."},
+    {cn:"他是一把好手，客人都喜欢他的服务方式。", py:"Tā shì yì bǎ hǎoshǒu, kèrén dōu xǐhuan tā de fúwù fāngshì.", vi:"Anh ấy là cao thủ, khách đều thích cách phục vụ của anh."},
+  ]},
+ {h:"露一手", p:"lòu yì shǒu", v:"Trổ tài",
+  examples:[{cn:"今天我要露一手，做红烧肉。", py:"Jīntiān wǒ yào lòu yì shǒu, zuò hóngshāoròu.", vi:"Hôm nay tôi sẽ trổ tài, làm món thịt kho tàu."}]},
+ {h:"小菜一碟儿", p:"xiǎocài yì dié(r)", v:"Chuyện nhỏ, rất dễ",
+  examples:[{cn:"对他来说，做10份炒饭只是小菜一碟。", py:"Duì tā lái shuō, zuò shí fèn chǎofàn zhǐshì xiǎocài yì dié.", vi:"Đối với anh ấy, làm 10 phần cơm chiên chỉ là chuyện nhỏ."}]},
+ {h:"往心里去", p:"wǎng xīnli qù", v:"Để bụng",
+  examples:[{cn:"同事只是开玩笑，别往心里去。", py:"Tóngshì zhǐshì kāi wánxiào, bié wǎng xīnli qù.", vi:"Đồng nghiệp chỉ đùa thôi, đừng để bụng."}]},
+ {h:"走下坡路", p:"zǒu xiàpōlù", v:"Đi xuống, sa sút",
+  examples:[
+    {cn:"最近餐厅的生意走下坡路。", py:"Zuìjìn cāntīng de shēngyi zǒu xiàpōlù.", vi:"Gần đây việc buôn bán của nhà hàng sa sút."},
+    {cn:"服务不好，生意肯定会走下坡路。", py:"Fúwù bù hǎo, shēngyi kěndìng huì zǒu xiàpōlù.", vi:"Phục vụ không tốt, việc kinh doanh chắc chắn sẽ đi xuống."},
+  ]},
+];
+
+const DIALOGUES = [
+ {
+  id:"complaint", title:"处理客人投诉 · Xử lý khiếu nại của khách (小李 & 王姐)",
+  lines:[
+   {sp:"小李", cn:"王姐，那个……我有件事想跟您说，可是有点说不出口。", py:"Wáng jiě, nà ge…… wǒ yǒu jiàn shì xiǎng gēn nín shuō, kěshì yǒudiǎn shuō bù chū kǒu.", vi:"Chị Vương, cái đó... em có việc muốn nói với chị, nhưng hơi khó nói ra."},
+   {sp:"王姐", cn:"怎么了？发生什么事了？", py:"Zěnme le? Fāshēng shénme shì le?", vi:"Sao vậy? Có chuyện gì xảy ra à?"},
+   {sp:"小李", cn:"是这样的，八号桌那位客人一而再，再而三地投诉菜太咸，态度也不好。", py:"Shì zhèyàng de, bā hào zhuō nà wèi kèrén yì ér zài, zài ér sān de tóusù cài tài xián, tàidù yě bù hǎo.", vi:"Là thế này, vị khách bàn số 8 hết lần này đến lần khác phàn nàn món ăn quá mặn, thái độ cũng không tốt."},
+   {sp:"王姐", cn:"这种情况我们一般睁一只眼闭一只眼，多道个歉就行了。", py:"Zhè zhǒng qíngkuàng wǒmen yìbān zhēng yī zhī yǎn bì yī zhī yǎn, duō dào ge qiàn jiù xíng le.", vi:"Tình huống này bọn mình thường làm ngơ, xin lỗi thêm là được."},
+   {sp:"小李", cn:"可是一来二去，他跟厨师长闹意见了，两个人吵得脸红脖子粗。", py:"Kěshì yī lái èr qù, tā gēn chúshīzhǎng nào yìjiàn le, liǎng gè rén chǎo de liǎn hóng bó zi cū.", vi:"Nhưng dần dần, khách mâu thuẫn với đầu bếp trưởng, hai người cãi nhau đến mặt đỏ tía tai."},
+   {sp:"王姐", cn:"什么？这可真让人伤脑筋！后来呢？", py:"Shénme? Zhè kě zhēn ràng rén shāng nǎojīn! Hòulái ne?", vi:"Gì cơ? Cái này đúng là nan giải! Sau đó thì sao?"},
+   {sp:"小李", cn:"我在旁边看不下去，就赶紧过去劝，还答应给他打折。", py:"Wǒ zài pángbiān kàn bú xiàqù, jiù gǎnjǐn guòqù quàn, hái dāyìng gěi tā dǎzhé.", vi:"Em đứng bên cạnh xem không nổi nữa, liền vội chạy qua khuyên can, còn hứa giảm giá cho khách."},
+   {sp:"王姐", cn:"这次算你处理得不错。不过下次可别让新员工捅娄子了，不然餐厅还得掏腰包赔偿，我们都要吃苦头。", py:"Zhè cì suàn nǐ chǔlǐ de búcuò. Bùguò xià cì kě bié ràng xīn yuángōng tǒng lóuzi le, bùrán cāntīng hái děi tāo yāobāo péicháng, wǒmen dōu yào chī kǔtou.", vi:"Lần này coi như em xử lý khá tốt. Nhưng lần sau đừng để nhân viên mới gây chuyện, không thì nhà hàng lại phải móc túi bồi thường, tất cả chúng ta đều chịu hậu quả."},
+   {sp:"小李", cn:"明白了，王姐，我会多提醒大家的。", py:"Míngbái le, Wáng jiě, wǒ huì duō tíxǐng dàjiā de.", vi:"Em hiểu rồi, chị Vương, em sẽ nhắc nhở mọi người nhiều hơn."},
+  ]
+ },
+ {
+  id:"motherson", title:"要是……就…… · 妈妈和儿子去餐厅",
+  lines:[
+   {sp:"儿子", cn:"妈，我发现了一家新餐厅，咱们去试试吧！", py:"Mā, wǒ fāxiàn le yì jiā xīn cāntīng, zánmen qù shìshi ba!", vi:"Mẹ ơi, con phát hiện một nhà hàng mới, mình đi thử xem sao!"},
+   {sp:"妈妈", cn:"你呀，一发工资就想出去吃饭。上个星期不是刚去过吗？", py:"Nǐ ya, yī fā gōngzī jiù xiǎng chūqù chīfàn. Shàng ge xīngqī bú shì gāng qùguò ma?", vi:"Cậu này, vừa phát lương là muốn đi ăn ngoài ngay. Tuần trước vừa mới đi rồi còn gì?"},
+   {sp:"儿子", cn:"那早就过去了！这家餐厅是最近最火的。", py:"Nà zǎo jiù guòqù le! Zhè jiā cāntīng shì zuìjìn zuì huǒ de.", vi:"Cái đó qua lâu rồi! Nhà hàng này đang hot nhất dạo này đấy."},
+   {sp:"妈妈", cn:"每个月就那么点工资，你总得省着点花吧？", py:"Měi ge yuè jiù nàme diǎn gōngzī, nǐ zǒng děi shěng zhe diǎn huā ba?", vi:"Mỗi tháng chỉ có chừng đó lương, cậu cũng phải tiết kiệm chi tiêu chứ?"},
+   {sp:"儿子", cn:"要是总在家吃饭，多没意思呀！", py:"Yàoshi zǒng zài jiā chīfàn, duō méi yìsi ya!", vi:"Nếu cứ ở nhà ăn mãi thì chán lắm chứ!"},
+   {sp:"妈妈", cn:"人家小王天天自己做饭，也没见他饿。", py:"Rénjiā Xiǎo Wáng tiāntiān zìjǐ zuòfàn, yě méi jiàn tā è.", vi:"Người ta như thằng Tiểu Vương, ngày nào cũng tự nấu ăn, có thấy nó đói đâu."},
+   {sp:"儿子", cn:"妈，您又来了。要是大家都像您这样想，餐厅还怎么开呀？", py:"Mā, nín yòu lái le. Yàoshi dàjiā dōu xiàng nín zhèyàng xiǎng, cāntīng hái zěnme kāi ya?", vi:"Mẹ ơi, mẹ lại như vậy rồi. Nếu mọi người đều nghĩ như mẹ thì nhà hàng còn mở làm sao?"},
+  ]
+ },
+];
+
+const READINGS = [
+ {
+  title:"这家餐厅环境很好 · Nhà hàng này có không gian rất đẹp",
+  paragraphs:[
+   {cn:"这家餐厅环境很好，菜也非常丰富。第一次来的客人不用担心不会点菜，服务员会热情地推荐这里的特色菜。所有的食材都很新鲜，所以很多客人都表示非常满意。",
+    py:"Zhè jiā cāntīng huánjìng hěn hǎo, cài yě fēicháng fēngfù. Dì yī cì lái de kèrén búyòng dānxīn bú huì diǎn cài, fúwùyuán huì rèqíng de tuījiàn zhèlǐ de tèsè cài. Suǒyǒu de shícái dōu hěn xīnxiān, suǒyǐ hěn duō kèrén dōu biǎoshì fēicháng mǎnyì.",
+    vi:"Nhà hàng này có không gian rất đẹp, món ăn cũng vô cùng phong phú. Khách đến lần đầu không cần lo lắng vì không biết gọi món, nhân viên phục vụ sẽ nhiệt tình giới thiệu các món đặc sắc ở đây. Tất cả nguyên liệu đều rất tươi, vì vậy rất nhiều khách hàng đều cảm thấy vô cùng hài lòng."},
+   {cn:"如果周末来吃饭，最好提前预约，因为餐厅常常没有空位。如果吃不完，还可以请服务员帮忙打包。这里的价格也很合适，不管是学生还是上班族，都可以放心消费。因此，这家餐厅一直很受大家欢迎。",
+    py:"Rúguǒ zhōumò lái chīfàn, zuì hǎo tíqián yùyuē, yīnwèi cāntīng chángcháng méiyǒu kòngwèi. Rúguǒ chī bú wán, hái kěyǐ qǐng fúwùyuán bāngmáng dǎbāo. Zhèlǐ de jiàgé yě hěn héshì, bùguǎn shì xuéshēng háishì shàngbānzú, dōu kěyǐ fàngxīn xiāofèi. Yīncǐ, zhè jiā cāntīng yìzhí hěn shòu dàjiā huānyíng.",
+    vi:"Nếu cuối tuần đến ăn, tốt nhất nên đặt bàn trước, vì nhà hàng thường xuyên không còn chỗ trống. Nếu ăn không hết, còn có thể nhờ nhân viên phục vụ gói mang về. Giá cả ở đây cũng rất hợp lý, dù là sinh viên hay dân văn phòng, đều có thể yên tâm chi tiêu. Vì thế, nhà hàng này luôn được mọi người yêu thích."},
+  ],
+  vocab:["丰富 fēngfù","推荐 tuījiàn","特色菜 tèsè cài","新鲜 xīnxiān","满意 mǎnyì","预约 yùyuē","空位 kòngwèi","打包 dǎbāo","合适 héshì","消费 xiāofèi","受欢迎 shòu huānyíng"],
+  questions:[
+   {q:"1. Nhà hàng trong bài có những ưu điểm gì?", a:"Không gian đẹp, món ăn phong phú, nguyên liệu tươi, nhân viên nhiệt tình giới thiệu món, giá cả hợp lý."},
+   {q:"2. Vì sao nên đặt bàn trước vào cuối tuần?", a:"Vì nhà hàng thường xuyên không còn chỗ trống (常常没有空位)."},
+   {q:"3. Nếu ăn không hết thì có thể làm gì?", a:"Có thể nhờ nhân viên phục vụ gói mang về (打包)."},
+   {q:"4. Đối tượng khách hàng nào được nhắc đến trong bài?", a:"Học sinh/sinh viên (学生) và dân văn phòng (上班族)."},
+  ]
+ },
+];
+
+const CONNECTOR_QUIZ = [
+ {sentence:"这家餐厅___环境好，___服务也很好。", answer:"不仅…而且…", options:["不仅…而且…","要是…就…","虽然…但是…","因为…所以…"], vi:"Nhà hàng này không những môi trường tốt mà phục vụ cũng rất tốt."},
+ {sentence:"___这家餐厅便宜一点，我___经常来。", answer:"要是…就…", options:["虽然…但是…","要是…就…","不仅…而且…","一…就…"], vi:"Nếu nhà hàng này rẻ hơn một chút thì tôi sẽ thường xuyên đến."},
+ {sentence:"___这家餐厅有点儿贵，___菜很好吃。", answer:"虽然…但是…", options:["因为…所以…","要是…就…","虽然…但是…","不仅…而且…"], vi:"Mặc dù nhà hàng này hơi đắt, nhưng đồ ăn rất ngon."},
+ {sentence:"___今天是周末，___我们排了三十分钟的队。", answer:"因为…所以…", options:["因为…所以…","要是…就…","不仅…而且…","一…就…"], vi:"Vì hôm nay là cuối tuần nên chúng tôi phải xếp hàng ba mươi phút."},
+ {sentence:"我___看菜单___喜欢这道招牌菜。", answer:"一…就…", options:["虽然…但是…","一…就…","要是…就…","不仅…而且…"], vi:"Tôi vừa nhìn thực đơn đã thích món đặc sản này."},
+ {sentence:"这不___那家网红餐厅吗？", answer:"不就是…吗", options:["不就是…吗","不仅…而且","一眼就","要是…就"], vi:"Đây chẳng phải là nhà hàng nổi tiếng trên mạng sao?"},
+ {sentence:"您___这份菜单怎么样？", answer:"瞧", options:["瞧","要是","因为","虽然"], vi:"Ngài xem thực đơn này thế nào?"},
+ {sentence:"我___看上这家餐厅了。", answer:"一眼就", options:["一眼就","不就是","不仅","因为"], vi:"Tôi vừa nhìn đã thích nhà hàng này."},
+];
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function shuffle(arr){const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+function pick(arr,n){return shuffle(arr).slice(0,n);}
+function el(tag, cls, html){const e=document.createElement(tag); if(cls)e.className=cls; if(html!==undefined)e.innerHTML=html; return e;}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+document.getElementById('tabs').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button'); if(!btn) return;
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+});
+
+function goToPanel(name){
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.panel===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+name));
+}
+
+/* ============================================================
+   MENU STRIP
+   ============================================================ */
+document.getElementById('menuStrip').innerHTML = LESSONS.map(l=>`<span><b>${String(l.id).padStart(2,'0')}</b> ${l.title}</span>`).join('');
+
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
+const lessonGrid = document.getElementById('lessonGrid');
+LESSONS.forEach(l=>{
+  const card = el('div','lesson-card',`
+    <div class="no">BÀI ${String(l.id).padStart(2,'0')}</div>
+    <h3>${l.cn} — ${l.title}</h3>
+    <p>${l.desc}</p>
+    <span class="tag">${VOCAB.filter(v=>v.l===l.id).length} từ vựng</span>
+  `);
+  card.addEventListener('click', ()=>{
+    goToPanel('vocab');
+    document.getElementById('vocabLessonFilter').value = l.id;
+    setVocabFilter(l.id);
+  });
+  lessonGrid.appendChild(card);
+});
+
+/* ============================================================
+   VOCAB / FLASHCARDS
+   ============================================================ */
+let vocabPool = VOCAB.slice();
+let cardIndex = 0;
+let known = new Set();
+
+const vocabLessonFilter = document.getElementById('vocabLessonFilter');
+vocabLessonFilter.innerHTML = `<option value="all">Tất cả các bài</option>` + LESSONS.map(l=>`<option value="${l.id}">Bài ${l.id} — ${l.title}</option>`).join('');
+vocabLessonFilter.addEventListener('change', e=>setVocabFilter(e.target.value));
+
+function setVocabFilter(val){
+  vocabLessonFilter.value = val;
+  vocabPool = (val==='all') ? VOCAB.slice() : VOCAB.filter(v=>v.l==Number(val));
+  cardIndex = 0;
+  renderCard();
+}
+
+function renderCard(){
+  if(vocabPool.length===0) return;
+  const item = vocabPool[cardIndex];
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('cardHanzi').textContent = item.h;
+  document.getElementById('cardPinyin').textContent = item.p;
+  document.getElementById('cardVi').textContent = item.v;
+  document.getElementById('cardLessonFront').textContent = 'BÀI '+item.l;
+  document.getElementById('cardLessonBack').textContent = 'BÀI '+item.l;
+  document.getElementById('vocabCounter').textContent = `${cardIndex+1} / ${vocabPool.length} · đã thuộc ${known.size}`;
+}
+
+document.getElementById('flashcard').addEventListener('click', function(){ this.classList.toggle('flipped'); });
+document.getElementById('nextCard').addEventListener('click', ()=>{ cardIndex=(cardIndex+1)%vocabPool.length; renderCard(); });
+document.getElementById('prevCard').addEventListener('click', ()=>{ cardIndex=(cardIndex-1+vocabPool.length)%vocabPool.length; renderCard(); });
+document.getElementById('shuffleBtn').addEventListener('click', ()=>{ vocabPool = shuffle(vocabPool); cardIndex=0; renderCard(); });
+document.getElementById('markKnownBtn').addEventListener('click', ()=>{ known.add(vocabPool[cardIndex].h); renderCard(); });
+
+renderCard();
+
+/* ============================================================
+   GRAMMAR
+   ============================================================ */
+const grammarList = document.getElementById('grammarList');
+GRAMMAR.forEach(g=>{
+  const card = el('div','gram-card');
+  card.innerHTML = `
+    <span class="lesson-badge">BÀI ${g.l}</span>
+    <h4>${g.title}</h4>
+    <div class="pattern">${g.pattern}</div>
+    <div class="meaning">${g.meaning}</div>
+    ${g.examples.map(x=>`<div class="ex-row"><div class="cn">${x.cn}</div><div class="py">${x.py}</div><div class="vi">${x.vi}</div></div>`).join('')}
+  `;
+  grammarList.appendChild(card);
+});
+
+/* ============================================================
+   IDIOMS
+   ============================================================ */
+const idiomList = document.getElementById('idiomList');
+IDIOMS.forEach(i=>{
+  const card = el('div','idiom-card');
+  card.innerHTML = `
+    <h4>${i.h} <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--gold-soft); font-weight:400;">${i.p}</span></h4>
+    <div class="meaning">${i.v}</div>
+    ${i.examples.map(x=>`<div class="ex-row"><div class="cn">${x.cn}</div><div class="py">${x.py}</div><div class="vi">${x.vi}</div></div>`).join('')}
+  `;
+  idiomList.appendChild(card);
+});
+
+/* ============================================================
+   DIALOGUE
+   ============================================================ */
+const dlgSelect = document.getElementById('dlgSelect');
+dlgSelect.innerHTML = DIALOGUES.map(d=>`<option value="${d.id}">${d.title}</option>`).join('');
+dlgSelect.addEventListener('change', renderDialogue);
+document.getElementById('toggleHints').addEventListener('click', function(){
+  document.body.classList.toggle('hide-hints');
+  this.textContent = document.body.classList.contains('hide-hints') ? 'Hiện phiên âm / nghĩa' : 'Ẩn phiên âm / nghĩa';
+});
+
+function renderDialogue(){
+  const d = DIALOGUES.find(x=>x.id===dlgSelect.value) || DIALOGUES[0];
+  const box = document.getElementById('dlgBody');
+  box.innerHTML = d.lines.map(l=>`
+    <div class="dlg-line">
+      <div class="dlg-speaker">${l.sp}</div>
+      <div class="dlg-body">
+        <div class="cn">${l.cn}</div>
+        <div class="py">${l.py}</div>
+        <div class="vi">${l.vi}</div>
+      </div>
+    </div>
+  `).join('');
+}
+renderDialogue();
+
+/* ============================================================
+   READING
+   ============================================================ */
+const readingList = document.getElementById('readingList');
+READINGS.forEach(r=>{
+  const box = el('div','passage');
+  box.innerHTML = `
+    <div class="section-title" style="font-size:17px;">${r.title}</div>
+    ${r.paragraphs.map(p=>`<p class="cn">${p.cn}</p><p class="py">${p.py}</p><p class="vi">${p.vi}</p>`).join('<div style="height:14px"></div>')}
+    <div class="vocab-mini">${r.vocab.map(v=>`<span>${v}</span>`).join('')}</div>
+  `;
+  const qWrap = el('div');
+  qWrap.style.marginTop='16px';
+  r.questions.forEach(qa=>{
+    const item = el('div','qa-item');
+    item.innerHTML = `<div class="q">${qa.q}</div><span class="toggle">▸ Xem gợi ý trả lời</span><div class="a">${qa.a}</div>`;
+    item.querySelector('.toggle').addEventListener('click', ()=>{
+      item.classList.toggle('shown');
+      item.querySelector('.toggle').textContent = item.classList.contains('shown') ? '▾ Ẩn gợi ý' : '▸ Xem gợi ý trả lời';
+    });
+    qWrap.appendChild(item);
+  });
+  box.appendChild(qWrap);
+  readingList.appendChild(box);
+});
+
+/* ============================================================
+   QUIZ ENGINE
+   ============================================================ */
+let quizMode = 'vocab';
+document.querySelectorAll('.quiz-modes .mode').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.quiz-modes .mode').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    quizMode = btn.dataset.mode;
+    refreshQuizLessonFilter();
+  });
+});
+
+const quizLessonFilter = document.getElementById('quizLessonFilter');
+function refreshQuizLessonFilter(){
+  if(quizMode==='idiom'){
+    quizLessonFilter.innerHTML = `<option value="all">Tất cả thành ngữ</option>`;
+    quizLessonFilter.disabled = true;
+  } else if(quizMode==='grammar'){
+    quizLessonFilter.innerHTML = `<option value="all">Tất cả cấu trúc</option>`;
+    quizLessonFilter.disabled = true;
+  } else {
+    quizLessonFilter.disabled = false;
+    quizLessonFilter.innerHTML = `<option value="all">Tất cả các bài</option>` + LESSONS.map(l=>`<option value="${l.id}">Bài ${l.id}</option>`).join('');
+  }
+}
+refreshQuizLessonFilter();
+
+let quizQuestions = [];
+let quizCurrent = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function buildVocabQuestions(n, lessonFilter){
+  let pool = (lessonFilter==='all') ? VOCAB.slice() : VOCAB.filter(v=>v.l==Number(lessonFilter));
+  if(pool.length < 4) pool = VOCAB.slice();
+  const chosen = pick(pool, Math.min(n, pool.length));
+  return chosen.map(item=>{
+    const direction = Math.random() < 0.5 ? 'h2v' : 'v2h';
+    const distractors = shuffle(VOCAB.filter(v=>v.h!==item.h)).slice(0,3);
+    if(direction==='h2v'){
+      const opts = shuffle([item.v, ...distractors.map(d=>d.v)]);
+      return {prompt:'Nghĩa tiếng Việt của từ này là gì?', display:item.h, sub:item.p, options:opts, answer:item.v};
+    } else {
+      const opts = shuffle([item.h, ...distractors.map(d=>d.h)]);
+      return {prompt:`Từ Hán tự nào có nghĩa: "${item.v}"?`, display:item.p, sub:'', options:opts, answer:item.h, cnDisplay:true};
+    }
+  });
+}
+
+function buildGrammarQuestions(n){
+  const pool = shuffle(CONNECTOR_QUIZ).slice(0, Math.min(n, CONNECTOR_QUIZ.length));
+  return pool.map(q=>({
+    prompt:`Điền cấu trúc đúng vào câu (nghĩa: "${q.vi}")`,
+    display:q.sentence, sub:'', options:shuffle(q.options), answer:q.answer
+  }));
+}
+
+function buildIdiomQuestions(n){
+  const chosen = pick(IDIOMS, Math.min(n, IDIOMS.length));
+  return chosen.map(item=>{
+    const distractors = shuffle(IDIOMS.filter(i=>i.h!==item.h)).slice(0,3);
+    const opts = shuffle([item.v, ...distractors.map(d=>d.v)]);
+    return {prompt:'Thành ngữ này có nghĩa là gì?', display:item.h, sub:item.p, options:opts, answer:item.v};
+  });
+}
+
+document.getElementById('startQuiz').addEventListener('click', ()=>{
+  const n = Number(document.getElementById('quizLenSelect').value);
+  const lessonFilter = quizLessonFilter.value;
+  if(quizMode==='vocab') quizQuestions = buildVocabQuestions(n, lessonFilter);
+  else if(quizMode==='grammar') quizQuestions = buildGrammarQuestions(n);
+  else quizQuestions = buildIdiomQuestions(n);
+  quizCurrent = 0; quizScore = 0;
+  renderQuestion();
+});
+
+function renderQuestion(){
+  const area = document.getElementById('quizArea');
+  if(quizCurrent >= quizQuestions.length){ renderReceipt(); return; }
+  const q = quizQuestions[quizCurrent];
+  quizAnswered = false;
+  area.innerHTML = `
+    <div class="ticket">
+      <div class="q-progress">CÂU ${quizCurrent+1} / ${quizQuestions.length} · ĐIỂM: ${quizScore}</div>
+      <div class="q-prompt">${q.prompt}</div>
+      <div class="q-hanzi">${q.display}${q.sub ? `<div style="font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--gold-soft); font-weight:400; margin-top:6px;">${q.sub}</div>` : ''}</div>
+      <div class="opts" id="optsWrap"></div>
+      <div class="quiz-footer">
+        <span class="score-pill">正确率 tạm tính: ${quizCurrent>0 ? Math.round(quizScore/quizCurrent*100) : 0}%</span>
+        <button class="btn" id="nextQBtn" style="display:none;">Câu tiếp ›</button>
+      </div>
+    </div>
+  `;
+  const optsWrap = document.getElementById('optsWrap');
+  q.options.forEach(opt=>{
+    const b = el('button','opt', opt);
+    b.addEventListener('click', ()=>selectOption(b, opt, q));
+    optsWrap.appendChild(b);
+  });
+  document.getElementById('nextQBtn').addEventListener('click', ()=>{ quizCurrent++; renderQuestion(); });
+}
+
+function selectOption(btn, opt, q){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const correct = opt === q.answer;
+  if(correct) quizScore++;
+  document.querySelectorAll('#optsWrap .opt').forEach(b=>{
+    b.setAttribute('disabled','true');
+    if(b.textContent===q.answer) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+  });
+  document.getElementById('nextQBtn').style.display='inline-block';
+}
+
+function renderReceipt(){
+  const area = document.getElementById('quizArea');
+  const total = quizQuestions.length;
+  const pct = Math.round(quizScore/total*100);
+  const grade = pct>=90 ? '五星好评 · Xuất sắc' : pct>=70 ? '味道不错 · Khá tốt' : pct>=50 ? '还需努力 · Cần cố gắng thêm' : '重新下单 · Nên ôn lại từ đầu';
+  area.innerHTML = `
+    <div class="receipt-wrap">
+      <div class="receipt">
+        <h3>结账单</h3>
+        <div class="sub">HOÁ ĐƠN KẾT QUẢ ÔN TẬP</div>
+        <div class="line"><span>Chế độ</span><span>${quizMode==='vocab'?'词汇 Từ vựng':quizMode==='grammar'?'语法 Ngữ pháp':'俗语 Thành ngữ'}</span></div>
+        <div class="line"><span>Số câu</span><span>${total}</span></div>
+        <div class="line"><span>Trả lời đúng</span><span>${quizScore}</span></div>
+        <div class="line"><span>Trả lời sai</span><span>${total-quizScore}</span></div>
+        <hr>
+        <div class="line total"><span>Tỉ lệ chính xác</span><span>${pct}%</span></div>
+        <hr>
+        <div style="text-align:center;"><span class="stampword">${grade}</span></div>
+      </div>
+      <div style="margin-top:22px;">
+        <button class="btn primary" id="retryQuiz">再来一单 · Làm lại</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retryQuiz').addEventListener('click', ()=>{
+    document.getElementById('quizArea').innerHTML = '';
+  });
+}
+</script>
+</body>
+</html>
