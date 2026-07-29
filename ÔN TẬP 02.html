@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>联络、约见与工作沟通 · Ôn tập Bài 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;0,18..144,600;1,18..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F2E7;
+    --paper-2:#EFE7D6;
+    --card:#FFFDF8;
+    --ink:#1F3864;
+    --ink-soft:#4B5A78;
+    --ink-faint:#8892A6;
+    --seal:#B3402A;
+    --seal-dark:#8C2F1F;
+    --gold:#C9A227;
+    --line:#DED2B0;
+    --good:#3E7B4F;
+    --bad:#B3402A;
+    --font-han:'Noto Serif SC', serif;
+    --font-vi:'Literata', Georgia, serif;
+    --font-ui:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 8% 12%, rgba(179,64,42,0.05), transparent 40%),
+      radial-gradient(circle at 92% 85%, rgba(201,162,39,0.07), transparent 42%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--font-vi);
+    line-height:1.5;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  ::selection{background:rgba(179,64,42,0.18);}
+
+  /* ---------- Header ---------- */
+  header.top{
+    padding:38px 20px 26px;
+    text-align:center;
+    position:relative;
+    border-bottom:1px solid var(--line);
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 78px, rgba(31,56,100,0.035) 78px, rgba(31,56,100,0.035) 79px);
+  }
+  .eyebrow{
+    font-family:var(--font-ui);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:10px;
+  }
+  .han-title{
+    font-family:var(--font-han);
+    font-weight:900;
+    font-size:clamp(34px,6vw,58px);
+    color:var(--ink);
+    letter-spacing:.02em;
+    margin:0;
+  }
+  .vi-title{
+    font-family:var(--font-vi);
+    font-style:italic;
+    font-size:clamp(16px,2.4vw,20px);
+    color:var(--ink-soft);
+    margin-top:8px;
+  }
+  .stamp{
+    position:absolute;
+    top:22px; right:5%;
+    width:74px;height:74px;
+    border:3px solid var(--seal);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--seal);
+    font-family:var(--font-han);
+    font-weight:900;
+    font-size:22px;
+    transform:rotate(-14deg);
+    opacity:.75;
+    letter-spacing:2px;
+  }
+  @media(max-width:640px){.stamp{display:none;}}
+
+  /* ---------- Tabs ---------- */
+  nav.tabs{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    flex-wrap:wrap;
+    padding:22px 14px 0;
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+  }
+  nav.tabs .wrap{
+    display:flex; gap:4px; flex-wrap:wrap; justify-content:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:5px;
+    box-shadow:0 2px 10px rgba(31,56,100,0.06);
+  }
+  .tab-btn{
+    font-family:var(--font-ui);
+    font-weight:600;
+    font-size:13.5px;
+    letter-spacing:.02em;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    padding:10px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
+  }
+  .tab-btn:hover{color:var(--ink);}
+  .tab-btn.active{
+    background:var(--ink);
+    color:#fff;
+  }
+
+  main{max-width:920px;margin:0 auto;padding:34px 18px 10px;}
+  section.view{display:none;animation:fade .35s ease;}
+  section.view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  h2.section-title{
+    font-family:var(--font-han);
+    font-weight:700;
+    font-size:24px;
+    color:var(--ink);
+    margin:0 0 4px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h2.section-title .num{
+    font-family:var(--font-ui);
+    font-size:12px;
+    color:var(--gold);
+    border:1px solid var(--gold);
+    border-radius:6px;
+    padding:2px 7px;
+    letter-spacing:.05em;
+  }
+  p.section-desc{
+    font-family:var(--font-ui);
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    font-family:var(--font-ui);
+    font-weight:600;
+    font-size:13.5px;
+    border:1px solid var(--ink);
+    background:#fff;
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .btn:hover{background:var(--ink);color:#fff;}
+  .btn.primary{background:var(--ink);color:#fff;}
+  .btn.primary:hover{background:var(--ink-soft);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .btn.ghost{border-color:var(--line);color:var(--ink-soft);}
+
+  /* ---------- Seal audio button ---------- */
+  .seal-btn{
+    width:46px;height:46px;
+    border-radius:50%;
+    border:2px solid var(--seal);
+    background:#fff;
+    color:var(--seal);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:0 2px 6px rgba(179,64,42,0.15);
+  }
+  .seal-btn svg{width:19px;height:19px;}
+  .seal-btn:hover{box-shadow:0 4px 10px rgba(179,64,42,0.28);}
+  .seal-btn:active,.seal-btn.stamping{
+    transform:scale(0.88) rotate(-6deg);
+    background:var(--seal);
+    color:#fff;
+  }
+  .seal-btn.small{width:34px;height:34px;}
+  .seal-btn.small svg{width:14px;height:14px;}
+
+  /* ================= VOCAB TAB ================= */
+  .vocab-toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    margin-bottom:22px;
+  }
+  select#topicFilter{
+    font-family:var(--font-ui);
+    font-size:13px;
+    padding:9px 12px;
+    border-radius:9px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+  }
+  .vocab-progress{
+    font-family:var(--font-ui);
+    font-size:12.5px;
+    color:var(--ink-faint);
+    margin-left:auto;
+  }
+  .deck{
+    display:flex; flex-direction:column; align-items:center; gap:16px;
+  }
+  .flip-card{
+    width:100%; max-width:420px;
+    aspect-ratio:1.55/1;
+    perspective:1400px;
+    cursor:pointer;
+  }
+  .flip-inner{
+    position:relative; width:100%; height:100%;
+    transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .face{
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    border-radius:16px;
+    border:1px solid var(--line);
+    background:var(--card);
+    box-shadow:0 8px 24px rgba(31,56,100,0.09);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:20px;
+    text-align:center;
+  }
+  .face.front::before{
+    content:"";
+    position:absolute; top:14px; left:14px;
+    width:14px;height:14px; border-radius:50%;
+    border:1.5px dashed var(--line);
+  }
+  .face.back{transform:rotateY(180deg);}
+  .face .han{font-family:var(--font-han); font-weight:900; font-size:56px; color:var(--ink); line-height:1;}
+  .face .pinyin{font-family:var(--font-ui); font-size:16px; color:var(--gold); margin-top:10px; font-weight:600;}
+  .face .vi{font-family:var(--font-vi); font-style:italic; font-size:22px; color:var(--ink); margin-top:6px;}
+  .face .topic-tag{
+    position:absolute; bottom:12px; right:14px;
+    font-family:var(--font-ui); font-size:10.5px; letter-spacing:.05em;
+    color:var(--ink-faint); text-transform:uppercase;
+  }
+  .face .hint{
+    position:absolute; bottom:12px; left:14px;
+    font-family:var(--font-ui); font-size:10.5px;
+    color:var(--ink-faint);
+  }
+  .deck-controls{display:flex; align-items:center; gap:14px;}
+  .deck-controls .btn{min-width:86px;}
+  .mark-row{display:flex; gap:10px; margin-top:2px;}
+  .mark-row button{
+    font-family:var(--font-ui); font-size:12.5px; font-weight:600;
+    border:none; background:none; cursor:pointer; padding:6px 10px; border-radius:7px;
+  }
+  .mark-row .known{color:var(--good);}
+  .mark-row .known.active{background:rgba(62,123,79,0.12);}
+  .mark-row .again{color:var(--seal);}
+  .mark-row .again.active{background:rgba(179,64,42,0.12);}
+
+  /* ================= GRAMMAR TAB ================= */
+  .g-card{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:14px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .g-head{
+    display:flex; align-items:center; gap:12px;
+    padding:15px 18px;
+    cursor:pointer;
+  }
+  .g-head .g-num{
+    font-family:var(--font-ui); font-size:11px; font-weight:700; color:var(--gold);
+    border:1px solid var(--gold); border-radius:6px; padding:2px 7px; flex-shrink:0;
+  }
+  .g-head .g-struct{font-family:var(--font-han); font-weight:700; font-size:17px; color:var(--ink); flex:1;}
+  .g-head .g-mean{font-family:var(--font-vi); font-style:italic; font-size:13.5px; color:var(--ink-soft); flex-shrink:0;}
+  .g-head .chev{color:var(--ink-faint); transition:.2s;}
+  .g-card.open .chev{transform:rotate(180deg);}
+  .g-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .g-card.open .g-body{max-height:200px;}
+  .g-ex{
+    display:flex; align-items:center; gap:12px;
+    padding:0 18px 16px;
+  }
+  .g-ex .g-ex-text .han{font-family:var(--font-han); font-size:18px; color:var(--ink);}
+  .g-ex .g-ex-text .py{font-family:var(--font-ui); font-size:12.5px; color:var(--gold); margin-top:2px;}
+  .g-ex .g-ex-text .vi{font-family:var(--font-vi); font-style:italic; font-size:13.5px; color:var(--ink-soft); margin-top:2px;}
+
+  /* ================= PRACTICE TAB ================= */
+  .ex-nav{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
+  .ex-nav button{
+    font-family:var(--font-ui); font-size:12.5px; font-weight:600;
+    border:1px solid var(--line); background:#fff; color:var(--ink-soft);
+    padding:8px 14px; border-radius:9px; cursor:pointer;
+  }
+  .ex-nav button.active{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .score-strip{
+    font-family:var(--font-ui); font-size:12.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:16px;
+  }
+  .score-strip b{color:var(--ink);}
+  .q-card{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:16px;
+    padding:26px;
+    min-height:220px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .q-prompt{display:flex; align-items:center; gap:14px;}
+  .q-prompt .han-big{font-family:var(--font-han); font-weight:800; font-size:34px; color:var(--ink);}
+  .q-prompt .py{font-family:var(--font-ui); color:var(--gold); font-size:14px; font-weight:600;}
+  .q-instructions{font-family:var(--font-ui); font-size:12.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em;}
+  .opt-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media(max-width:560px){.opt-grid{grid-template-columns:1fr;}}
+  .opt{
+    font-family:var(--font-vi);
+    font-size:15px;
+    text-align:left;
+    border:1.5px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    padding:12px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .opt:hover{border-color:var(--ink);}
+  .opt.correct{border-color:var(--good); background:rgba(62,123,79,0.1); color:var(--good); font-weight:600;}
+  .opt.wrong{border-color:var(--bad); background:rgba(179,64,42,0.1); color:var(--bad); font-weight:600;}
+  .opt.disabled{pointer-events:none;}
+  .feedback{font-family:var(--font-ui); font-size:13.5px; font-weight:600; min-height:18px;}
+  .feedback.good{color:var(--good);}
+  .feedback.bad{color:var(--bad);}
+  .q-actions{display:flex; justify-content:flex-end; gap:10px;}
+
+  .blank-sentence{font-family:var(--font-han); font-size:22px; color:var(--ink); line-height:1.8;}
+  .blank-slot{
+    display:inline-block; min-width:44px; border-bottom:2px solid var(--seal);
+    text-align:center; color:var(--seal); font-weight:700;
+  }
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    font-family:var(--font-han); font-size:17px;
+    border:1.5px solid var(--line); background:#fff; color:var(--ink);
+    padding:8px 16px; border-radius:9px; cursor:pointer;
+    display:inline-flex; flex-direction:column; align-items:center; gap:2px; line-height:1.2;
+  }
+  .chip .chip-han{font-family:var(--font-han); font-size:19px;}
+  .chip .chip-py{font-family:var(--font-ui); font-size:11px; font-weight:600; color:var(--gold);}
+  .chip:hover{border-color:var(--ink);}
+  .chip.used{opacity:.35; pointer-events:none;}
+
+  .match-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media(max-width:560px){.match-grid{grid-template-columns:1fr;}}
+  .match-col{display:flex; flex-direction:column; gap:8px;}
+  .match-item{
+    font-family:var(--font-ui); font-size:14px;
+    border:1.5px solid var(--line); background:#fff; color:var(--ink);
+    padding:10px 14px; border-radius:9px; cursor:pointer; text-align:left;
+  }
+  .match-item.han-item{font-family:var(--font-han); font-size:18px;}
+  .match-item.selected{border-color:var(--gold); background:rgba(201,162,39,0.12);}
+  .match-item.matched{border-color:var(--good); background:rgba(62,123,79,0.1); color:var(--good); pointer-events:none;}
+  .match-item.wrongflash{border-color:var(--bad); background:rgba(179,64,42,0.12);}
+
+  .scramble-target{
+    min-height:60px; border:1.5px dashed var(--line); border-radius:10px;
+    display:flex; flex-wrap:wrap; gap:8px; padding:12px; align-items:center;
+  }
+  .scramble-bank{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+
+  .tf-row{display:flex; gap:12px;}
+  .tf-btn{
+    flex:1; font-family:var(--font-ui); font-weight:700; font-size:14px;
+    border:1.5px solid var(--line); background:#fff; padding:14px; border-radius:10px; cursor:pointer;
+  }
+  .tf-btn.correct{border-color:var(--good); background:rgba(62,123,79,0.1); color:var(--good);}
+  .tf-btn.wrong{border-color:var(--bad); background:rgba(179,64,42,0.1); color:var(--bad);}
+
+  /* ================= DIALOGUE TAB ================= */
+  .dlg{
+    border:1px solid var(--line); background:var(--card); border-radius:14px;
+    padding:20px 22px; margin-bottom:18px;
+  }
+  .dlg-title{font-family:var(--font-ui); font-weight:700; font-size:13.5px; color:var(--ink-soft); margin-bottom:14px; text-transform:uppercase; letter-spacing:.04em;}
+  .dlg-line{display:flex; gap:12px; align-items:flex-start; padding:8px 0; border-top:1px dashed var(--line);}
+  .dlg-line:first-of-type{border-top:none;}
+  .dlg-role{
+    font-family:var(--font-ui); font-weight:700; font-size:12px; color:#fff;
+    background:var(--ink); width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+  }
+  .dlg-text .han{font-family:var(--font-han); font-size:18px; color:var(--ink);}
+  .dlg-text .vi{font-family:var(--font-vi); font-style:italic; font-size:13.5px; color:var(--ink-soft); margin-top:3px;}
+
+  /* ================= RESULTS TAB ================= */
+  .stat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:24px;}
+  .stat-card{
+    border:1px solid var(--line); background:var(--card); border-radius:14px; padding:18px;
+    text-align:center;
+  }
+  .stat-card .n{font-family:var(--font-han); font-weight:900; font-size:32px; color:var(--ink);}
+  .stat-card .l{font-family:var(--font-ui); font-size:12px; color:var(--ink-soft); margin-top:4px;}
+  .voice-note{
+    font-family:var(--font-ui); font-size:12.5px; color:var(--ink-faint);
+    border:1px dashed var(--line); border-radius:10px; padding:12px 16px; margin-top:10px;
+  }
+
+  footer{
+    text-align:center; font-family:var(--font-ui); font-size:12px; color:var(--ink-faint);
+    padding:40px 20px 10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow">Giáo trình Tiếng Trung Thương Mại · Bài 2</div>
+  <h1 class="han-title">联络、约见与工作沟通</h1>
+  <div class="vi-title">Liên lạc, hẹn gặp và giao tiếp trong công việc — trang ôn tập</div>
+  <div class="stamp">复习</div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab-btn active" data-view="vocab">词语卡 Từ vựng</button>
+    <button class="tab-btn" data-view="grammar">语法 Ngữ pháp</button>
+    <button class="tab-btn" data-view="practice">练习 Luyện tập</button>
+    <button class="tab-btn" data-view="dialogue">对话 Hội thoại</button>
+    <button class="tab-btn" data-view="results">成绩 Kết quả</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= VOCAB ================= -->
+  <section class="view active" id="view-vocab">
+    <h2 class="section-title"><span class="num">01</span>Thẻ từ vựng</h2>
+    <p class="section-desc">Bấm vào thẻ để lật xem nghĩa. Bấm con dấu đỏ để nghe phát âm. Đánh dấu "đã thuộc" để theo dõi tiến độ trong phiên ôn tập này.</p>
+
+    <div class="vocab-toolbar">
+      <select id="topicFilter"></select>
+      <button class="btn ghost" id="shuffleBtn">🔀 Xáo thẻ</button>
+      <button class="btn ghost" id="unknownOnlyBtn">Chỉ thẻ chưa thuộc</button>
+      <div class="vocab-progress" id="vocabProgress"></div>
+    </div>
+
+    <div class="deck">
+      <div class="flip-card" id="flipCard">
+        <div class="flip-inner">
+          <div class="face front">
+            <div class="han" id="cardHan">电</div>
+            <button class="seal-btn" id="cardSpeak" title="Nghe phát âm" onclick="event.stopPropagation()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
+            <span class="hint">bấm để lật</span>
+            <span class="topic-tag" id="cardTopicFront"></span>
+          </div>
+          <div class="face back">
+            <div class="pinyin" id="cardPinyin">diàn</div>
+            <div class="vi" id="cardVi">điện</div>
+            <span class="topic-tag" id="cardTopicBack"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deck-controls">
+        <button class="btn" id="prevBtn">← Trước</button>
+        <span id="deckIndex" style="font-family:var(--font-ui);font-size:13px;color:var(--ink-faint);">1 / 95</span>
+        <button class="btn primary" id="nextBtn">Sau →</button>
+      </div>
+      <div class="mark-row">
+        <button class="again" id="markAgain">✕ Chưa thuộc</button>
+        <button class="known" id="markKnown">✓ Đã thuộc</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GRAMMAR ================= -->
+  <section class="view" id="view-grammar">
+    <h2 class="section-title"><span class="num">02</span>Cấu trúc ngữ pháp</h2>
+    <p class="section-desc">Bấm vào từng cấu trúc để xem ví dụ minh họa. Bấm con dấu nhỏ để nghe câu ví dụ.</p>
+    <div id="grammarList"></div>
+  </section>
+
+  <!-- ================= PRACTICE ================= -->
+  <section class="view" id="view-practice">
+    <h2 class="section-title"><span class="num">03</span>Luyện tập</h2>
+    <p class="section-desc">Chọn một dạng bài bên dưới. Điểm số được tính riêng cho từng phiên luyện tập.</p>
+    <div class="ex-nav" id="exNav">
+      <button data-ex="mcq" class="active">选择 Trắc nghiệm nghĩa</button>
+      <button data-ex="listen">听力 Nghe & chọn</button>
+      <button data-ex="fill">填空 Điền vào chỗ trống</button>
+      <button data-ex="match">配对 Nối từ</button>
+      <button data-ex="scramble">排序 Sắp xếp câu</button>
+      <button data-ex="tf">判断 Đúng / Sai</button>
+    </div>
+    <div class="score-strip">
+      <span id="exLabel">Trắc nghiệm nghĩa</span>
+      <span>Điểm: <b id="scoreVal">0</b> / <span id="scoreTotal">0</span></span>
+    </div>
+    <div class="q-card" id="qCard"></div>
+  </section>
+
+  <!-- ================= DIALOGUE ================= -->
+  <section class="view" id="view-dialogue">
+    <h2 class="section-title"><span class="num">04</span>Hội thoại mẫu</h2>
+    <p class="section-desc">Bấm con dấu ở mỗi dòng để nghe. Bấm "Nghe cả bài" để phát tuần tự toàn bộ hội thoại.</p>
+    <div id="dialogueList"></div>
+  </section>
+
+  <!-- ================= RESULTS ================= -->
+  <section class="view" id="view-results">
+    <h2 class="section-title"><span class="num">05</span>Kết quả phiên ôn tập</h2>
+    <p class="section-desc">Số liệu dưới đây được ghi nhận trong phiên làm việc hiện tại của trình duyệt (sẽ đặt lại khi tải lại trang).</p>
+    <div class="stat-grid" id="statGrid"></div>
+    <button class="btn ghost" id="resetAllBtn">↺ Đặt lại toàn bộ tiến độ</button>
+    <div class="voice-note" id="voiceNote"></div>
+  </section>
+
+</main>
+
+<footer>Giáo trình Tiếng Trung Thương Mại — Bài 2 · Người biên soạn: Nguyễn Thanh Thường · Trang ôn tập tương tác</footer>
+
+<script>
+/* ============================================================
+   DATA — trích xuất trực tiếp từ Giáo trình Bài 2 (không thêm nội dung mới)
+   ============================================================ */
+const VOCAB = [
+["保持","bǎochí","duy trì, giữ vững","Ngữ pháp"],
+["办","bàn","làm, xử lý","Ngữ pháp"],
+["包装","bāozhuāng","đóng gói","Bổ ngữ kết quả"],
+["表示感谢","biǎoshì gǎnxiè","bày tỏ lòng cảm ơn","Giao tiếp"],
+["不好意思","bùhǎoyìsi","ngại, xin lỗi (nhẹ)","Văn hóa"],
+["擦","cā","lau, chùi","Bổ ngữ kết quả"],
+["出席","chūxí","tham dự, có mặt","Giao tiếp"],
+["大忙人","dà mángrén","người rất bận rộn","Văn hóa"],
+["道歉","dàoqiàn","xin lỗi","Giao tiếp"],
+["得","děi","phải (bắt buộc)","Động từ tình thái"],
+["电","diàn","điện","Liên lạc"],
+["电话","diànhuà","điện thoại","Liên lạc"],
+["电子","diànzǐ","điện tử","Liên lạc"],
+["电子邮箱","diànzǐ yóuxiāng","hộp thư điện tử","Liên lạc"],
+["电子邮件","diànzǐ yóujiàn","thư điện tử (email)","Liên lạc"],
+["电邮地址","diànyóu dìzhǐ","địa chỉ email","Liên lạc"],
+["订单","dìngdān","đơn hàng","Giấy tờ"],
+["点儿","diǎnr","một chút (nhi hóa âm)","Văn hóa"],
+["分钟","fēnzhōng","phút","Thời gian"],
+["房间","fángjiān","phòng","Giấy tờ"],
+["方式","fāngshì","phương thức","Liên lạc"],
+["干","gàn","làm, làm việc","Bổ ngữ kết quả"],
+["干净","gānjìng","sạch sẽ","Bổ ngữ kết quả"],
+["感谢","gǎnxiè","cảm tạ, biết ơn (trang trọng)","Văn hóa"],
+["给","gěi","cho, tặng","Ngữ pháp"],
+["工作","gōngzuò","công việc, làm việc","Liên lạc"],
+["光","guāng","hết sạch","Bổ ngữ kết quả"],
+["光临","guānglín","quang lâm, đến thăm (kính ngữ)","Giao tiếp"],
+["管理","guǎnlǐ","quản lý","Liên lạc"],
+["过年好","guònián hǎo","chúc đón Tết vui vẻ","Văn hóa"],
+["号码","hàomǎ","số (điện thoại, mã số)","Giấy tờ"],
+["还好","hái hǎo","cũng được, bình thường","Mức độ"],
+["还要","hái yào","còn phải, còn muốn","Mức độ"],
+["好","hǎo","tốt, xong tốt","Bổ ngữ kết quả"],
+["坏","huài","hỏng","Bổ ngữ kết quả"],
+["护照","hùzhào","hộ chiếu","Giấy tờ"],
+["回头见","huítóujiàn","hẹn gặp lại, lát nữa gặp","Văn hóa"],
+["见面","jiànmiàn","gặp mặt","Hoạt động"],
+["接受","jiēshòu","tiếp nhận, chấp nhận","Ngữ pháp"],
+["聚一聚","jù yī jù","tụ họp, gặp gỡ","Ngữ pháp"],
+["开会","kāihuì","họp, mở cuộc họp","Hoạt động"],
+["空","kōng","trống rỗng","Bổ ngữ kết quả"],
+["快递","kuàidì","chuyển phát nhanh","Giấy tờ"],
+["来得及","lái de jí","kịp","Ngữ pháp"],
+["来不及","lái bu jí","không kịp","Ngữ pháp"],
+["老朋友","lǎo péngyou","bạn bè lâu năm","Văn hóa"],
+["老样子","lǎo yàngzi","vẫn như cũ","Văn hóa"],
+["礼拜","lǐbài","tuần (khẩu ngữ)","Thời gian"],
+["联络","liánluò","liên lạc","Liên lạc"],
+["满","mǎn","đầy","Bổ ngữ kết quả"],
+["马马虎虎","mǎmǎhǔhǔ","tàm tạm, bình thường","Mức độ"],
+["忙","máng","bận","Văn hóa"],
+["卖","mài","bán","Bổ ngữ kết quả"],
+["没关系","méi guānxi","không sao","Văn hóa"],
+["哪里哪里","nǎli nǎli","đâu có, đâu dám (khiêm tốn)","Văn hóa"],
+["呢","ne","trợ từ ngữ khí","Văn hóa"],
+["清理","qīnglǐ","dọn dẹp","Bổ ngữ kết quả"],
+["签名","qiānmíng","ký tên","Hoạt động"],
+["请教","qǐngjiào","thỉnh giáo, xin ý kiến","Giao tiếp"],
+["去哪儿","qù nǎr","đi đâu (khẩu ngữ)","Văn hóa"],
+["上次","shàngcì","lần trước","Thời gian"],
+["上午","shàngwǔ","buổi sáng","Thời gian"],
+["事儿","shìr","việc (khẩu ngữ)","Văn hóa"],
+["收到","shōudào","nhận được","Ngữ pháp"],
+["替","tì","thay (cho)","Ngữ pháp"],
+["挺好","tǐng hǎo","khá tốt","Mức độ"],
+["听说","tīngshuō","nghe nói","Mức độ"],
+["晚上","wǎnshang","buổi tối","Thời gian"],
+["微信","wēixìn","WeChat","Hoạt động"],
+["问好","wènhǎo","hỏi thăm, chào hỏi","Giao tiếp"],
+["问题","wèntí","vấn đề, câu hỏi","Hoạt động"],
+["务必","wùbì","nhất thiết phải","Mức độ"],
+["下次","xiàcì","lần sau","Thời gian"],
+["下午","xiàwǔ","buổi chiều","Thời gian"],
+["想","xiǎng","muốn, nghĩ","Động từ tình thái"],
+["谢谢","xièxie","cảm ơn","Văn hóa"],
+["新年好","xīnnián hǎo","chúc mừng năm mới","Văn hóa"],
+["需要","xūyào","cần","Thời gian"],
+["修","xiū","sửa chữa","Bổ ngữ kết quả"],
+["要","yào","muốn, cần, sẽ","Động từ tình thái"],
+["要是","yàoshi","nếu (khẩu ngữ)","Ngữ pháp"],
+["一定","yídìng","nhất định","Mức độ"],
+["已经","yǐjīng","đã (rồi)","Bổ ngữ kết quả"],
+["以后","yǐhòu","sau này","Thời gian"],
+["有空","yǒukòng","có rảnh, có thời gian","Thời gian"],
+["有起色","yǒu qǐsè","có tiến triển, khởi sắc","Mức độ"],
+["支付","zhīfù","thanh toán","Liên lạc"],
+["之后","zhīhòu","sau đó","Thời gian"],
+["中午","zhōngwǔ","buổi trưa","Thời gian"],
+["装","zhuāng","lắp, chất, xếp","Bổ ngữ kết quả"],
+["周","zhōu","tuần","Thời gian"],
+["周末","zhōumò","cuối tuần","Thời gian"],
+["早上","zǎoshang","sáng sớm","Thời gian"],
+["照片","zhàopiàn","ảnh, hình chụp","Hoạt động"],
+["真","zhēn","thật, thực sự","Mức độ"],
+["做","zuò","làm","Bổ ngữ kết quả"],
+["运输","yùnshū","vận chuyển","Liên lạc"]
+].map(r=>({han:r[0],pinyin:r[1],vi:r[2],topic:r[3]}));
+
+const GRAMMAR = [
+["动词 + 个 + 名词","Làm một chút / một lần","加个微信","Jiā ge wēixìn","Thêm một WeChat"],
+["向 + 人 + 动词","Hướng đến ai đó để làm gì (lịch sự)","我向主管请教。","Wǒ xiàng zhǔguǎn qǐngjiào.","Tôi thỉnh giáo chủ quản."],
+["名词 + 号码","Số của…","电话号码","diànhuà hàomǎ","số điện thoại"],
+["需要 / 还有 + số + 小时/分钟","Khoảng thời gian cần / còn lại","还有十分钟到。","Hái yǒu shí fēnzhōng dào.","Còn mười phút nữa thì đến."],
+["上次 / 下次 + …","Lần trước / lần sau","下次请提前通知我。","Xiàcì qǐng tíqián tōngzhī wǒ.","Lần sau xin hãy thông báo cho tôi trước."],
+["动词 + 之后 / 以后","Sau khi làm gì","确认之后，请签字。","Quèrèn zhīhòu, qǐng qiānzì.","Sau khi xác nhận, vui lòng ký tên."],
+["目前 / 现在 + trạng thái","Hiện tại / bây giờ","现在我们开始吧。","Xiànzài wǒmen kāishǐ ba.","Bây giờ chúng ta bắt đầu nhé."],
+["A 给 B + 动词","A làm gì đó cho B","我给客户打电话。","Wǒ gěi kèhù dǎ diànhuà.","Tôi gọi điện cho khách hàng."],
+["如果 / 要是……的话","Nếu… thì… (giả định)","如果有问题的话，请联系我。","Rúguǒ yǒu wèntí dehuà, qǐng liánxì wǒ.","Nếu có vấn đề thì hãy liên hệ tôi."],
+["能 + 动词 + 吗？","Có thể… không? (lịch sự)","能交换名片吗？","Néng jiāohuàn míngpiàn ma?","Có thể trao đổi danh thiếp không?"],
+["来得及 / 来不及","Kịp / không kịp","现在去还来得及。","Xiànzài qù hái láidejí.","Bây giờ đi vẫn còn kịp."],
+["名词 + 怎么样？","Hỏi thăm tình hình","生意怎么样？","Shēngyi zěnmeyàng?","Việc kinh doanh thế nào?"],
+["有 + 名词 + 吗？","Hỏi thăm thói quen / lịch trình","有时间吗？","Yǒu shíjiān ma?","Có thời gian không?"],
+["你的 + 名词 + 很 + 形容词","Khen ngợi, nhận xét","你的业务很好。","Nǐ de yèwù hěn hǎo.","Nghiệp vụ của anh/chị rất tốt."],
+["接受 / 收到 + 名词","Nhận được","收到邀请","shōu dào yāoqǐng","đã nhận được lời mời"],
+["这是 + 名词","Giới thiệu trang trọng","这是我们的贵宾。","Zhè shì wǒmen de guìbīn.","Đây là quý khách của chúng tôi."],
+["得 + 动词","Phải làm gì (bắt buộc)","我得办这件事。","Wǒ děi bàn zhè jiàn shì.","Tôi phải xử lý việc này."],
+["想 + 动词","Muốn làm gì","我想向您请教。","Wǒ xiǎng xiàng nín qǐngjiào.","Tôi muốn thỉnh giáo anh/chị."],
+["要 + 动词","Muốn / cần / sẽ làm gì","我要安排明天的会议。","Wǒ yào ānpái míngtiān de huìyì.","Tôi sẽ sắp xếp cuộc họp ngày mai."],
+["一定 + 动词","Nhất định làm gì","我一定出席。","Wǒ yídìng chūxí.","Tôi nhất định sẽ tham dự."],
+["务必 + 动词","Nhất thiết phải làm gì","您务必出席。","Nín wùbì chūxí.","Anh/chị nhất thiết phải tham dự."],
+["还要 + 动词","Còn phải / còn muốn làm gì","我还要安排明天的聚会。","Wǒ hái yào ānpái míngtiān de jùhuì.","Tôi còn phải sắp xếp buổi tụ họp ngày mai."],
+["真 + 形容词/动词","Thật, thực sự","生意真好。","Shēngyi zhēn hǎo.","Việc kinh doanh thật tốt."],
+["听说 + 主语 + 动词","Nghe nói rằng…","听说市场有起色。","Tīngshuō shìchǎng yǒu qǐsè.","Nghe nói thị trường có tiến triển."],
+["在 / 正在 + 动词 + 呢","Nhấn mạnh hành động đang diễn ra","我在吃饭呢。","Wǒ zài chīfàn ne.","Tôi đang ăn cơm."],
+["动词 + 结果补语","Kết quả của hành động","修好","xiū hǎo","sửa xong"],
+["把 + 物 + 动词 + 结果","Xử lý một vật cụ thể và kết quả","请把地板擦干净。","Qǐng bǎ dìbǎn cā gānjìng.","Hãy lau sàn nhà cho sạch."],
+["已经 + 动词 + 结果 + 了","Đã hoàn thành","货已经包装好了。","Huò yǐjīng bāozhuāng hǎo le.","Hàng đã đóng gói xong rồi."],
+["还没 + 动词 + 结果","Chưa hoàn thành","机器还没修好。","Jīqì hái méi xiū hǎo.","Máy vẫn chưa sửa xong."]
+].map(r=>({struct:r[0],meaning:r[1],exHan:r[2],exPinyin:r[3],exVi:r[4]}));
+
+const DIALOGUES = [
+{title:"Hội thoại 1 · Đón tiếp khách hàng mới", lines:[
+  ["A","欢迎光临！听说您是我们的新客户，真高兴认识您。","Xin chào mừng quý khách! Nghe nói anh/chị là khách hàng mới của chúng tôi, thật vui được gặp anh/chị."],
+  ["B","谢谢，我也很高兴。","Cảm ơn, tôi cũng rất vui."],
+  ["A","能交换名片吗？","Có thể trao đổi danh thiếp không?"],
+  ["B","当然可以，这是我的名片，请留下您的联系方式。","Tất nhiên được, đây là danh thiếp của tôi, vui lòng để lại thông tin liên lạc của anh/chị."]
+]},
+{title:"Hội thoại 2 · Hẹn gặp lần sau", lines:[
+  ["A","下次的聚会您能出席吗？","Buổi tụ họp lần sau anh/chị có thể tham dự không?"],
+  ["B","很遗憾，我来不及了，我还要安排其他业务。","Rất tiếc, tôi không kịp rồi, tôi còn phải sắp xếp công việc khác."],
+  ["A","没关系，务必下次光临。","Không sao, nhất thiết lần sau phải đến nhé."],
+  ["B","一定，我一定出席。","Nhất định, tôi nhất định sẽ tham dự."]
+]},
+{title:"Hội thoại 3 · Trao đổi tình hình kinh doanh", lines:[
+  ["A","听说您的生意有起色，真好！","Nghe nói việc kinh doanh của anh/chị có tiến triển, thật tốt!"],
+  ["B","还好，目前市场比较好，销售挺好。","Cũng được, hiện tại thị trường tương đối tốt, doanh số khá tốt."],
+  ["A","如果有需要的话，务必联系我们，我们一定支持您。","Nếu có nhu cầu thì nhất thiết hãy liên hệ chúng tôi, chúng tôi nhất định sẽ hỗ trợ anh/chị."],
+  ["B","谢谢，我一定保持联系。","Cảm ơn, tôi nhất định sẽ duy trì liên lạc."]
+]},
+{title:"Hội thoại 4 · Hẹn gặp cuối tuần", lines:[
+  ["A","下次有空，我们聚一聚吧。","Lần sau rảnh, chúng ta tụ họp nhé."],
+  ["B","好啊，周末您有空吗？","Được chứ, cuối tuần anh/chị có rảnh không?"],
+  ["A","周末我还要安排应酬，之后我给您打个电话。","Cuối tuần tôi còn phải sắp xếp tiệc giao tế, sau đó tôi sẽ gọi điện cho anh/chị."],
+  ["B","好的，我一定等您的电话。","Được, tôi nhất định sẽ chờ điện thoại của anh/chị."]
+]},
+{title:"Hội thoại 5 · Báo cáo tiến độ công việc tại nhà máy", lines:[
+  ["A","今天的工作做完了吗？机器修好了吗？","Công việc hôm nay làm xong chưa? Máy sửa xong chưa?"],
+  ["B","货已经包装好了，地板也擦干净了，但是机器还没修好。","Hàng đã đóng gói xong, sàn cũng đã lau sạch, nhưng máy vẫn chưa sửa xong."]
+]}
+];
+
+// Curated sentences for scramble exercise (token = meaningful chunk, not single char)
+const SCRAMBLE = [
+{tokens:[["他","tā"],["是","shì"],["我们","wǒmen"],["的","de"],["管理","guǎnlǐ"],["人员","rényuán"],["。",""]], vi:"Anh ấy là nhân viên quản lý của chúng tôi."},
+{tokens:[["这家","zhèjiā"],["公司","gōngsī"],["运输","yùnshū"],["货物","huòwù"],["。",""]], vi:"Công ty này vận chuyển hàng hóa."},
+{tokens:[["客户","kèhù"],["如何","rúhé"],["支付","zhīfù"],["？",""]], vi:"Khách hàng thanh toán như thế nào?"},
+{tokens:[["你","nǐ"],["做","zuò"],["什么","shénme"],["工作","gōngzuò"],["？",""]], vi:"Bạn làm công việc gì?"},
+{tokens:[["请","qǐng"],["联络","liánluò"],["业务部","yèwùbù"],["。",""]], vi:"Xin liên lạc phòng kinh doanh."},
+{tokens:[["我们","wǒmen"],["可以","kěyǐ"],["加","jiā"],["个","gè"],["微信","wēixìn"],["。",""]], vi:"Chúng ta có thể thêm WeChat nhé."},
+{tokens:[["你","nǐ"],["可以","kěyǐ"],["打","dǎ"],["个","gè"],["电话","diànhuà"],["给","gěi"],["主管","zhǔguǎn"],["。",""]], vi:"Bạn có thể gọi điện cho chủ quản."},
+{tokens:[["有","yǒu"],["时间","shíjiān"],["就","jiù"],["见","jiàn"],["个","gè"],["面","miàn"],["吧","ba"],["。",""]], vi:"Khi có thời gian thì gặp mặt nhé."},
+{tokens:[["我","wǒ"],["想","xiǎng"],["向","xiàng"],["主管","zhǔguǎn"],["请教","qǐngjiào"],["。",""]], vi:"Tôi muốn thỉnh giáo chủ quản."},
+{tokens:[["他","tā"],["向","xiàng"],["客户","kèhù"],["道歉","dàoqiàn"],["了","le"],["。",""]], vi:"Anh ấy đã xin lỗi khách hàng."},
+{tokens:[["我们","wǒmen"],["向","xiàng"],["业务合作人","yèwùhézuòrén"],["表示感谢","biǎoshìgǎnxiè"],["。",""]], vi:"Chúng tôi tỏ lòng cảm ơn đối tác kinh doanh."},
+{tokens:[["请","qǐng"],["向","xiàng"],["你","nǐ"],["的","de"],["家人","jiārén"],["问好","wènhǎo"],["。",""]], vi:"Xin gửi lời chào thăm đến gia đình bạn."},
+{tokens:[["会议","huìyì"],["需要","xūyào"],["两个","liǎnggè"],["小时","xiǎoshí"],["。",""]], vi:"Cuộc họp cần hai tiếng."},
+{tokens:[["请","qǐng"],["等","děng"],["五分钟","wǔfēnzhōng"],["。",""]], vi:"Vui lòng đợi năm phút."},
+{tokens:[["还有","háiyǒu"],["十分钟","shífēnzhōng"],["到","dào"],["。",""]], vi:"Còn mười phút nữa thì đến."},
+{tokens:[["上次","shàngcì"],["我们","wǒmen"],["谈到","tándào"],["了","le"],["合同","hétóng"],["问题","wèntí"],["。",""]], vi:"Lần trước chúng ta đã nói đến vấn đề hợp đồng."},
+{tokens:[["下次","xiàcì"],["请","qǐng"],["提前","tíqián"],["通知","tōngzhī"],["我","wǒ"],["。",""]], vi:"Lần sau xin hãy thông báo cho tôi trước."},
+{tokens:[["下次","xiàcì"],["见面","jiànmiàn"],["我","wǒ"],["带","dài"],["资料","zīliào"],["。",""]], vi:"Lần sau gặp mặt tôi mang tài liệu theo."},
+{tokens:[["开","kāi"],["完","wán"],["会","huì"],["之后","zhīhòu"],["，",""],["我","wǒ"],["给","gěi"],["你","nǐ"],["发邮件","fāyóujiàn"],["。",""]], vi:"Sau khi họp xong, tôi gửi email cho bạn."},
+{tokens:[["确认","quèrèn"],["之后","zhīhòu"],["，",""],["请","qǐng"],["签字","qiānzì"],["。",""]], vi:"Sau khi xác nhận, vui lòng ký tên."},
+{tokens:[["以后","yǐhòu"],["我们","wǒmen"],["多","duō"],["合作","hézuò"],["。",""]], vi:"Sau này chúng ta hợp tác nhiều hơn."},
+{tokens:[["目前","mùqián"],["市场","shìchǎng"],["情况","qíngkuàng"],["不太好","bùtàihǎo"],["。",""]], vi:"Hiện tại tình hình thị trường không tốt lắm."},
+{tokens:[["现在","xiànzài"],["我们","wǒmen"],["开始","kāishǐ"],["吧","ba"],["。",""]], vi:"Bây giờ chúng ta bắt đầu nhé."},
+{tokens:[["目前","mùqián"],["我们","wǒmen"],["正在","zhèngzài"],["处理","chǔlǐ"],["这个","zhège"],["问题","wèntí"],["。",""]], vi:"Hiện tại chúng tôi đang xử lý vấn đề này."},
+{tokens:[["早上","zǎoshàng"],["我们","wǒmen"],["开会","kāihuì"],["。",""]], vi:"Sáng sớm chúng ta họp."},
+{tokens:[["下午","xiàwǔ"],["我","wǒ"],["有","yǒu"],["客户","kèhù"],["拜访","bàifǎng"],["。",""]], vi:"Buổi chiều tôi có khách hàng đến thăm."},
+{tokens:[["晚上","wǎnshàng"],["我们","wǒmen"],["一起","yìqǐ"],["吃饭","chīfàn"],["吧","ba"],["。",""]], vi:"Tối chúng ta ăn cơm cùng nhau nhé."},
+{tokens:[["中午","zhōngwǔ"],["一起","yìqǐ"],["吃饭","chīfàn"],["怎么样","zěnmeyàng"],["？",""]], vi:"Buổi trưa cùng ăn cơm thế nào?"},
+{tokens:[["这个","zhège"],["周末","zhōumò"],["有空","yǒukòng"],["吗","ma"],["？",""]], vi:"Cuối tuần này có rảnh không?"},
+{tokens:[["周末","zhōumò"],["我们","wǒmen"],["安排","ānpái"],["一下","yīxià"],["？",""]], vi:"Cuối tuần mình sắp xếp một chút nhé?"},
+{tokens:[["我","wǒ"],["给","gěi"],["客户","kèhù"],["打电话","dǎdiànhuà"],["。",""]], vi:"Tôi gọi điện cho khách hàng."},
+{tokens:[["老板","lǎobǎn"],["给","gěi"],["我们","wǒmen"],["安排","ānpái"],["工作","gōngzuò"],["。",""]], vi:"Sếp sắp xếp công việc cho chúng tôi."},
+{tokens:[["我","wǒ"],["给","gěi"],["你","nǐ"],["介绍","jièshào"],["一下","yīxià"],["。",""]], vi:"Tôi giới thiệu cho bạn."},
+{tokens:[["我","wǒ"],["给","gěi"],["你","nǐ"],["找","zhǎo"],["个","gè"],["工作","gōngzuò"],["。",""]], vi:"Tôi tìm việc cho bạn."},
+{tokens:[["如果","rúguǒ"],["有","yǒu"],["问题","wèntí"],["的话","dehuà"],["，",""],["请","qǐng"],["联系","liánxì"],["我","wǒ"],["。",""]], vi:"Nếu có vấn đề thì hãy liên hệ tôi."},
+{tokens:[["要是","yàoshì"],["你","nǐ"],["有空","yǒukòng"],["的话","dehuà"],["，",""],["我们","wǒmen"],["一起","yìqǐ"],["吃饭","chīfàn"],["。",""]], vi:"Nếu bạn rảnh thì chúng ta cùng ăn cơm."},
+{tokens:[["如果","rúguǒ"],["客户","kèhù"],["很","hěn"],["重要","zhòngyào"],["的话","dehuà"],["，",""],["应该","yīnggāi"],["联系","liánxì"],["经理","jīnglǐ"],["。",""]], vi:"Nếu khách hàng quan trọng thì nên liên hệ quản lý."},
+{tokens:[["要是","yàoshì"],["你","nǐ"],["不","bù"],["知道","zhīdào"],["的话","dehuà"],["，",""],["可以","kěyǐ"],["问","wèn"],["主管","zhǔguǎn"],["。",""]], vi:"Nếu bạn không biết thì có thể hỏi chủ quản."},
+{tokens:[["要是","yàoshì"],["你","nǐ"],["想","xiǎng"],["合作","hézuò"],["的话","dehuà"],["，",""],["可以","kěyǐ"],["联系","liánxì"],["业务部","yèwùbù"],["。",""]], vi:"Nếu bạn muốn hợp tác thì có thể liên hệ phòng kinh doanh."},
+{tokens:[["能","néng"],["交换","jiāohuàn"],["名片","míngpiàn"],["吗","ma"],["？",""]], vi:"Có thể trao đổi danh thiếp không?"},
+{tokens:[["能","néng"],["帮","bāng"],["个","gè"],["忙","máng"],["吗","ma"],["？",""]], vi:"Có thể giúp một chút không?"},
+{tokens:[["能","néng"],["帮","bāng"],["我","wǒ"],["介绍","jièshào"],["一下","yīxià"],["这位","zhèwèi"],["先生","xiānshēng"],["吗","ma"],["？",""]], vi:"Có thể giúp tôi giới thiệu vị này một chút không?"},
+{tokens:[["能","néng"],["帮","bāng"],["我","wǒ"],["联系","liánxì"],["一下","yīxià"],["客户","kèhù"],["吗","ma"],["？",""]], vi:"Có thể giúp tôi liên hệ khách hàng một chút không?"},
+{tokens:[["现在","xiànzài"],["去","qù"],["还","hái"],["来得及","láidejí"],["。",""]], vi:"Bây giờ đi vẫn còn kịp."},
+{tokens:[["开会","kāihuì"],["快","kuài"],["开始","kāishǐ"],["了","le"],["，",""],["来不及","láibují"],["了","le"],["。",""]], vi:"Cuộc họp sắp bắt đầu rồi, không kịp nữa."},
+{tokens:[["经理","jīnglǐ"],["快","kuài"],["来","lái"],["了","le"],["，",""],["来不及","láibují"],["介绍","jièshào"],["了","le"],["。",""]], vi:"Quản lý sắp đến rồi, không kịp giới thiệu nữa."},
+{tokens:[["现在","xiànzài"],["联系","liánxì"],["客户","kèhù"],["还","hái"],["来得及","láidejí"],["。",""]], vi:"Bây giờ liên hệ khách hàng vẫn còn kịp."},
+{tokens:[["生意","shēngyì"],["怎么样","zěnmeyàng"],["？",""]], vi:"Việc kinh doanh thế nào?"},
+{tokens:[["身体","shēntǐ"],["怎么样","zěnmeyàng"],["？",""]], vi:"Sức khỏe thế nào?"},
+{tokens:[["销售","xiāoshòu"],["怎么样","zěnmeyàng"],["？",""]], vi:"Doanh số thế nào?"},
+{tokens:[["市场","shìchǎng"],["怎么样","zěnmeyàng"],["？",""]], vi:"Thị trường thế nào?"},
+{tokens:[["有","yǒu"],["时间","shíjiān"],["吗","ma"],["？",""]], vi:"Có thời gian không?"},
+{tokens:[["有","yǒu"],["聚会","jùhuì"],["吗","ma"],["？",""]], vi:"Có tụ họp không?"},
+{tokens:[["有","yǒu"],["邀请","yāoqǐng"],["吗","ma"],["？",""]], vi:"Có lời mời không?"},
+{tokens:[["有","yǒu"],["应酬","yìngchóu"],["吗","ma"],["？",""]], vi:"Có tiệc giao tế không?"},
+{tokens:[["你","nǐ"],["的","de"],["业务","yèwù"],["很","hěn"],["好","hǎo"],["。",""]], vi:"Nghiệp vụ của anh/chị rất tốt."},
+{tokens:[["你","nǐ"],["的","de"],["生意","shēngyì"],["很","hěn"],["好","hǎo"],["。",""]], vi:"Kinh doanh của anh/chị rất tốt."},
+{tokens:[["你","nǐ"],["的","de"],["网址","wǎngzhǐ"],["很","hěn"],["好","hǎo"],["。",""]], vi:"Địa chỉ website của bạn rất đẹp."},
+{tokens:[["你","nǐ"],["的","de"],["效率","xiàolǜ"],["很","hěn"],["好","hǎo"],["。",""]], vi:"Hiệu suất của bạn rất cao."},
+{tokens:[["这","zhè"],["是","shì"],["我","wǒ"],["的","de"],["夫人","fūrén"],["。",""]], vi:"Đây là phu nhân của tôi."},
+{tokens:[["这","zhè"],["是","shì"],["我们","wǒmen"],["的","de"],["贵宾","guìbīn"],["。",""]], vi:"Đây là quý khách của chúng tôi."},
+{tokens:[["这","zhè"],["是","shì"],["我们","wǒmen"],["公司","gōngsī"],["的","de"],["网址","wǎngzhǐ"],["。",""]], vi:"Đây là địa chỉ website công ty chúng tôi."},
+{tokens:[["这","zhè"],["是","shì"],["本次","běncì"],["会议","huìyì"],["的","de"],["日程","rìchéng"],["。",""]], vi:"Đây là chương trình nghị sự của cuộc họp này."},
+{tokens:[["这件","zhèjiàn"],["事","shì"],["我","wǒ"],["来","lái"],["办","bàn"],["。",""]], vi:"Việc này tôi sẽ xử lý."},
+{tokens:[["请留下","qǐngliúxià"],["您","nín"],["的","de"],["联系方式","liánxìfāngshì"],["。",""]], vi:"Vui lòng để lại thông tin liên lạc."},
+{tokens:[["我","wǒ"],["给","gěi"],["您","nín"],["留","liú"],["个","gè"],["电话号码","diànhuàhàomǎ"],["。",""]], vi:"Tôi để lại số điện thoại cho anh/chị."},
+{tokens:[["我们","wǒmen"],["保持","bǎochí"],["合作","hézuò"],["关系","guānxì"],["。",""]], vi:"Chúng ta duy trì quan hệ hợp tác."},
+{tokens:[["我","wǒ"],["代表","dàibiǎo"],["公司","gōngsī"],["欢迎您","huānyíngnín"],["。",""]], vi:"Tôi thay mặt công ty chào đón anh/chị."},
+{tokens:[["我","wǒ"],["替","tì"],["他","tā"],["向","xiàng"],["您","nín"],["道歉","dàoqiàn"],["。",""]], vi:"Tôi thay anh ấy xin lỗi anh/chị."},
+{tokens:[["周末","zhōumò"],["我们","wǒmen"],["聚","jù"],["一","yī"],["聚","jù"],["吧","ba"],["。",""]], vi:"Cuối tuần chúng ta tụ họp nhé."},
+{tokens:[["请","qǐng"],["帮","bāng"],["我","wǒ"],["安排","ānpái"],["一下","yīxià"],["。",""]], vi:"Vui lòng giúp tôi sắp xếp một chút."},
+{tokens:[["我们","wǒmen"],["已经","yǐjīng"],["安排","ānpái"],["好","hǎo"],["了","le"],["。",""]], vi:"Chúng tôi đã sắp xếp xong rồi."},
+{tokens:[["欢迎","huānyíng"],["光临","guānglín"],["！",""]], vi:"Xin chào mừng quý khách!"},
+{tokens:[["感谢","gǎnxiè"],["您","nín"],["的","de"],["光临","guānglín"],["。",""]], vi:"Cảm ơn quý khách đã đến thăm."},
+{tokens:[["我会","wǒhuì"],["出席","chūxí"],["明天","míngtiān"],["的","de"],["会议","huìyì"],["。",""]], vi:"Tôi sẽ tham dự cuộc họp ngày mai."},
+{tokens:[["很","hěn"],["遗憾","yíhàn"],["，",""],["我","wǒ"],["无法","wúfǎ"],["出席","chūxí"],["。",""]], vi:"Rất tiếc, tôi không thể tham dự."},
+{tokens:[["请","qǐng"],["确认","quèrèn"],["您","nín"],["是否","shìfǒu"],["出席","chūxí"],["。",""]], vi:"Vui lòng xác nhận anh/chị có tham dự không."},
+{tokens:[["我","wǒ"],["得","děi"],["办","bàn"],["这件","zhèjiàn"],["事","shì"],["。",""]], vi:"Tôi phải xử lý việc này."},
+{tokens:[["你","nǐ"],["得","děi"],["留下","liúxià"],["联系方式","liánxìfāngshì"],["。",""]], vi:"Bạn phải để lại thông tin liên lạc."},
+{tokens:[["我们","wǒmen"],["得","děi"],["安排","ānpái"],["一下","yīxià"],["。",""]], vi:"Chúng ta phải sắp xếp một chút."},
+{tokens:[["你","nǐ"],["得","děi"],["注意","zhùyì"],["时间","shíjiān"],["限制","xiànzhì"],["。",""]], vi:"Bạn phải chú ý giới hạn thời gian."},
+{tokens:[["我","wǒ"],["想","xiǎng"],["和","hé"],["你","nǐ"],["交换","jiāohuàn"],["名片","míngpiàn"],["。",""]], vi:"Tôi muốn trao đổi danh thiếp với bạn."},
+{tokens:[["我","wǒ"],["想","xiǎng"],["向","xiàng"],["您","nín"],["请教","qǐngjiào"],["。",""]], vi:"Tôi muốn thỉnh giáo anh/chị."},
+{tokens:[["我","wǒ"],["想","xiǎng"],["出席","chūxí"],["这次","zhècì"],["活动","huódòng"],["。",""]], vi:"Tôi muốn tham dự hoạt động lần này."},
+{tokens:[["我","wǒ"],["想","xiǎng"],["处理","chǔlǐ"],["完","wán"],["这个","zhège"],["项目","xiàngmù"],["。",""]], vi:"Tôi muốn xử lý xong dự án này."},
+{tokens:[["我","wǒ"],["要","yào"],["安排","ānpái"],["明天","míngtiān"],["的","de"],["会议","huìyì"],["。",""]], vi:"Tôi sẽ sắp xếp cuộc họp ngày mai."},
+{tokens:[["你","nǐ"],["要","yào"],["保持","bǎochí"],["联系","liánxì"],["。",""]], vi:"Bạn cần duy trì liên lạc."},
+{tokens:[["我","wǒ"],["要","yào"],["给","gěi"],["客户","kèhù"],["打","dǎ"],["个","gè"],["电话","diànhuà"],["。",""]], vi:"Tôi sẽ gọi điện cho khách hàng."},
+{tokens:[["你","nǐ"],["要","yào"],["留下","liúxià"],["电邮地址","diànyóudìzhǐ"],["。",""]], vi:"Bạn cần để lại địa chỉ email."},
+{tokens:[["我","wǒ"],["得","děi"],["给","gěi"],["客户","kèhù"],["打","dǎ"],["个","gè"],["电话","diànhuà"],["。",""]], vi:"Tôi phải gọi điện cho khách hàng."},
+{tokens:[["我","wǒ"],["要","yào"],["给","gěi"],["他","tā"],["留","liú"],["个","gè"],["号码","hàomǎ"],["。",""]], vi:"Tôi sẽ để lại số cho anh ấy."},
+{tokens:[["你","nǐ"],["应该","yīnggāi"],["向","xiàng"],["大家","dàjiā"],["表示感谢","biǎoshìgǎnxiè"],["。",""]], vi:"Bạn nên bày tỏ cảm ơn với mọi người."},
+{tokens:[["如果","rúguǒ"],["来不及","láibují"],["的话","dehuà"],["，",""],["你","nǐ"],["得","děi"],["打","dǎ"],["个","gè"],["电话","diànhuà"],["。",""]], vi:"Nếu không kịp thì bạn phải gọi điện."},
+{tokens:[["如果","rúguǒ"],["有","yǒu"],["问题","wèntí"],["的话","dehuà"],["，",""],["你","nǐ"],["应该","yīnggāi"],["联系","liánxì"],["我","wǒ"],["。",""]], vi:"Nếu có vấn đề thì bạn nên liên hệ tôi."},
+{tokens:[["如果","rúguǒ"],["你","nǐ"],["想","xiǎng"],["合作","hézuò"],["的话","dehuà"],["，",""],["可以","kěyǐ"],["联系","liánxì"],["业务部","yèwùbù"],["。",""]], vi:"Nếu bạn muốn hợp tác thì có thể liên hệ phòng kinh doanh."},
+{tokens:[["生意","shēngyì"],["挺好","tǐnghǎo"],["。",""]], vi:"Việc kinh doanh khá tốt."},
+{tokens:[["身体","shēntǐ"],["还好","háihǎo"],["。",""]], vi:"Sức khỏe cũng được."},
+{tokens:[["销售","xiāoshòu"],["马马虎虎","mǎmǎhǔhǔ"],["。",""]], vi:"Doanh số tàm tạm."},
+{tokens:[["市场","shìchǎng"],["有起色","yǒuqǐsè"],["。",""]], vi:"Thị trường có tiến triển."},
+{tokens:[["目前","mùqián"],["生意","shēngyì"],["还好","háihǎo"],["。",""]], vi:"Hiện tại việc kinh doanh cũng được."},
+{tokens:[["现在","xiànzài"],["市场","shìchǎng"],["比较","bǐjiào"],["好","hǎo"],["。",""]], vi:"Bây giờ thị trường tương đối tốt."},
+{tokens:[["最近","zuìjìn"],["生意","shēngyì"],["挺好","tǐnghǎo"],["。",""]], vi:"Gần đây việc kinh doanh khá tốt."},
+{tokens:[["最近","zuìjìn"],["销售","xiāoshòu"],["有起色","yǒuqǐsè"],["。",""]], vi:"Gần đây doanh số có tiến triển."},
+{tokens:[["我","wǒ"],["一定","yídìng"],["出席","chūxí"],["。",""]], vi:"Tôi nhất định sẽ tham dự."},
+{tokens:[["你","nǐ"],["一定","yídìng"],["要","yào"],["保持","bǎochí"],["联系","liánxì"],["。",""]], vi:"Bạn nhất định phải duy trì liên lạc."},
+{tokens:[["我","wǒ"],["一定","yídìng"],["给","gěi"],["您","nín"],["打电话","dǎdiànhuà"],["。",""]], vi:"Tôi nhất định sẽ gọi điện cho anh/chị."},
+{tokens:[["您","nín"],["务必","wùbì"],["出席","chūxí"],["。",""]], vi:"Anh/chị nhất thiết phải tham dự."},
+{tokens:[["务必","wùbì"],["留下","liúxià"],["联系方式","liánxìfāngshì"],["。",""]], vi:"Nhất thiết phải để lại thông tin liên lạc."},
+{tokens:[["务必","wùbì"],["提前","tíqián"],["安排","ānpái"],["。",""]], vi:"Nhất thiết phải sắp xếp trước."},
+{tokens:[["我","wǒ"],["还要","háiyào"],["向","xiàng"],["经理","jīnglǐ"],["道歉","dàoqiàn"],["。",""]], vi:"Tôi còn phải xin lỗi quản lý."},
+{tokens:[["我","wǒ"],["还要","háiyào"],["给","gěi"],["客户","kèhù"],["打电话","dǎdiànhuà"],["。",""]], vi:"Tôi còn phải gọi điện cho khách hàng."},
+{tokens:[["我","wǒ"],["还要","háiyào"],["安排","ānpái"],["明天","míngtiān"],["的","de"],["聚会","jùhuì"],["。",""]], vi:"Tôi còn phải sắp xếp buổi tụ họp ngày mai."},
+{tokens:[["生意","shēngyì"],["真","zhēn"],["好","hǎo"],["。",""]], vi:"Việc kinh doanh thật tốt."},
+{tokens:[["市场","shìchǎng"],["真","zhēn"],["有起色","yǒuqǐsè"],["。",""]], vi:"Thị trường thật sự có tiến triển."},
+{tokens:[["听说","tīngshuō"],["市场","shìchǎng"],["有起色","yǒuqǐsè"],["。",""]], vi:"Nghe nói thị trường có tiến triển."},
+{tokens:[["听说","tīngshuō"],["您","nín"],["要","yào"],["出席","chūxí"],["这次","zhècì"],["活动","huódòng"],["。",""]], vi:"Nghe nói anh/chị sẽ tham dự hoạt động lần này."},
+{tokens:[["感谢","gǎnxiè"],["你","nǐ"],["的","de"],["帮助","bāngzhù"],["。",""]], vi:"Cảm ơn sự giúp đỡ của bạn."},
+{tokens:[["感谢","gǎnxiè"],["你","nǐ"],["的","de"],["关心","guānxīn"],["。",""]], vi:"Cảm ơn sự quan tâm của bạn."},
+{tokens:[["我","wǒ"],["先","xiān"],["走","zǒu"],["了","le"],["，",""],["回头见","huítóujiàn"],["。",""]], vi:"Tôi đi trước nhé, gặp lại sau."},
+{tokens:[["给","gěi"],["我","wǒ"],["一点儿","yìdiǎnér"],["时间","shíjiān"],["。",""]], vi:"Cho tôi một chút thời gian."},
+{tokens:[["没什么","méishénme"],["事儿","shìér"],["。",""]], vi:"Không có việc gì đâu."},
+{tokens:[["这","zhè"],["事儿","shìér"],["不好","bùhǎo"],["处理","chǔlǐ"],["。",""]], vi:"Việc này khó xử lý."},
+{tokens:[["我","wǒ"],["在","zài"],["吃饭","chīfàn"],["呢","ne"],["。",""]], vi:"Tôi đang ăn cơm."},
+{tokens:[["他","tā"],["正在","zhèngzài"],["开会","kāihuì"],["呢","ne"],["。",""]], vi:"Anh ấy đang họp."},
+{tokens:[["你","nǐ"],["呢","ne"],["？",""]], vi:"Còn bạn thì sao?"},
+{tokens:[["我","wǒ"],["忙","máng"],["着","zhe"],["呢","ne"],["。",""]], vi:"Tôi bận lắm."},
+{tokens:[["我","wǒ"],["出去","chūqù"],["买","mǎi"],["点儿","diǎnér"],["东西","dōngxī"],["。",""]], vi:"Tôi ra ngoài mua ít đồ."},
+{tokens:[["你","nǐ"],["这个","zhège"],["大忙人","dàmángrén"],["终于","zhōngyú"],["来","lái"],["了","le"],["！",""]], vi:"Người bận rộn cỡ bạn cuối cùng cũng tới rồi!"},
+{tokens:[["好久不见","hǎojiǔbújiàn"],["，",""],["老朋友","lǎopéngyǒu"],["！",""]], vi:"Lâu rồi không gặp, người bạn quen!"},
+{tokens:[["工人","gōngrén"],["把","bǎ"],["机器","jīqì"],["修好","xiūhǎo"],["了","le"],["。",""]], vi:"Công nhân đã sửa xong máy móc."},
+{tokens:[["请","qǐng"],["把","bǎ"],["地板","dìbǎn"],["擦","cā"],["干净","gānjìng"],["。",""]], vi:"Hãy lau sàn nhà cho sạch."},
+{tokens:[["请","qǐng"],["把","bǎ"],["货物","huòwù"],["包装","bāozhuāng"],["好","hǎo"],["。",""]], vi:"Hãy đóng gói hàng hóa cho xong."},
+{tokens:[["货","huò"],["已经","yǐjīng"],["包装","bāozhuāng"],["好","hǎo"],["了","le"],["。",""]], vi:"Hàng đã đóng gói xong rồi."},
+{tokens:[["机器","jīqì"],["已经","yǐjīng"],["修好","xiūhǎo"],["了","le"],["。",""]], vi:"Máy đã sửa xong rồi."},
+{tokens:[["工作","gōngzuò"],["已经","yǐjīng"],["做","zuò"],["完","wán"],["了","le"],["。",""]], vi:"Công việc đã làm xong rồi."},
+{tokens:[["机器","jīqì"],["还","hái"],["没","méi"],["修好","xiūhǎo"],["。",""]], vi:"Máy vẫn chưa sửa xong."},
+{tokens:[["货","huò"],["还","hái"],["没","méi"],["搬","bān"],["空","kōng"],["。",""]], vi:"Hàng vẫn chưa dọn hết."},
+{tokens:[["工作","gōngzuò"],["还","hái"],["没","méi"],["做","zuò"],["完","wán"],["。",""]], vi:"Công việc vẫn chưa làm xong."}
+];
+
+/* ============================================================
+   TEXT-TO-SPEECH
+   ============================================================ */
+let zhVoice = null;
+function pickVoice(){
+  const voices = speechSynthesis.getVoices();
+  zhVoice = voices.find(v=>v.lang==='zh-CN') || voices.find(v=>v.lang && v.lang.startsWith('zh')) || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text, btnEl){
+  if(!('speechSynthesis' in window)){
+    alert('Trình duyệt này không hỗ trợ phát âm thanh. Hãy thử Chrome hoặc Edge.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN';
+  if(zhVoice) u.voice = zhVoice;
+  u.rate = 0.88;
+  u.pitch = 1;
+  if(btnEl){
+    btnEl.classList.add('stamping');
+    u.onend = ()=>btnEl.classList.remove('stamping');
+    u.onerror = ()=>btnEl.classList.remove('stamping');
+  }
+  speechSynthesis.speak(u);
+}
+
+/* ============================================================
+   TAB NAVIGATION
+   ============================================================ */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById('view-'+btn.dataset.view).classList.add('active');
+    if(btn.dataset.view==='results') renderResults();
+  });
+});
+
+/* ============================================================
+   VOCAB DECK
+   ============================================================ */
+let deckOrder = VOCAB.map((_,i)=>i);
+let deckPos = 0;
+let cardStatus = {}; // idx -> 'known' | 'again'
+let filterTopic = 'all';
+let onlyUnknown = false;
+
+const topicFilterEl = document.getElementById('topicFilter');
+const topics = ['all', ...new Set(VOCAB.map(v=>v.topic))];
+topicFilterEl.innerHTML = topics.map(t=>`<option value="${t}">${t==='all'?'Tất cả chủ điểm':t}</option>`).join('');
+topicFilterEl.addEventListener('change',()=>{filterTopic=topicFilterEl.value; rebuildDeck();});
+document.getElementById('shuffleBtn').addEventListener('click',()=>{shuffleDeck(); showCard();});
+document.getElementById('unknownOnlyBtn').addEventListener('click',(e)=>{
+  onlyUnknown = !onlyUnknown;
+  e.target.style.background = onlyUnknown ? 'var(--ink)' : '';
+  e.target.style.color = onlyUnknown ? '#fff' : '';
+  rebuildDeck();
+});
+
+function currentFilteredIndices(){
+  return VOCAB.map((v,i)=>i).filter(i=>{
+    const topicOk = filterTopic==='all' || VOCAB[i].topic===filterTopic;
+    const knownOk = !onlyUnknown || cardStatus[i]!=='known';
+    return topicOk && knownOk;
+  });
+}
+function rebuildDeck(){
+  deckOrder = currentFilteredIndices();
+  deckPos = 0;
+  showCard();
+}
+function shuffleDeck(){
+  for(let i=deckOrder.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [deckOrder[i],deckOrder[j]]=[deckOrder[j],deckOrder[i]];
+  }
+  deckPos = 0;
+}
+
+const flipCard = document.getElementById('flipCard');
+flipCard.addEventListener('click',()=>flipCard.classList.toggle('flipped'));
+document.getElementById('cardSpeak').addEventListener('click',(e)=>{
+  const v = VOCAB[deckOrder[deckPos]];
+  speak(v.han, e.currentTarget);
+});
+document.getElementById('prevBtn').addEventListener('click',()=>{
+  if(deckOrder.length===0) return;
+  deckPos = (deckPos-1+deckOrder.length)%deckOrder.length;
+  showCard();
+});
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  if(deckOrder.length===0) return;
+  deckPos = (deckPos+1)%deckOrder.length;
+  showCard();
+});
+document.getElementById('markKnown').addEventListener('click',()=>{
+  const idx = deckOrder[deckPos];
+  cardStatus[idx] = cardStatus[idx]==='known' ? undefined : 'known';
+  showCard();
+});
+document.getElementById('markAgain').addEventListener('click',()=>{
+  const idx = deckOrder[deckPos];
+  cardStatus[idx] = cardStatus[idx]==='again' ? undefined : 'again';
+  showCard();
+});
+
+function showCard(){
+  flipCard.classList.remove('flipped');
+  const total = deckOrder.length;
+  const progEl = document.getElementById('vocabProgress');
+  const knownCount = Object.values(cardStatus).filter(s=>s==='known').length;
+  progEl.textContent = `Đã thuộc: ${knownCount} / ${VOCAB.length}`;
+  if(total===0){
+    document.getElementById('cardHan').textContent='—';
+    document.getElementById('cardPinyin').textContent='';
+    document.getElementById('cardVi').textContent='Không còn thẻ nào trong bộ lọc này 🎉';
+    document.getElementById('deckIndex').textContent='0 / 0';
+    return;
+  }
+  const idx = deckOrder[deckPos];
+  const v = VOCAB[idx];
+  document.getElementById('cardHan').textContent = v.han;
+  document.getElementById('cardPinyin').textContent = v.pinyin;
+  document.getElementById('cardVi').textContent = v.vi;
+  document.getElementById('cardTopicFront').textContent = v.topic;
+  document.getElementById('cardTopicBack').textContent = v.topic;
+  document.getElementById('deckIndex').textContent = `${deckPos+1} / ${total}`;
+  document.getElementById('markKnown').classList.toggle('active', cardStatus[idx]==='known');
+  document.getElementById('markAgain').classList.toggle('active', cardStatus[idx]==='again');
+}
+rebuildDeck();
+
+/* ============================================================
+   GRAMMAR LIST
+   ============================================================ */
+const gList = document.getElementById('grammarList');
+GRAMMAR.forEach((g,i)=>{
+  const card = document.createElement('div');
+  card.className='g-card';
+  card.innerHTML = `
+    <div class="g-head">
+      <span class="g-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="g-struct">${g.struct}</span>
+      <span class="g-mean">${g.meaning}</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="g-body">
+      <div class="g-ex">
+        <button class="seal-btn small" title="Nghe ví dụ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <div class="g-ex-text">
+          <div class="han">${g.exHan}</div>
+          <div class="py">${g.exPinyin}</div>
+          <div class="vi">${g.exVi}</div>
+        </div>
+      </div>
+    </div>`;
+  card.querySelector('.g-head').addEventListener('click',()=>card.classList.toggle('open'));
+  card.querySelector('.seal-btn').addEventListener('click',(e)=>{e.stopPropagation(); speak(g.exHan, e.currentTarget);});
+  gList.appendChild(card);
+});
+
+/* ============================================================
+   DIALOGUES
+   ============================================================ */
+const dlgList = document.getElementById('dialogueList');
+DIALOGUES.forEach(d=>{
+  const box = document.createElement('div');
+  box.className='dlg';
+  box.innerHTML = `
+    <div class="dlg-title">${d.title} <button class="btn ghost" style="margin-left:10px;padding:5px 12px;font-size:11.5px;">▶ Nghe cả bài</button></div>
+    ${d.lines.map(l=>`
+      <div class="dlg-line">
+        <span class="dlg-role">${l[0]}</span>
+        <button class="seal-btn small" title="Nghe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <div class="dlg-text"><div class="han">${l[1]}</div><div class="vi">${l[2]}</div></div>
+      </div>`).join('')}
+  `;
+  const speakBtns = box.querySelectorAll('.dlg-line .seal-btn');
+  speakBtns.forEach((btn,i)=>btn.addEventListener('click',()=>speak(d.lines[i][1], btn)));
+  box.querySelector('.dlg-title button').addEventListener('click', async (e)=>{
+    for(let i=0;i<d.lines.length;i++){
+      speak(d.lines[i][1], speakBtns[i]);
+      await new Promise(res=>setTimeout(res, Math.max(1400, d.lines[i][1].length*380)));
+    }
+  });
+  dlgList.appendChild(box);
+});
+
+/* ============================================================
+   PRACTICE ENGINE
+   ============================================================ */
+let currentEx = 'mcq';
+const scores = { mcq:{c:0,t:0}, listen:{c:0,t:0}, fill:{c:0,t:0}, match:{c:0,t:0}, scramble:{c:0,t:0}, tf:{c:0,t:0} };
+const exLabels = { mcq:'Trắc nghiệm nghĩa', listen:'Nghe & chọn', fill:'Điền vào chỗ trống', match:'Nối từ', scramble:'Sắp xếp câu', tf:'Đúng / Sai' };
+
+document.getElementById('exNav').addEventListener('click',(e)=>{
+  if(e.target.tagName!=='BUTTON') return;
+  document.querySelectorAll('#exNav button').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentEx = e.target.dataset.ex;
+  document.getElementById('exLabel').textContent = exLabels[currentEx];
+  updateScoreStrip();
+  newQuestion();
+});
+
+function updateScoreStrip(){
+  document.getElementById('scoreVal').textContent = scores[currentEx].c;
+  document.getElementById('scoreTotal').textContent = scores[currentEx].t;
+}
+function pick(n, excludeIdx){
+  const idxs = new Set();
+  while(idxs.size<n){
+    const r = Math.floor(Math.random()*VOCAB.length);
+    if(r!==excludeIdx) idxs.add(r);
+  }
+  return [...idxs];
+}
+function shuffleArr(a){
+  const arr=[...a];
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]];}
+  return arr;
+}
+
+function newQuestion(){
+  const qCard = document.getElementById('qCard');
+  qCard.innerHTML='';
+  if(currentEx==='mcq') buildMCQ(qCard, false);
+  else if(currentEx==='listen') buildMCQ(qCard, true);
+  else if(currentEx==='fill') buildFill(qCard);
+  else if(currentEx==='match') buildMatch(qCard);
+  else if(currentEx==='scramble') buildScramble(qCard);
+  else if(currentEx==='tf') buildTF(qCard);
+}
+
+function buildMCQ(qCard, listening){
+  const correctIdx = Math.floor(Math.random()*VOCAB.length);
+  const correct = VOCAB[correctIdx];
+  const distractIdx = pick(3, correctIdx);
+  const options = shuffleArr([correctIdx, ...distractIdx]);
+
+  const prompt = document.createElement('div');
+  prompt.className='q-prompt';
+  if(listening){
+    prompt.innerHTML = `<button class="seal-btn" id="listenPlay" title="Nghe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button><span class="q-instructions">Nghe rồi chọn đúng chữ Hán</span>`;
+    qCard.appendChild(prompt);
+    setTimeout(()=>speak(correct.han, prompt.querySelector('.seal-btn')), 300);
+    prompt.querySelector('.seal-btn').addEventListener('click',(e)=>speak(correct.han, e.currentTarget));
+  } else {
+    prompt.innerHTML = `<div><div class="han-big">${correct.han}</div><div class="py">${correct.pinyin}</div></div>
+      <button class="seal-btn small" title="Nghe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></button>`;
+    qCard.appendChild(prompt);
+    qCard.querySelector('.q-prompt .q-instructions');
+    const instr=document.createElement('div');instr.className='q-instructions';instr.textContent='Chọn nghĩa tiếng Việt đúng';
+    qCard.insertBefore(instr, prompt);
+    prompt.querySelector('.seal-btn').addEventListener('click',(e)=>speak(correct.han, e.currentTarget));
+  }
+
+  const grid = document.createElement('div');
+  grid.className='opt-grid';
+  options.forEach(oIdx=>{
+    const b = document.createElement('button');
+    b.className='opt';
+    b.textContent = listening ? VOCAB[oIdx].han + '  (' + VOCAB[oIdx].pinyin + ')' : VOCAB[oIdx].vi;
+    b.addEventListener('click',()=>{
+      const isCorrect = oIdx===correctIdx;
+      document.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+      b.classList.add(isCorrect?'correct':'wrong');
+      if(!isCorrect){
+        [...grid.children][options.indexOf(correctIdx)].classList.add('correct');
+      }
+      scores[currentEx].t++; if(isCorrect) scores[currentEx].c++;
+      updateScoreStrip();
+      showFeedback(qCard, isCorrect);
+    });
+    grid.appendChild(b);
+  });
+  qCard.appendChild(grid);
+  addFeedbackAndNext(qCard);
+}
+
+function buildFill(qCard){
+  const g = GRAMMAR[Math.floor(Math.random()*GRAMMAR.length)];
+  // pick a hanzi token from the example to blank: use first 1-3 char meaningful word from struct's leading part if present in exHan
+  const candidates = VOCAB.filter(v=> g.exHan.includes(v.han));
+  let target = candidates.length ? candidates[Math.floor(Math.random()*candidates.length)] : null;
+  if(!target){
+    // fallback: blank the whole struct core word (first 1-2 chars)
+    target = {han: g.exHan.slice(0,1), pinyin:'', vi:''};
+  }
+  const blanked = g.exHan.replace(target.han, '＿'.repeat(target.han.length));
+
+  const instr = document.createElement('div');
+  instr.className='q-instructions';
+  instr.textContent='Chọn từ đúng để điền vào chỗ trống';
+  qCard.appendChild(instr);
+
+  const sentBox = document.createElement('div');
+  sentBox.className='blank-sentence';
+  sentBox.innerHTML = blanked.replaceAll('＿'.repeat(target.han.length), `<span class="blank-slot" id="slotFill">${'＿'.repeat(target.han.length)}</span>`);
+  qCard.appendChild(sentBox);
+
+  const viLine = document.createElement('div');
+  viLine.style.cssText='font-family:var(--font-vi);font-style:italic;color:var(--ink-soft);font-size:13.5px;';
+  viLine.textContent = g.exVi;
+  qCard.appendChild(viLine);
+
+  const bankSet = new Set([target.han]);
+  while(bankSet.size<4){
+    bankSet.add(VOCAB[Math.floor(Math.random()*VOCAB.length)].han);
+  }
+  const bank = shuffleArr([...bankSet]);
+  const chipRow = document.createElement('div');
+  chipRow.className='chip-row';
+  bank.forEach(word=>{
+    const chip = document.createElement('button');
+    chip.className='chip';
+    chip.textContent = word;
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.chip').forEach(c=>c.classList.add('used'));
+      const slot = document.getElementById('slotFill');
+      slot.textContent = word;
+      const isCorrect = word===target.han;
+      slot.style.color = isCorrect ? 'var(--good)' : 'var(--bad)';
+      slot.style.borderColor = isCorrect ? 'var(--good)' : 'var(--bad)';
+      if(!isCorrect){ chip.style.opacity=1; }
+      scores[currentEx].t++; if(isCorrect) scores[currentEx].c++;
+      updateScoreStrip();
+      showFeedback(qCard, isCorrect, isCorrect?'':`Đáp án đúng: ${target.han}`);
+    });
+    chipRow.appendChild(chip);
+  });
+  qCard.appendChild(chipRow);
+  addFeedbackAndNext(qCard);
+}
+
+function buildMatch(qCard){
+  const idxs = pick(4, -1);
+  const hanCol = shuffleArr(idxs);
+  const viCol = shuffleArr(idxs);
+  let selectedHan = null, matchedCount = 0;
+
+  const instr = document.createElement('div');
+  instr.className='q-instructions';
+  instr.textContent='Bấm một từ Hán, sau đó bấm nghĩa tiếng Việt tương ứng';
+  qCard.appendChild(instr);
+
+  const grid = document.createElement('div');
+  grid.className='match-grid';
+  const col1 = document.createElement('div'); col1.className='match-col';
+  const col2 = document.createElement('div'); col2.className='match-col';
+
+  hanCol.forEach(idx=>{
+    const el = document.createElement('button');
+    el.className='match-item han-item';
+    el.textContent = VOCAB[idx].han;
+    el.dataset.idx = idx;
+    el.addEventListener('click',()=>{
+      if(el.classList.contains('matched')) return;
+      col1.querySelectorAll('.match-item').forEach(x=>x.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedHan = idx;
+    });
+    col1.appendChild(el);
+  });
+  viCol.forEach(idx=>{
+    const el = document.createElement('button');
+    el.className='match-item';
+    el.textContent = VOCAB[idx].vi;
+    el.dataset.idx = idx;
+    el.addEventListener('click',()=>{
+      if(el.classList.contains('matched') || selectedHan===null) return;
+      const hanEl = [...col1.children].find(c=>c.dataset.idx==selectedHan);
+      if(Number(el.dataset.idx)===selectedHan){
+        el.classList.add('matched'); hanEl.classList.add('matched');
+        matchedCount++;
+        scores[currentEx].t++; scores[currentEx].c++;
+        updateScoreStrip();
+        selectedHan=null;
+        if(matchedCount===idxs.length){ showFeedback(qCard, true, 'Hoàn thành! Bấm "Câu tiếp theo" để tiếp tục.'); }
+      } else {
+        el.classList.add('wrongflash');
+        scores[currentEx].t++;
+        updateScoreStrip();
+        setTimeout(()=>el.classList.remove('wrongflash'), 500);
+      }
+    });
+    col2.appendChild(el);
+  });
+  grid.appendChild(col1); grid.appendChild(col2);
+  qCard.appendChild(grid);
+  addFeedbackAndNext(qCard);
+}
+
+function buildScramble(qCard){
+  const s = SCRAMBLE[Math.floor(Math.random()*SCRAMBLE.length)];
+  const correctOrder = s.tokens; // array of [han, pinyin]
+  let placed = [];
+
+  const instr = document.createElement('div');
+  instr.className='q-instructions';
+  instr.textContent='Bấm các từ theo đúng thứ tự để tạo thành câu hoàn chỉnh';
+  qCard.appendChild(instr);
+
+  const viLine = document.createElement('div');
+  viLine.style.cssText='font-family:var(--font-vi);font-style:italic;color:var(--ink-soft);font-size:14px;';
+  viLine.textContent = s.vi;
+  qCard.appendChild(viLine);
+
+  const target = document.createElement('div');
+  target.className='scramble-target';
+  qCard.appendChild(target);
+
+  function makeChip(han, pinyin, interactive){
+    const chip = document.createElement(interactive?'button':'span');
+    chip.className='chip';
+    if(!interactive) chip.style.cursor='default';
+    if(pinyin){
+      chip.innerHTML = `<span class="chip-han">${han}</span><span class="chip-py">${pinyin}</span>`;
+    } else {
+      chip.innerHTML = `<span class="chip-han">${han}</span>`;
+    }
+    return chip;
+  }
+
+  const bank = document.createElement('div');
+  bank.className='scramble-bank';
+  const shuffled = shuffleArr(correctOrder.map((tok,i)=>({han:tok[0],pinyin:tok[1],i})));
+  shuffled.forEach(item=>{
+    const chip = makeChip(item.han, item.pinyin, true);
+    chip.addEventListener('click',()=>{
+      chip.classList.add('used');
+      placed.push(item.han);
+      target.appendChild(makeChip(item.han, item.pinyin, false));
+      if(placed.length===correctOrder.length){
+        const correctHanJoined = correctOrder.map(t=>t[0]).join('');
+        const isCorrect = placed.join('')===correctHanJoined;
+        scores[currentEx].t++; if(isCorrect) scores[currentEx].c++;
+        updateScoreStrip();
+        target.querySelectorAll('.chip').forEach(c=>c.style.borderColor = isCorrect?'var(--good)':'var(--bad)');
+        showFeedback(qCard, isCorrect, isCorrect?'':`Thứ tự đúng: ${correctHanJoined}`);
+      }
+    });
+    bank.appendChild(chip);
+  });
+  qCard.appendChild(bank);
+  addFeedbackAndNext(qCard);
+}
+
+function buildTF(qCard){
+  const idx = Math.floor(Math.random()*VOCAB.length);
+  const v = VOCAB[idx];
+  const isTrueStatement = Math.random()<0.5;
+  let shownMeaning = v.vi;
+  if(!isTrueStatement){
+    let other;
+    do{ other = VOCAB[Math.floor(Math.random()*VOCAB.length)]; }while(other.han===v.han);
+    shownMeaning = other.vi;
+  }
+
+  const prompt = document.createElement('div');
+  prompt.className='q-prompt';
+  prompt.innerHTML = `<div><div class="han-big">${v.han}</div><div class="py">${v.pinyin}</div></div>
+    <button class="seal-btn small" title="Nghe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></button>`;
+  const instr = document.createElement('div');
+  instr.className='q-instructions';
+  instr.textContent='Nhận định sau đúng hay sai?';
+  qCard.appendChild(instr);
+  qCard.appendChild(prompt);
+  prompt.querySelector('.seal-btn').addEventListener('click',(e)=>speak(v.han,e.currentTarget));
+
+  const statement = document.createElement('div');
+  statement.style.cssText='font-family:var(--font-vi);font-size:17px;color:var(--ink);padding:6px 0;';
+  statement.innerHTML = `“${v.han}” có nghĩa là <b>“${shownMeaning}”</b>.`;
+  qCard.appendChild(statement);
+
+  const row = document.createElement('div');
+  row.className='tf-row';
+  const tBtn = document.createElement('button'); tBtn.className='tf-btn'; tBtn.textContent='✓ ĐÚNG';
+  const fBtn = document.createElement('button'); fBtn.className='tf-btn'; fBtn.textContent='✕ SAI';
+  function handle(userSaysTrue){
+    const isCorrect = userSaysTrue===isTrueStatement;
+    tBtn.disabled = true; fBtn.disabled = true;
+    (isTrueStatement?tBtn:fBtn).classList.add('correct');
+    if(!isCorrect) (userSaysTrue?tBtn:fBtn).classList.add('wrong');
+    scores[currentEx].t++; if(isCorrect) scores[currentEx].c++;
+    updateScoreStrip();
+    showFeedback(qCard, isCorrect, isTrueStatement ? '' : `Nghĩa đúng của "${v.han}" là "${v.vi}".`);
+  }
+  tBtn.addEventListener('click',()=>handle(true));
+  fBtn.addEventListener('click',()=>handle(false));
+  row.appendChild(tBtn); row.appendChild(fBtn);
+  qCard.appendChild(row);
+  addFeedbackAndNext(qCard);
+}
+
+function addFeedbackAndNext(qCard){
+  const fb = document.createElement('div');
+  fb.className='feedback';
+  fb.id='fbLine';
+  qCard.appendChild(fb);
+  const actions = document.createElement('div');
+  actions.className='q-actions';
+  const nextBtn = document.createElement('button');
+  nextBtn.className='btn primary';
+  nextBtn.textContent='Câu tiếp theo →';
+  nextBtn.addEventListener('click', newQuestion);
+  actions.appendChild(nextBtn);
+  qCard.appendChild(actions);
+}
+function showFeedback(qCard, isCorrect, extra){
+  const fb = qCard.querySelector('#fbLine');
+  if(!fb) return;
+  fb.textContent = (isCorrect ? '✓ Chính xác! ' : '✕ Chưa đúng. ') + (extra||'');
+  fb.className = 'feedback ' + (isCorrect?'good':'bad');
+}
+
+newQuestion();
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+function renderResults(){
+  const grid = document.getElementById('statGrid');
+  grid.innerHTML='';
+  Object.keys(exLabels).forEach(key=>{
+    const s = scores[key];
+    const pct = s.t ? Math.round(s.c/s.t*100) : 0;
+    const card = document.createElement('div');
+    card.className='stat-card';
+    card.innerHTML = `<div class="n">${s.t? pct+'%':'—'}</div><div class="l">${exLabels[key]}<br>${s.c}/${s.t} câu đúng</div>`;
+    grid.appendChild(card);
+  });
+  const knownCount = Object.values(cardStatus).filter(s=>s==='known').length;
+  const card = document.createElement('div');
+  card.className='stat-card';
+  card.innerHTML = `<div class="n">${knownCount}/${VOCAB.length}</div><div class="l">Từ vựng đã đánh dấu thuộc</div>`;
+  grid.appendChild(card);
+
+  const note = document.getElementById('voiceNote');
+  note.textContent = zhVoice
+    ? `Giọng đọc tiếng Trung đang dùng: ${zhVoice.name}.`
+    : `Chưa tìm thấy giọng đọc tiếng Trung trên trình duyệt này — âm thanh có thể dùng giọng mặc định. Để có phát âm chuẩn nhất, hãy dùng Chrome hoặc Edge trên máy tính.`;
+}
+
+document.getElementById('resetAllBtn').addEventListener('click',()=>{
+  if(!confirm('Đặt lại toàn bộ điểm số và tiến độ từ vựng?')) return;
+  Object.keys(scores).forEach(k=>{scores[k].c=0;scores[k].t=0;});
+  cardStatus = {};
+  showCard();
+  renderResults();
+  newQuestion();
+});
+</script>
+</body>
+</html>
