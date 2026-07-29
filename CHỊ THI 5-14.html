@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人力资源 · Ôn tập tiếng Trung Nhân sự</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2A45;
+  --ink-2:#293C60;
+  --paper:#F6F1E6;
+  --paper-2:#EFE7D6;
+  --card:#FFFDF8;
+  --brass:#B9863A;
+  --brass-dark:#8C6226;
+  --stamp:#B0402F;
+  --jade:#4C7A62;
+  --line:#D8CDB4;
+  --shadow: 0 10px 30px -12px rgba(27,42,69,0.35);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(185,134,58,0.10), transparent 60%),
+    var(--paper);
+  color:var(--ink);
+  font-family:'Be Vietnam Pro', sans-serif;
+  min-height:100vh;
+}
+.grain{
+  position:fixed; inset:0; pointer-events:none; opacity:0.035; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:28px 20px 80px;}
+
+/* ---------- Header : dossier cover ---------- */
+header.cover{
+  background: linear-gradient(155deg, var(--ink) 0%, var(--ink-2) 60%, #33487a 100%);
+  color:var(--paper);
+  border-radius:18px;
+  padding:30px 30px 26px;
+  position:relative;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  border:1px solid rgba(255,255,255,0.06);
+}
+header.cover::before{
+  content:"";
+  position:absolute; right:-40px; top:-40px; width:260px; height:260px; border-radius:50%;
+  background: radial-gradient(circle, rgba(185,134,58,0.35), transparent 70%);
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:#D9C79A; display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--brass);}
+h1.title{
+  font-family:'Noto Serif SC', serif;
+  font-weight:900;
+  font-size:clamp(34px, 6vw, 56px);
+  margin:0 0 4px 0;
+  letter-spacing:.01em;
+  display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;
+}
+h1.title .vn{
+  font-family:'Be Vietnam Pro', sans-serif;
+  font-weight:700; font-size:0.34em; color:#EADFC0; letter-spacing:0;
+}
+.subtitle{ color:#C9D2E4; font-size:14.5px; max-width:560px; line-height:1.55; margin-top:6px;}
+.stats-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:22px;}
+.stat-chip{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:10px;
+  padding:9px 14px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  display:flex; gap:8px; align-items:center;
+  color:#EFE7D6;
+}
+.stat-chip b{color:#fff; font-size:14px;}
+
+/* ---------- Filing tabs (lesson filter) ---------- */
+.filebar{
+  margin-top:22px;
+  display:flex; gap:8px; overflow-x:auto; padding-bottom:6px;
+  scrollbar-width:thin;
+}
+.filebar::-webkit-scrollbar{height:6px;}
+.filebar::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+.tab{
+  flex:0 0 auto;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  padding:8px 13px;
+  border-radius:999px 999px 4px 4px;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--ink-2);
+  cursor:pointer;
+  white-space:nowrap;
+  transition:.15s;
+}
+.tab:hover{ border-color:var(--brass); }
+.tab.active{
+  background:var(--ink); color:var(--paper); border-color:var(--ink);
+  box-shadow:0 4px 10px -4px rgba(27,42,69,.5);
+}
+
+/* ---------- Mode switch ---------- */
+.modes{ display:flex; gap:10px; margin:26px 0 20px; flex-wrap:wrap;}
+.mode-btn{
+  font-family:'Be Vietnam Pro', sans-serif; font-weight:600; font-size:14px;
+  padding:12px 18px; border-radius:12px; border:1.5px solid var(--line);
+  background:var(--card); color:var(--ink); cursor:pointer; display:flex; align-items:center; gap:9px;
+  transition:.15s; box-shadow:0 2px 0 rgba(27,42,69,.04);
+}
+.mode-btn .num{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--brass-dark);
+  border:1px solid var(--brass); border-radius:5px; padding:1px 6px;
+}
+.mode-btn:hover{ border-color:var(--brass); transform:translateY(-1px);}
+.mode-btn.active{ background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.mode-btn.active .num{ color:#EADFC0; border-color:#EADFC0;}
+
+/* ---------- Panels ---------- */
+.panel{ display:none; }
+.panel.active{ display:block; animation:fade .25s ease; }
+@keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+.toolrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:18px;}
+.search{
+  flex:1; min-width:200px;
+  font-family:'Be Vietnam Pro'; font-size:14px;
+  padding:11px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--card);
+  color:var(--ink);
+}
+.search:focus{ outline:none; border-color:var(--brass);}
+.ghost-btn{
+  font-family:'IBM Plex Mono', monospace; font-size:12px;
+  padding:10px 14px; border-radius:10px; border:1.5px dashed var(--line);
+  background:transparent; color:var(--ink-2); cursor:pointer;
+}
+.ghost-btn:hover{ border-color:var(--brass); color:var(--brass-dark);}
+
+/* ---------- Flashcards ---------- */
+#cardStage{ display:flex; flex-direction:column; align-items:center; gap:18px; padding: 10px 0 30px;}
+.card-counter{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-2); letter-spacing:.08em;}
+.flip-scene{ width:100%; max-width:520px; height:300px; perspective:1400px;}
+.flip-card{
+  width:100%; height:100%; position:relative; transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.4,.2,.2,1); cursor:pointer;
+}
+.flip-card.flipped{ transform:rotateY(180deg);}
+.face{
+  position:absolute; inset:0; backface-visibility:hidden;
+  border-radius:20px; border:1px solid var(--line);
+  background:var(--card);
+  box-shadow:var(--shadow);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:26px; text-align:center;
+}
+.face.front{
+  background:
+    repeating-linear-gradient(135deg, rgba(185,134,58,0.05) 0 2px, transparent 2px 26px),
+    var(--card);
+}
+.face.back{ transform:rotateY(180deg); background: linear-gradient(165deg,#fff,#F3ECDB);}
+.tag-lesson{
+  position:absolute; top:14px; left:16px;
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.08em;
+  color:var(--brass-dark); background:rgba(185,134,58,0.12); border:1px solid rgba(185,134,58,.35);
+  padding:3px 9px; border-radius:6px;
+}
+.speak-btn{
+  position:absolute; top:12px; right:14px;
+  width:38px; height:38px; border-radius:50%;
+  background:var(--ink); color:var(--paper); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+  box-shadow:0 4px 10px -3px rgba(0,0,0,.35);
+}
+.speak-btn:hover{ background:var(--brass-dark);}
+.hanzi-big{ font-family:'Noto Serif SC', serif; font-weight:700; font-size:56px; color:var(--ink); margin-bottom:6px;}
+.pinyin-med{ font-family:'IBM Plex Mono', monospace; font-size:16px; color:var(--brass-dark); margin-bottom:4px;}
+.hint{ font-size:12px; color:#8a8060; margin-top:14px;}
+.vi-big{ font-family:'Be Vietnam Pro'; font-weight:700; font-size:26px; color:var(--ink); margin-bottom:8px;}
+.note-small{ font-size:13px; color:var(--ink-2); max-width:380px; line-height:1.5;}
+.deck-controls{ display:flex; gap:12px; align-items:center;}
+.round-btn{
+  width:48px; height:48px; border-radius:50%; border:1.5px solid var(--line); background:var(--card);
+  cursor:pointer; font-size:18px; color:var(--ink); display:flex; align-items:center; justify-content:center;
+}
+.round-btn:hover{ border-color:var(--brass); color:var(--brass-dark);}
+.grade-row{ display:flex; gap:10px; margin-top:4px;}
+.grade-btn{
+  font-family:'IBM Plex Mono', monospace; font-size:12px; padding:9px 16px; border-radius:9px; border:none; cursor:pointer; color:#fff;
+}
+.grade-again{ background:var(--stamp);}
+.grade-good{ background:var(--jade);}
+
+/* ---------- Grid list ---------- */
+.vocab-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;}
+.vcard{
+  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px;
+  position:relative;
+}
+.vcard .zh{ font-family:'Noto Serif SC'; font-weight:700; font-size:24px;}
+.vcard .py{ font-family:'IBM Plex Mono'; font-size:12px; color:var(--brass-dark); margin:4px 0;}
+.vcard .vi{ font-size:13.5px; color:var(--ink-2);}
+.mini-speak{
+  position:absolute; top:12px; right:12px; width:28px; height:28px; border-radius:50%;
+  border:1px solid var(--line); background:var(--paper); cursor:pointer; font-size:12px;
+}
+
+/* ---------- Quiz ---------- */
+.quiz-card{
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px;
+  box-shadow:var(--shadow); max-width:640px; margin:0 auto; text-align:center; position:relative;
+}
+.quiz-progress{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-2); margin-bottom:10px;}
+.quiz-prompt-zh{ font-family:'Noto Serif SC'; font-weight:900; font-size:44px; margin:6px 0 2px;}
+.quiz-prompt-py{ font-family:'IBM Plex Mono'; font-size:14px; color:var(--brass-dark); margin-bottom:20px;}
+.choices{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px;}
+@media(max-width:520px){ .choices{grid-template-columns:1fr;} }
+.choice-btn{
+  font-family:'Be Vietnam Pro'; font-size:14.5px; text-align:left;
+  padding:14px 16px; border-radius:12px; border:1.5px solid var(--line); background:#fff; cursor:pointer;
+}
+.choice-btn:hover{ border-color:var(--brass);}
+.choice-btn.correct{ background:#E7F1EA; border-color:var(--jade); color:#265340;}
+.choice-btn.wrong{ background:#FBEAE6; border-color:var(--stamp); color:#7C2C1D;}
+.stamp-mark{
+  position:absolute; top:20px; right:26px; width:74px; height:74px; border-radius:50%;
+  border:3px solid var(--stamp); color:var(--stamp); display:flex; align-items:center; justify-content:center;
+  font-family:'Noto Serif SC'; font-weight:900; font-size:13px; transform:rotate(-16deg) scale(0);
+  opacity:0; transition:transform .35s cubic-bezier(.2,1.6,.4,1), opacity .2s;
+}
+.stamp-mark.show{ transform:rotate(-16deg) scale(1); opacity:.92;}
+.score-line{ font-family:'IBM Plex Mono'; font-size:13px; color:var(--ink-2); margin-top:22px;}
+.next-btn{
+  margin-top:18px; font-family:'Be Vietnam Pro'; font-weight:600; font-size:14px;
+  padding:11px 22px; border-radius:10px; border:none; background:var(--ink); color:var(--paper); cursor:pointer;
+  visibility:hidden;
+}
+.next-btn.show{ visibility:visible;}
+
+/* ---------- Listening ---------- */
+.listen-card{
+  background:var(--card); border:1px solid var(--line); border-radius:18px; padding:34px;
+  max-width:620px; margin:0 auto; text-align:center; box-shadow:var(--shadow);
+}
+.big-speak{
+  width:96px; height:96px; border-radius:50%; border:none; cursor:pointer;
+  background: radial-gradient(circle at 35% 30%, #33487a, var(--ink));
+  color:var(--paper); font-size:34px; box-shadow:0 12px 24px -10px rgba(27,42,69,.6);
+  margin:6px auto 22px; display:flex; align-items:center; justify-content:center;
+}
+.listen-input{
+  width:100%; font-family:'Be Vietnam Pro'; font-size:16px; padding:13px 16px;
+  border-radius:10px; border:1.5px solid var(--line); text-align:center;
+}
+.listen-input:focus{ outline:none; border-color:var(--brass);}
+.reveal-box{
+  margin-top:16px; padding:14px; border-radius:12px; background:var(--paper-2); display:none;
+}
+.reveal-box.show{ display:block; }
+.reveal-zh{ font-family:'Noto Serif SC'; font-weight:700; font-size:30px;}
+.reveal-py{ font-family:'IBM Plex Mono'; font-size:13px; color:var(--brass-dark);}
+.reveal-vi{ font-size:14px; color:var(--ink-2); margin-top:2px;}
+.btn-row{ display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap;}
+.pill-btn{
+  font-family:'IBM Plex Mono'; font-size:12px; padding:9px 16px; border-radius:999px;
+  border:1.5px solid var(--line); background:#fff; cursor:pointer;
+}
+.pill-btn:hover{ border-color:var(--brass);}
+.pill-btn.primary{ background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+/* ---------- Sentences ---------- */
+.sent-list{ display:flex; flex-direction:column; gap:12px;}
+.sent-item{
+  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+  display:flex; gap:14px; align-items:flex-start;
+}
+.sent-item button{
+  flex:0 0 auto; width:34px; height:34px; border-radius:50%; border:1px solid var(--line);
+  background:var(--paper); cursor:pointer; font-size:13px;
+}
+.sent-zh{ font-family:'Noto Serif SC'; font-size:19px; font-weight:600; line-height:1.5;}
+.sent-py{ font-family:'IBM Plex Mono'; font-size:12px; color:var(--brass-dark); margin:3px 0;}
+.sent-vi{ font-size:13.5px; color:var(--ink-2);}
+
+footer{ text-align:center; margin-top:50px; font-family:'IBM Plex Mono'; font-size:11px; color:#9b9174;}
+.empty{ text-align:center; padding:50px 10px; color:#9b9174; font-family:'IBM Plex Mono'; font-size:13px;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="eyebrow"><span class="dot"></span>业务档案 · HỒ SƠ NGHIỆP VỤ · TIẾNG TRUNG NHÂN SỰ</div>
+    <h1 class="title">人力资源 <span class="vn">Ôn tập tiếng Trung nhân sự</span></h1>
+    <div class="subtitle">Tổng hợp từ vựng, mẫu câu và hội thoại từ 10 bài học chủ đề tuyển dụng, phái cử lao động, HSK &amp; báo giá hợp đồng — luyện bằng thẻ ghi nhớ, trắc nghiệm và nghe phát âm thật.</div>
+    <div class="stats-row">
+      <div class="stat-chip">词汇 <b id="statVocab">0</b> từ vựng</div>
+      <div class="stat-chip">例句 <b id="statSent">0</b> câu ví dụ</div>
+      <div class="stat-chip">课 <b id="statLesson">10</b> bài học</div>
+    </div>
+  </header>
+
+  <div class="filebar" id="filebar"></div>
+
+  <div class="modes">
+    <button class="mode-btn active" data-mode="cards"><span class="num">01</span> Thẻ ghi nhớ</button>
+    <button class="mode-btn" data-mode="list"><span class="num">02</span> Danh sách từ vựng</button>
+    <button class="mode-btn" data-mode="quiz"><span class="num">03</span> Trắc nghiệm nghĩa</button>
+    <button class="mode-btn" data-mode="listen"><span class="num">04</span> Luyện nghe</button>
+    <button class="mode-btn" data-mode="sent"><span class="num">05</span> Câu ví dụ / Hội thoại</button>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <section class="panel active" id="panel-cards">
+    <div id="cardStage"></div>
+  </section>
+
+  <!-- LIST -->
+  <section class="panel" id="panel-list">
+    <div class="toolrow">
+      <input class="search" id="listSearch" placeholder="🔍 Tìm theo 汉字 / pinyin / nghĩa tiếng Việt…">
+    </div>
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="panel" id="panel-quiz">
+    <div class="quiz-card">
+      <div class="stamp-mark" id="stampMark">合格<br>ĐÚNG</div>
+      <div class="quiz-progress" id="quizProgress">Câu 1 / 10</div>
+      <div class="quiz-prompt-zh" id="quizZh">汉字</div>
+      <div class="quiz-prompt-py" id="quizPy">pīnyīn</div>
+      <div class="choices" id="quizChoices"></div>
+      <div class="score-line" id="quizScore">Điểm: 0 / 0</div>
+      <button class="next-btn" id="quizNext">Câu tiếp theo →</button>
+    </div>
+  </section>
+
+  <!-- LISTEN -->
+  <section class="panel" id="panel-listen">
+    <div class="listen-card">
+      <div class="quiz-progress" id="listenProgress">Câu 1 / 10</div>
+      <button class="big-speak" id="listenPlay">🔊</button>
+      <div style="font-size:13px;color:var(--ink-2);margin-bottom:10px;">Nghe và đoán nghĩa tiếng Việt của từ này</div>
+      <input class="listen-input" id="listenInput" placeholder="Gõ nghĩa tiếng Việt rồi nhấn Enter…">
+      <div class="reveal-box" id="listenReveal">
+        <div class="reveal-zh" id="revealZh"></div>
+        <div class="reveal-py" id="revealPy"></div>
+        <div class="reveal-vi" id="revealVi"></div>
+      </div>
+      <div class="btn-row">
+        <button class="pill-btn" id="listenReplay">🔁 Nghe lại</button>
+        <button class="pill-btn primary" id="listenCheck">✓ Kiểm tra</button>
+        <button class="pill-btn" id="listenSkip">Bỏ qua / tiếp theo →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SENTENCES -->
+  <section class="panel" id="panel-sent">
+    <div class="toolrow">
+      <input class="search" id="sentSearch" placeholder="🔍 Tìm câu ví dụ / hội thoại…">
+    </div>
+    <div class="sent-list" id="sentList"></div>
+  </section>
+
+  <footer>人力资源 ONLINE REVIEW · Made from CHỊ THI 05–14 · 语音由浏览器 Web Speech API 提供</footer>
+</div>
+
+<script>
+/* ============================= DATA ============================= */
+const LESSONS = [
+  {id:'l05', label:'Bài 5', title:'公司的历程 · Quá trình phát triển công ty'},
+  {id:'l06', label:'Bài 6', title:'Success HR Group · Bài đọc song ngữ'},
+  {id:'l07', label:'Bài 7', title:'Tuyển dụng / Ngoại bao (Outsourcing)'},
+  {id:'l08', label:'Bài 8', title:'劳务派遣服务 · Dịch vụ phái cử lao động'},
+  {id:'l09', label:'Bài 9', title:'通过微信联系客户 · Kết nối khách hàng qua WeChat'},
+  {id:'l10', label:'Bài 10', title:'服从安排，积极主动 · Thái độ & phân loại vị trí'},
+  {id:'l11', label:'Bài 11', title:'Kinh nghiệm · Học vấn · Ngôn ngữ (chứng chỉ)'},
+  {id:'l12', label:'Bài 12', title:'新华公司的阮经理 · Nhân sự & sản xuất'},
+  {id:'l13', label:'Bài 13', title:'Kinh nghiệm · Học vấn · Chứng chỉ (Phần 3)'},
+  {id:'l14', label:'Bài 14', title:'Báo giá · Hợp đồng · Tuyển dụng nhân sự'},
+];
+
+const VOCAB = [
+["l05","历程","lìchéng","quá trình, lịch trình"],
+["l05","业务","yèwù","nghiệp vụ"],
+["l05","各个行业领域","gègè hángyè lǐngyù","các lĩnh vực ngành nghề"],
+["l05","覆盖 / 涵盖","fùgài / hángài","bao gồm, bao phủ khắp"],
+["l05","分公司网络","fēn gōngsī wǎngluò","mạng lưới chi nhánh"],
+["l05","服务机构","fúwù jīgòu","cơ quan dịch vụ"],
+["l05","区域 / 全域","qūyù / quányù","khu vực / toàn khu vực"],
+["l05","快速完善","kuàisù wánshàn","nhanh chóng hoàn thiện"],
+["l05","打造","dǎzào","xây dựng, tạo dựng"],
+["l05","内外部","nèiwàibù","trong và ngoài (nội bộ & bên ngoài)"],
+["l05","数字化体系","shùzìhuà tǐxì","hệ thống số hóa"],
+["l05","互联网+","hùliánwǎng+","Internet+"],
+["l05","布局","bùjú","bố cục, quy hoạch"],
+["l05","并且 / 并","bìngqiě / bìng","đồng thời, và"],
+["l05","重视","zhòngshì","coi trọng"],
+["l05","快速扩大期","kuàisù kuòdà qī","giai đoạn mở rộng nhanh"],
+["l05","合同期","hétong qī","giai đoạn hợp đồng"],
+["l05","招聘期","zhāopìn qī","giai đoạn tuyển dụng"],
+["l05","培训期","péixùn qī","giai đoạn đào tạo"],
+["l05","稳定性","wěndìngxìng","tính ổn định"],
+["l05","专业性","zhuānyèxìng","tính chuyên nghiệp"],
+["l05","安全性","ānquánxìng","tính an toàn"],
+["l05","责任性","zérènxìng","tính trách nhiệm"],
+["l05","创造性","chuàngzàoxìng","tính sáng tạo"],
+["l05","可行性","kěxíngxìng","tính khả thi"],
+["l05","前瞻性","qiánzhānxìng","tính có tầm nhìn xa"],
+["l05","现实化","xiànshíhuà","hiện thực hóa"],
+["l05","数字化","shùzìhuà","số hóa"],
+["l05","全球化","quánqiúhuà","toàn cầu hóa"],
+["l05","现代化","xiàndàihuà","hiện đại hóa"],
+["l05","国际化","guójìhuà","quốc tế hóa"],
+["l05","个人化","gèrénhuà","cá nhân hóa"],
+["l05","自动化","zìdònghuà","tự động hóa"],
+
+["l06","其中","qízhōng","trong đó"],
+["l06","首个","shǒu gè","đầu tiên, cái đầu tiên"],
+["l06","海外","hǎiwài","hải ngoại, nước ngoài"],
+["l06","经过","jīngguò","trải qua"],
+["l06","独占鳌头","dúzhàn áotóu","đứng đầu, dẫn đầu (thành ngữ)"],
+["l06","当地","dāngdì","địa phương, tại chỗ"],
+["l06","运营","yùnyíng","vận hành, hoạt động kinh doanh"],
+["l06","设有","shèyǒu","có đặt, có thiết lập"],
+["l06","城市","chéngshì","thành phố"],
+["l06","位居……之首","wèijū……zhī shǒu","đứng ở vị trí đầu, đứng đầu"],
+["l06","全域","quányù","toàn khu vực, toàn vùng"],
+["l06","完善","wánshàn","hoàn thiện"],
+["l06","布局","bùjú","bố cục, bố trí"],
+["l06","世界","shìjiè","thế giới"],
+["l06","成为","chéngwéi","trở thành"],
+["l06","一流","yīliú","hàng đầu, nhất lưu"],
+["l06","领航","lǐngháng","dẫn đường, tiên phong"],
+["l06","领军","lǐngjūn","dẫn đầu, lãnh đạo"],
+["l06","稳健前行","wěnjiàn qiánxíng","tiến bước vững chắc"],
+["l06","三角业务","sānjiǎo yèwù","nghiệp vụ tam giác"],
+["l06","完成","wánchéng","hoàn thành"],
+["l06","成长","chéngzhǎng","trưởng thành, phát triển"],
+["l06","高效","gāoxiào","hiệu quả cao"],
+["l06","稳定","wěndìng","ổn định"],
+["l06","健康","jiànkāng","lành mạnh, khỏe mạnh"],
+["l06","创新推出","chuàngxīn tuīchū","sáng tạo đưa ra, đổi mới ra mắt"],
+["l06","共享经济平台","gòngxiǎng jīngjì píngtái","nền tảng kinh tế chia sẻ"],
+["l06","升级","shēngjí","nâng cấp"],
+["l06","提高","tígāo","nâng cao"],
+["l06","提升","tíshēng","nâng cao, thăng cấp"],
+["l06","同时","tóngshí","đồng thời"],
+["l06","研究院","yánjiūyuàn","viện nghiên cứu"],
+["l06","积极出海","jījí chūhǎi","tích cực ra khơi (mở rộng ra nước ngoài)"],
+["l06","人力资本","rénlì zīběn","nguồn vốn nhân lực"],
+["l06","出海","chūhǎi","ra khơi, vươn ra nước ngoài"],
+["l06","正式","zhèngshì","chính thức"],
+
+["l07","场景","chǎngjǐng","bối cảnh"],
+["l07","对……有关","duì...yǒuguān","liên quan đến"],
+["l07","几乎，差不多都是","jīhū, chàbuduō dōu shì","hầu như, gần như đều là"],
+["l07","谈工作中的事情","tán gōngzuò zhōng de shìqíng","nói về những việc trong công việc"],
+["l07","我也这样想","wǒ yě zhèyàng xiǎng","tôi cũng nghĩ như vậy"],
+["l07","所学的知识","suǒ xué de zhīshi","kiến thức đã học"],
+["l07","知识","zhīshi","kiến thức"],
+["l07","所 + 动词","suǒ + dòngcí","cấu trúc 所 + động từ (danh hóa hành động)"],
+["l07","所看的东西","suǒ kàn de dōngxi","những thứ đã xem, nhìn thấy"],
+["l07","所说的话","suǒ shuō de huà","những lời đã nói"],
+["l07","请问您怎么称呼","qǐngwèn nín zěnme chēnghu","xin hỏi nên xưng hô thế nào"],
+["l07","发短信","fā duǎnxìn","gửi tin nhắn"],
+["l07","通过……推荐，介绍","tōngguò...tuījiàn, jièshào","thông qua sự tiến cử, giới thiệu của…"],
+["l07","了解","liǎojiě","hiểu rõ, tìm hiểu"],
+["l07","仔细，继续","zǐxì, jìxù","tỉ mỉ / cẩn thận, tiếp tục"],
+["l07","理解","lǐjiě","hiểu, lý giải"],
+["l07","提供","tígōng","cung cấp"],
+["l07","从来","cónglái","từ trước đến nay, xưa nay"],
+["l07","目前","mùqián","hiện tại, trước mắt"],
+["l07","确认","quèrèn","xác nhận"],
+["l07","劳动者","láodòngzhě","người lao động"],
+["l07","差别","chābié","sự khác biệt"],
+["l07","长久","chángjiǔ","lâu dài"],
+["l07","短期","duǎnqī","thời gian ngắn, ngắn hạn"],
+
+["l08","招聘","zhāopìn","tuyển dụng"],
+["l08","需求","xūqiú","nhu cầu"],
+["l08","员工","yuángōng","nhân viên, người lao động"],
+["l08","生产员工","shēngchǎn yuángōng","công nhân sản xuất"],
+["l08","岗位","gǎngwèi","vị trí công việc, chức vụ"],
+["l08","要求","yāoqiú","yêu cầu"],
+["l08","工厂经验","gōngchǎng jīngyàn","kinh nghiệm làm nhà máy"],
+["l08","人力资源公司","rénlì zīyuán gōngsī","công ty nhân lực"],
+["l08","招聘代理","zhāopìn dàilǐ","dịch vụ tuyển dụng (đại lý)"],
+["l08","劳务派遣","láowù pàiqiǎn","phái cử lao động"],
+["l08","服务","fúwù","dịch vụ"],
+["l08","区别","qūbié","sự khác biệt"],
+["l08","劳动合同","láodòng hétong","hợp đồng lao động"],
+["l08","签合同","qiān hétong","ký hợp đồng"],
+["l08","服务费","fúwùfèi","phí dịch vụ"],
+["l08","报价","bàojià","báo giá"],
+["l08","邮箱","yóuxiāng","hộp thư điện tử (email)"],
+["l08","发送","fāsòng","gửi đi"],
+["l08","社保","shèbǎo","bảo hiểm xã hội"],
+["l08","负责","fùzé","phụ trách, chịu trách nhiệm"],
+["l08","发工资","fā gōngzī","trả lương, phát lương"],
+["l08","缴纳","jiǎonà","đóng, nộp (tiền, thuế, bảo hiểm)"],
+["l08","说明","shuōmíng","giải thích, thuyết minh"],
+["l08","用工成本","yònggōng chéngběn","chi phí sử dụng lao động"],
+["l08","合规经营","héguī jīngyíng","kinh doanh hợp quy, tuân thủ pháp luật"],
+["l08","解决方案","jiějué fāng'àn","giải pháp"],
+
+["l09","发布","fābù","đăng (tin)"],
+["l09","网站 / 网址 / 网上","wǎngzhàn / wǎngzhǐ / wǎngshàng","trang web / địa chỉ web / trên mạng"],
+["l09","拜访","bàifǎng","thăm (viếng thăm đối tác, khách hàng)"],
+["l09","仔细 / 详细地介绍","zǐxì / xiángxì de jièshào","tỉ mỉ / giới thiệu chi tiết"],
+["l09","当面 / 面谈","dāngmiàn / miàntán","trực tiếp / gặp mặt trao đổi"],
+["l09","细节","xìjié","chi tiết"],
+["l09","简介","jiǎnjiè","bản giới thiệu ngắn gọn (profile)"],
+["l09","具体","jùtǐ","cụ thể"],
+["l09","门口 / 如何进去","ménkǒu / rúhé jìnqù","cửa ra vào / làm thế nào để vào"],
+["l09","派人下来接你","pài rén xiàlái jiē nǐ","cử người xuống đón bạn"],
+["l09","制造企业","zhìzào qǐyè","doanh nghiệp sản xuất"],
+["l09","性别要求","xìngbié yāoqiú","yêu cầu về giới tính"],
+["l09","年龄要求","niánlíng yāoqiú","yêu cầu về độ tuổi"],
+
+["l10","踏实","tāshí","làm việc nghiêm túc, đáng tin cậy"],
+["l10","过硬实践","guòyìng shíjiàn","kinh nghiệm / thực hành vững chắc"],
+["l10","肯","kěn","chịu, sẵn lòng (làm gì)"],
+["l10","不肯干","bùkěn gàn","không chịu làm"],
+["l10","吃苦耐劳","chīkǔ nàiláo","chịu khổ nhẫn nại, chịu khó chịu khổ"],
+["l10","耐心","nàixīn","kiên nhẫn"],
+["l10","精益求精","jīngyìqiújīng","cầu toàn, không ngừng hoàn thiện"],
+["l10","时代","shídài","thời đại"],
+["l10","素质","sùzhì","tố chất, phẩm chất"],
+["l10","追求","zhuīqiú","theo đuổi"],
+["l10","精品","jīngpǐn","sản phẩm / hàng chất lượng cao"],
+["l10","能力强","nénglì qiáng","năng lực mạnh"],
+["l10","战略","zhànlüè","chiến lược"],
+["l10","政策","zhèngcè","chính sách"],
+["l10","策略","cèlüè","sách lược, chiến thuật"],
+["l10","对策","duìcè","đối sách, biện pháp ứng phó"],
+["l10","决策","juécè","ra quyết sách, quyết định"],
+["l10","执行","zhíxíng","thực thi, chấp hành"],
+["l10","统筹","tǒngchóu","điều phối / hoạch định tổng thể"],
+["l10","系统","xìtǒng","hệ thống"],
+["l10","统一","tǒngyī","thống nhất"],
+["l10","筹备","chóubèi","trù bị, chuẩn bị (cho sự kiện)"],
+["l10","具备","jùbèi","có đủ, hội đủ (điều kiện)"],
+["l10","具有","jùyǒu","có (mang tính trang trọng)"],
+["l10","普通的员工","pǔtōng de yuángōng","nhân viên bình thường"],
+["l10","中层管理","zhōngcéng guǎnlǐ","quản lý cấp trung (trưởng phòng)"],
+["l10","基层管理 / 领班","jīcéng guǎnlǐ / lǐngbān","quản lý cấp cơ sở / tổ trưởng"],
+["l10","工程师","gōngchéngshī","kỹ sư"],
+["l10","研发人员","yánfā rényuán","nhân viên nghiên cứu & phát triển"],
+["l10","行政人员","xíngzhèng rényuán","nhân viên hành chính"],
+["l10","人力资源","rénlì zīyuán","nhân sự (HR)"],
+["l10","财务人员","cáiwù rényuán","nhân viên tài chính"],
+["l10","法务人员","fǎwù rényuán","nhân viên pháp chế"],
+["l10","销售人员","xiāoshòu rényuán","nhân viên bán hàng"],
+["l10","市场 / 营销人员","shìchǎng / yíngxiāo rényuán","nhân viên thị trường / marketing"],
+["l10","客服人员","kèfú rényuán","nhân viên chăm sóc khách hàng"],
+["l10","生产 / 操作人员","shēngchǎn / cāozuò rényuán","nhân viên sản xuất / vận hành"],
+["l10","质检 / 品控人员","zhìjiǎn / pǐnkòng rényuán","nhân viên kiểm tra chất lượng / QC"],
+["l10","仓储物流人员","cāngchǔ wùliú rényuán","nhân viên kho vận, logistics"],
+["l10","采购人员","cǎigòu rényuán","nhân viên thu mua"],
+["l10","安全 / EHS人员","ānquán / EHS rényuán","nhân viên an toàn / EHS"],
+["l10","实习生","shíxíshēng","thực tập sinh"],
+["l10","兼职 / 劳务派遣人员","jiānzhí / láowù pàiqiǎn rényuán","nhân viên bán thời gian / lao động phái cử"],
+["l10","性别","xìngbié","giới tính"],
+["l10","不限","bùxiàn","không giới hạn"],
+["l10","限制","xiànzhì","giới hạn, hạn chế"],
+["l10","招聘启示","zhāopìn qǐshì","thông báo tuyển dụng"],
+["l10","应聘者","yìngpìnzhě","người ứng tuyển"],
+["l10","求职者","qiúzhízhě","người tìm việc"],
+["l10","候选人","hòuxuǎnrén","ứng viên"],
+["l10","优先","yōuxiān","ưu tiên"],
+["l10","制造","zhìzào","chế tạo, sản xuất"],
+["l10","机械","jīxiè","cơ khí, máy móc"],
+["l10","机器","jīqì","máy móc, máy"],
+["l10","案例","ànlì","trường hợp, ca"],
+["l10","背景","bèijǐng","bối cảnh, phông nền"],
+["l10","操作","cāozuò","thao tác (máy móc)"],
+["l10","考虑","kǎolǜ","suy nghĩ, cân nhắc"],
+["l10","应届毕业生","yìngjiè bìyèshēng","sinh viên mới tốt nghiệp"],
+["l10","无需","wúxū","không cần"],
+
+["l11","具有…经验","jùyǒu...jīngyàn","có … kinh nghiệm"],
+["l11","安装","ānzhuāng","lắp đặt"],
+["l11","维修","wéixiū","sửa chữa"],
+["l11","调试","tiáoshì","hiệu chỉnh (debug)"],
+["l11","设备","shèbèi","thiết bị"],
+["l11","熟悉","shúxī","rành, am hiểu, quen thuộc (với người)"],
+["l11","维护","wéihù","bảo trì"],
+["l11","生产统筹","shēngchǎn tǒngchóu","điều phối sản xuất"],
+["l11","带领","dàilǐng","dẫn dắt"],
+["l11","项目案例","xiàngmù ànlì","ví dụ / dự án điển hình"],
+["l11","学历","xuélì","trình độ học vấn"],
+["l11","高中 / 中专","gāozhōng / zhōngzhuān","THPT / trung cấp"],
+["l11","大专","dàzhuān","cao đẳng"],
+["l11","本科","běnkē","đại học"],
+["l11","硕士","shuòshì","thạc sĩ"],
+["l11","博士","bóshì","tiến sĩ"],
+["l11","学位","xuéwèi","học vị / bằng cấp"],
+["l11","图纸","túzhǐ","bản vẽ"],
+["l11","机械设计","jīxiè shèjì","thiết kế cơ khí"],
+["l11","电气工程","diànqì gōngchéng","kỹ thuật điện"],
+["l11","持有","chíyǒu","sở hữu, có"],
+["l11","证书","zhèngshū","chứng chỉ, bằng cấp"],
+["l11","人事行政部","rénshì xíngzhèng bù","phòng nhân sự – hành chính"],
+["l11","翻译","fānyì","phiên dịch"],
+["l11","行政岗位","xíngzhèng gǎngwèi","vị trí hành chính"],
+["l11","母语","mǔyǔ","tiếng mẹ đẻ"],
+["l11","HSK（汉语水平考试）","Hànyǔ Shuǐpíng Kǎoshì","kỳ thi năng lực Hán ngữ"],
+["l11","精通中文","jīngtōng Zhōngwén","thông thạo tiếng Trung"],
+["l11","普通话","pǔtōnghuà","tiếng phổ thông (Quan Thoại)"],
+["l11","流利","liúlì","lưu loát"],
+["l11","留学","liúxué","du học"],
+["l11","财务结算","cáiwù jiésuàn","quyết toán tài chính"],
+["l11","与…对接","yǔ...duìjiē","kết nối / phối hợp với…"],
+["l11","政府","zhèngfǔ","chính phủ"],
+["l11","知名企业","zhīmíng qǐyè","doanh nghiệp nổi tiếng"],
+["l11","未满","wèimǎn","chưa đủ, chưa đầy"],
+["l11","辞职","cízhí","từ chức, xin nghỉ việc"],
+["l11","离职","lízhí","nghỉ việc, rời khỏi công ty"],
+["l11","给予","jǐyǔ","cho, trao cho, chấp nhận"],
+["l11","名单","míngdān","danh sách"],
+["l11","手指完整","shǒuzhǐ wánzhěng","ngón tay đầy đủ, không thiếu ngón"],
+["l11","纹身","wénshēn","hình xăm"],
+["l11","两班倒","liǎng bān dǎo","ca xoay (ca ngày / ca đêm luân phiên)"],
+
+["l12","范围比较广","fànwéi bǐjiào guǎng","phạm vi tương đối rộng"],
+["l12","把…进行…","bǎ...jìnxíng...","tiến hành … (mẫu câu chữ 把)"],
+["l12","各位，诸位","gèwèi, zhūwèi","quý vị, các vị"],
+["l12","导师","dǎoshī","người hướng dẫn / cố vấn"],
+["l12","简历","jiǎnlì","sơ yếu lý lịch (CV)"],
+["l12","招聘描述 / 工作描述 / 职位描述","zhāopìn miáoshù / gōngzuò miáoshù / zhíwèi miáoshù","mô tả tuyển dụng / công việc / vị trí"],
+["l12","建立了新工厂","jiànlì le xīn gōngchǎng","đã xây dựng nhà máy mới"],
+["l12","尽快","jǐnkuài","càng nhanh càng tốt"],
+["l12","尽力，努力","jìnlì, nǔlì","hết sức, nỗ lực"],
+["l12","达到","dádào","đạt được, đạt tới"],
+["l12","操作机械，机器","cāozuò jīxiè, jīqì","vận hành máy móc"],
+["l12","愿意录用前员工","yuànyì lùyòng qián yuángōng","sẵn lòng tuyển dụng lại nhân viên cũ"],
+["l12","进一步","jìnyībù","tiến thêm bước nữa"],
+["l12","福利","fúlì","phúc lợi"],
+["l12","运输车","yùnshūchē","xe vận chuyển"],
+["l12","上下班班车","shàngxiàbān bānchē","xe đưa đón đi làm / tan làm"],
+["l12","还有","háiyǒu","ngoài ra"],
+["l12","关于","guānyú","về việc, liên quan đến"],
+["l12","薪资","xīnzī","tiền lương"],
+["l12","无尘车间","wúchén chējiān","xưởng không bụi (phòng sạch)"],
+["l12","洁净车间","jiéjìng chējiān","xưởng sạch"],
+["l12","坐班，站班","zuòbān, zhànbān","ca làm việc ngồi, ca làm việc đứng"],
+["l12","加，减，乘以，除","jiā, jiǎn, chéngyǐ, chú","cộng, trừ, nhân, chia"],
+
+["l13","制造业","zhìzàoyè","ngành sản xuất, chế tạo"],
+["l13","电子行业","diànzǐ hángyè","ngành điện tử"],
+["l13","能吃苦耐劳","néng chīkǔ nàiláo","có thể chăm chỉ, chịu khó"],
+["l13","团队管理","tuánduì guǎnlǐ","quản lý đội nhóm"],
+["l13","高管","gāoguǎn","quản lý cấp cao"],
+["l13","初中","chūzhōng","trung học cơ sở (THCS)"],
+["l13","具备","jùbèi","có, sở hữu (kỹ năng/điều kiện)"],
+["l13","基本","jīběn","cơ bản"],
+["l13","运算","yùnsuàn","tính toán"],
+["l13","测试","cèshì","kiểm tra, bài test"],
+["l13","为 = 是","wèi = shì","là (văn viết trang trọng = 是)"],
+["l13","认识图纸","rènshi túzhǐ","biết đọc bản vẽ"],
+["l13","有中国或海外留学经历者优先","yǒu Zhōngguó huò hǎiwài liúxué jīnglì zhě yōuxiān","ưu tiên ứng viên từng du học Trung Quốc / nước ngoài"],
+["l13","知名企业","zhīmíng qǐyè","doanh nghiệp nổi tiếng"],
+
+["l14","批准","pīzhǔn","phê duyệt"],
+["l14","早点儿 / 尽快","zǎodiǎnr / jǐnkuài","sớm / nhanh chóng"],
+["l14","商量","shāngliang","bàn bạc, thương lượng"],
+["l14","优惠","yōuhuì","ưu đãi"],
+["l14","条款","tiáokuǎn","điều khoản"],
+["l14","双方","shuāngfāng","hai bên"],
+["l14","有利于","yǒulì yú","có lợi cho"],
+["l14","方案","fāng'àn","phương án"],
+["l14","上岗","shànggǎng","bắt đầu nhận việc / đi làm"],
+["l14","计费","jìfèi","tính phí"],
+["l14","培训","péixùn","đào tạo"],
+["l14","约定","yuēdìng","hẹn, quy định (giữa hai bên)"],
+["l14","快递","kuàidì","chuyển phát nhanh"],
+["l14","寄","jì","gửi (bưu kiện, thư)"],
+["l14","明确写明","míngquè xiěmíng","ghi rõ, nêu rõ"],
+["l14","服务保证","fúwù bǎozhèng","bảo hành dịch vụ"],
+["l14","甲方 / 乙方 / 丙方","jiǎfāng / yǐfāng / bǐngfāng","bên A / bên B / bên thứ ba"],
+["l14","候选人","hòuxuǎnrén","ứng viên"],
+["l14","由","yóu","do, bởi"],
+["l14","面试","miànshì","phỏng vấn"],
+["l14","个人原因","gèrén yuányīn","lý do cá nhân"],
+["l14","裁员","cáiyuán","cắt giảm nhân sự"],
+["l14","有所","yǒu suǒ","có phần, có chút"],
+["l14","合适 / 适合","héshì / shìhé","phù hợp, thích hợp"],
+["l14","补招","bǔzhāo","tuyển bù"],
+["l14","完全","wánquán","hoàn toàn"],
+["l14","开具发票","kāijù fāpiào","xuất hóa đơn"],
+["l14","实际","shíjì","thực tế"],
+["l14","多退少补","duō tuì shǎo bǔ","thừa trả lại, thiếu bù thêm"],
+["l14","工资相同","gōngzī xiāngtóng","lương tương đương"],
+["l14","未税","wèi shuì","chưa tính thuế"],
+["l14","包括","bāokuò","bao gồm"],
+["l14","普通","pǔtōng","thông thường"],
+["l14","组长","zǔzhǎng","tổ trưởng"],
+["l14","文员","wényuán","văn thư"],
+["l14","部门经理 / 副经理","bùmén jīnglǐ / fù jīnglǐ","trưởng phòng / phó phòng"],
+["l14","顾问","gùwèn","cố vấn"],
+["l14","期间","qījiān","thời gian, giai đoạn"],
+["l14","培训班","péixùnbān","lớp đào tạo"],
+].map((r,i)=>({id:'v'+i, lesson:r[0], zh:r[1], py:r[2], vi:r[3]}));
+
+const SENTENCES = [
+["l07","如果你选择外包员工的话，我们这边会直接跟劳动者签合同并对劳动者发工资和管理。","Rúguǒ nǐ xuǎnzé wàibāo yuángōng dehuà, wǒmen zhè biān huì zhíjiē gēn láodòngzhě qiān hétong bìng duì láodòngzhě fā gōngzī hé guǎnlǐ.","Nếu bạn chọn nhân viên thuê ngoài (outsourcing), bên chúng tôi sẽ trực tiếp ký hợp đồng với người lao động, đồng thời trả lương và quản lý người lao động."],
+["l07","如果你选择招聘服务的话，我们会根据你们的要求来找人。","Rúguǒ nǐ xuǎnzé zhāopìn fúwù dehuà, wǒmen huì gēnjù nǐmen de yāoqiú lái zhǎo rén.","Nếu bạn chọn dịch vụ tuyển dụng, chúng tôi sẽ tìm người theo yêu cầu của các bạn."],
+["l07","你们那边会直接跟劳动者签合同。","Nǐmen nà biān huì zhíjiē gēn láodòngzhě qiān hétong.","Bên các bạn sẽ trực tiếp ký hợp đồng với người lao động."],
+["l08","您好，请问贵公司最近有招聘需求吗？","Nín hǎo, qǐngwèn guì gōngsī zuìjìn yǒu zhāopìn xūqiú ma?","Xin chào, xin hỏi gần đây quý công ty có nhu cầu tuyển dụng không?"],
+["l08","有，我们需要招聘二十名生产员工。","Yǒu, wǒmen xūyào zhāopìn èrshí míng shēngchǎn yuángōng.","Có, chúng tôi cần tuyển 20 công nhân sản xuất."],
+["l08","请问对岗位有什么要求？","Qǐngwèn duì gǎngwèi yǒu shénme yāoqiú?","Xin hỏi vị trí này có những yêu cầu gì?"],
+["l08","有工厂经验，会简单中文就可以。","Yǒu gōngchǎng jīngyàn, huì jiǎndān Zhōngwén jiù kěyǐ.","Có kinh nghiệm làm nhà máy, biết một chút tiếng Trung là được."],
+["l08","我们是一家专业的人力资源公司，可以提供招聘代理和劳务派遣服务。","Wǒmen shì yì jiā zhuānyè de rénlì zīyuán gōngsī, kěyǐ tígōng zhāopìn dàilǐ hé láowù pàiqiǎn fúwù.","Chúng tôi là công ty nhân lực chuyên nghiệp, có thể cung cấp dịch vụ tuyển dụng và phái cử lao động."],
+["l08","劳务派遣是我们与员工签劳动合同；招聘代理是贵公司直接与员工签合同。","Láowù pàiqiǎn shì wǒmen yǔ yuángōng qiān láodòng hétong; zhāopìn dàilǐ shì guì gōngsī zhíjiē yǔ yuángōng qiān hétong.","Phái cử lao động là chúng tôi ký hợp đồng với người lao động; còn tuyển dụng đại lý là quý công ty trực tiếp ký hợp đồng với nhân viên."],
+["l08","请问你们的服务费怎么算？","Qǐngwèn nǐmen de fúwùfèi zěnme suàn?","Xin hỏi phí dịch vụ của bên bạn được tính như thế nào?"],
+["l08","我们会根据招聘人数和岗位要求报价。","Wǒmen huì gēnjù zhāopìn rénshù hé gǎngwèi yāoqiú bàojià.","Chúng tôi sẽ báo giá dựa trên số lượng tuyển dụng và yêu cầu của vị trí."],
+["l08","员工的劳动合同和社保由谁负责？","Yuángōng de láodòng hétong hé shèbǎo yóu shéi fùzé?","Hợp đồng lao động và bảo hiểm xã hội của nhân viên do ai phụ trách?"],
+["l08","如果是劳务派遣，由我们负责签合同、发工资和缴纳社保。","Rúguǒ shì láowù pàiqiǎn, yóu wǒmen fùzé qiān hétong, fā gōngzī hé jiǎonà shèbǎo.","Nếu là dịch vụ phái cử lao động thì chúng tôi sẽ phụ trách ký hợp đồng, trả lương và đóng bảo hiểm xã hội."],
+["l08","贵公司目前最关心什么问题？","Guì gōngsī mùqián zuì guānxīn shénme wèntí?","Hiện nay quý công ty quan tâm nhất đến vấn đề gì?"],
+["l08","我们希望降低用工成本，同时保证合规经营。","Wǒmen xīwàng jiàngdī yònggōng chéngběn, tóngshí bǎozhèng héguī jīngyíng.","Chúng tôi hy vọng giảm chi phí sử dụng lao động, đồng thời vẫn đảm bảo tuân thủ quy định."],
+["l09","您好，我是XX人力资源公司的XXX，很高兴认识您。","Nín hǎo, wǒ shì XX rénlì zīyuán gōngsī de XXX, hěn gāoxìng rènshi nín.","Xin chào, tôi là … đến từ công ty nhân lực XX, rất vui được gặp ông/bà."],
+["l09","我们公司成立于……年，总部位于……，长期为制造业企业提供人力资源服务。","Wǒmen gōngsī chénglì yú...nián, zǒngbù wèiyú..., chángqī wèi zhìzàoyè qǐyè tígōng rénlì zīyuán fúwù.","Công ty chúng tôi thành lập năm…, có trụ sở tại…, chuyên cung cấp dịch vụ nhân sự cho các doanh nghiệp sản xuất."],
+["l09","这是我们的名片和公司简介，您可以先了解一下。","Zhè shì wǒmen de míngpiàn hé gōngsī jiǎnjiè, nín kěyǐ xiān liǎojiě yíxià.","Đây là danh thiếp và bản giới thiệu công ty của chúng tôi, ông/bà có thể tham khảo trước."],
+["l09","您好王总，我是XX人力资源公司的顾问小李，很高兴见到您。","Nín hǎo Wáng zǒng, wǒ shì XX rénlì zīyuán gōngsī de gùwèn Xiǎo Lǐ, hěn gāoxìng jiàndào nín.","Xin chào Giám đốc Vương, tôi là chuyên viên tư vấn Tiểu Lý của công ty nhân lực XX, rất vui được gặp ông."],
+["l09","我们公司成立于2015年，总部在胡志明市，专注于为制造业企业提供劳务派遣和招聘代理服务，目前合作的工厂超过五十家。","Wǒmen gōngsī chénglì yú 2015 nián, zǒngbù zài Húzhìmíngshì, zhuānzhù yú wèi zhìzàoyè qǐyè tígōng láowù pàiqiǎn hé zhāopìn dàilǐ fúwù, mùqián hézuò de gōngchǎng chāoguò wǔshí jiā.","Công ty chúng tôi thành lập năm 2015, trụ sở tại TP.HCM, chuyên cung cấp dịch vụ phái cử lao động và tuyển dụng đại lý cho doanh nghiệp sản xuất, hiện đang hợp tác với hơn 50 nhà máy."],
+["l10","要是你想成为技术员，你要具有哪些素质？","Yàoshi nǐ xiǎng chéngwéi jìshùyuán, nǐ yào jùyǒu nǎxiē sùzhì?","Nếu bạn muốn trở thành kỹ thuật viên, bạn cần có những tố chất nào?"],
+["l10","年龄要求：年龄不限，但应聘者需符合国家劳动法规定的相关年龄要求和工作能力要求。","Niánlíng yāoqiú: niánlíng bùxiàn, dàn yìngpìnzhě xū fúhé guójiā láodòngfǎ guīdìng de xiāngguān niánlíng yāoqiú hé gōngzuò nénglì yāoqiú.","Yêu cầu độ tuổi: không giới hạn độ tuổi, nhưng ứng viên cần đáp ứng các yêu cầu về độ tuổi và năng lực làm việc theo quy định của Luật Lao động nhà nước."],
+["l10","工作经验：3-4年以上相关岗位经验，优先考虑有制造业、电子行业经验的候选人。","Gōngzuò jīngyàn: sān-sì nián yǐshàng xiāngguān gǎngwèi jīngyàn, yōuxiān kǎolǜ yǒu zhìzàoyè, diànzǐ hángyè jīngyàn de hòuxuǎnrén.","Kinh nghiệm làm việc: trên 3-4 năm kinh nghiệm ở vị trí liên quan, ưu tiên ứng viên có kinh nghiệm trong ngành sản xuất, điện tử."],
+["l11","学历：高中/中专及以上。","Xuélì: gāozhōng/zhōngzhuān jí yǐshàng.","Trình độ học vấn: trung học phổ thông / trung cấp trở lên."],
+["l11","学历：本科及以上，机械设计、电气工程相关专业。","Xuélì: běnkē jí yǐshàng, jīxiè shèjì, diànqì gōngchéng xiāngguān zhuānyè.","Trình độ học vấn: đại học trở lên, chuyên ngành liên quan đến thiết kế cơ khí, kỹ thuật điện."],
+["l11","语言要求：越南语为母语，会简单中文沟通即可。","Yǔyán yāoqiú: Yuènányǔ wéi mǔyǔ, huì jiǎndān Zhōngwén gōutōng jíkě.","Yêu cầu ngôn ngữ: tiếng Việt là tiếng mẹ đẻ, biết giao tiếp tiếng Trung cơ bản là được."],
+["l11","工程师/管理层：中文流利（因需与总部沟通），懂英语者优先。","Gōngchéngshī/guǎnlǐcéng: Zhōngwén liúlì (yīn xū yǔ zǒngbù gōutōng), dǒng Yīngyǔ zhě yōuxiān.","Kỹ sư / cấp quản lý: tiếng Trung lưu loát (vì cần giao tiếp với trụ sở chính), ưu tiên người biết tiếng Anh."],
+["l11","离职未满3个月的前员工不予录用。","Lízhí wèi mǎn sān gè yuè de qián yuángōng bù yǔ lùyòng.","Nhân viên cũ nghỉ việc chưa đủ 3 tháng sẽ không được tuyển dụng lại."],
+["l11","能接受两班倒（白班、夜班轮班），每月两周白班，两周夜班。","Néng jiēshòu liǎng bān dǎo (báibān, yèbān lúnbān), měi yuè liǎng zhōu báibān, liǎng zhōu yèbān.","Có thể chấp nhận làm việc theo ca xoay (ngày và đêm luân phiên), mỗi tháng 2 tuần ca ngày, 2 tuần ca đêm."],
+["l12","你对技术员的语言要求，需要达到什么水平，比如要求HSK4级以上，雅思。","Nǐ duì jìshùyuán de yǔyán yāoqiú, xūyào dádào shénme shuǐpíng, bǐrú yāoqiú HSK sì jí yǐshàng, yǎsī.","Yêu cầu ngôn ngữ đối với kỹ thuật viên cần đạt trình độ gì, ví dụ yêu cầu HSK4 trở lên, IELTS."],
+["l12","对于对高层管理的话，我们会按照每个月实收的薪资上的50%缴纳社保。","Duìyú duì gāocéng guǎnlǐ dehuà, wǒmen huì ànzhào měi ge yuè shí shōu de xīnzī shàng de bǎi fēnzhī wǔshí jiǎonà shèbǎo.","Đối với quản lý cấp cao, chúng tôi sẽ đóng bảo hiểm xã hội theo 50% mức lương thực nhận hằng tháng."],
+["l12","至于技术员和工人，通常按照当地最低工资标准缴纳，相当于5,700,000越南盾。","Zhìyú jìshùyuán hé gōngrén, tōngcháng ànzhào dāngdì zuìdī gōngzī biāozhǔn jiǎonà, xiāngdāng yú wǔbǎi qīshí wàn yuè dùn.","Còn đối với kỹ thuật viên và công nhân thì thường đóng theo mức lương tối thiểu vùng, tương đương 5.700.000 đồng."],
+["l14","我们已经把报价发给客户了。","Wǒmen yǐjīng bǎ bàojià fā gěi kèhù le.","Chúng tôi đã gửi báo giá cho khách hàng rồi."],
+["l14","这份报价还在等领导批准。","Zhè fèn bàojià hái zài děng lǐngdǎo pīzhǔn.","Bản báo giá này vẫn đang chờ lãnh đạo phê duyệt."],
+["l14","如果签长期合同，我们可以再优惠一些。","Rúguǒ qiān chángqī hétong, wǒmen kěyǐ zài yōuhuì yìxiē.","Nếu ký hợp đồng dài hạn, chúng tôi có thể ưu đãi thêm."],
+["l14","员工上岗满三天才开始计费。","Yuángōng shànggǎng mǎn sān tiān cái kāishǐ jìfèi.","Nhân viên đi làm đủ 3 ngày mới bắt đầu tính phí."],
+["l14","甲方是客户，乙方是我们公司。","Jiǎfāng shì kèhù, yǐfāng shì wǒmen gōngsī.","Bên A là khách hàng, bên B là công ty chúng tôi."],
+["l14","这次裁员影响到很多岗位。","Zhè cì cáiyuán yǐngxiǎng dào hěn duō gǎngwèi.","Đợt cắt giảm nhân sự lần này ảnh hưởng đến nhiều vị trí."],
+["l14","我们会免费为您补招一名员工。","Wǒmen huì miǎnfèi wèi nín bǔzhāo yì míng yuángōng.","Chúng tôi sẽ tuyển bù miễn phí cho anh/chị một nhân viên."],
+["l14","补招成功之后我们才开具发票。","Bǔzhāo chénggōng zhīhòu wǒmen cái kāijù fāpiào.","Sau khi tuyển bù thành công chúng tôi mới xuất hóa đơn."],
+["l14","服务费根据职位不同而不同。","Fúwùfèi gēnjù zhíwèi bùtóng ér bùtóng.","Mức phí dịch vụ khác nhau tùy theo vị trí."],
+["l14","这家工厂正在招技术员和组长。","Zhè jiā gōngchǎng zhèngzài zhāo jìshùyuán hé zǔzhǎng.","Nhà máy này đang tuyển kỹ thuật viên và tổ trưởng."],
+
+["l05","业务覆盖各个行业领域，全中国区域（中国全域）的分公司网络和服务机构快速完善，同时（并且）布局互联网+，打造国内外（内外部）数字化体系。","Yèwù fùgài gègè hángyè lǐngyù, quán Zhōngguó qūyù (Zhōngguó quányù) de fēn gōngsī wǎngluò hé fúwù jīgòu kuàisù wánshàn, tóngshí (bìngqiě) bùjú hùliánwǎng+, dǎzào guónèiwài (nèiwàibù) shùzìhuà tǐxì.","Nghiệp vụ xây dựng các lĩnh vực ngành nghề, mạng lưới chi nhánh và cơ quan dịch vụ toàn khu vực Trung Quốc nhanh chóng hoàn thiện, đồng thời bố cục Internet+, xây dựng hệ thống số hóa trong và ngoài nước."],
+["l05","这个计划的可行性很高。","Zhège jìhuà de kěxíngxìng hěn gāo.","Kế hoạch này có tính khả thi rất cao."],
+["l05","公司越来越重视工作的稳定性。","Gōngsī yuèláiyuè zhòngshì gōngzuò de wěndìngxìng.","Công ty ngày càng coi trọng tính ổn định của công việc."],
+
+["l08","请介绍一下这两种服务有什么区别。","Qǐng jièshào yíxià zhè liǎng zhǒng fúwù yǒu shénme qūbié.","Vui lòng giới thiệu sự khác nhau giữa hai dịch vụ này."],
+["l08","请把报价发到我的邮箱。","Qǐng bǎ bàojià fā dào wǒ de yóuxiāng.","Vui lòng gửi báo giá vào email của tôi."],
+["l08","好的，我们今天下午发送给您。","Hǎo de, wǒmen jīntiān xiàwǔ fāsòng gěi nín.","Vâng, chiều nay chúng tôi sẽ gửi cho quý công ty."],
+["l08","明白了，谢谢您的说明。","Míngbai le, xièxie nín de shuōmíng.","Tôi hiểu rồi, cảm ơn bạn đã giải thích."],
+["l08","我们可以为您提供专业的人力资源解决方案。","Wǒmen kěyǐ wèi nín tígōng zhuānyè de rénlì zīyuán jiějué fāng'àn.","Chúng tôi có thể cung cấp cho quý công ty giải pháp nhân sự chuyên nghiệp."],
+
+["l09","我们在越南有多个分公司，服务过很多中资企业，积累了丰富的经验。","Wǒmen zài Yuènán yǒu duō gè fēn gōngsī, fúwùguò hěn duō zhōngzī qǐyè, jīlěile fēngfù de jīngyàn.","Chúng tôi có nhiều chi nhánh tại Việt Nam, từng phục vụ nhiều doanh nghiệp vốn Trung Quốc, tích lũy kinh nghiệm phong phú."],
+["l09","你好，请坐，听说你们公司做人力资源服务做得不错。","Nǐ hǎo, qǐng zuò, tīngshuō nǐmen gōngsī zuò rénlì zīyuán fúwù zuò de búcuò.","Chào bạn, mời ngồi, nghe nói công ty bạn làm dịch vụ nhân sự khá tốt."],
+["l09","挺有经验的，那你们具体是怎么合作的？","Tǐng yǒu jīngyàn de, nà nǐmen jùtǐ shì zěnme hézuò de?","Khá có kinh nghiệm đấy, vậy các bạn hợp tác cụ thể như thế nào?"],
+
+["l10","在企业招聘分类中，除了高层管理、普工、技术员外，常见的职位类别还包括：","Zài qǐyè zhāopìn fēnlèi zhōng, chúle gāocéng guǎnlǐ, pǔgōng, jìshùyuán wài, chángjiàn de zhíwèi lèibié hái bāokuò:","Trong phân loại tuyển dụng của doanh nghiệp, ngoài quản lý cấp cao, công nhân phổ thông, kỹ thuật viên ra, các nhóm vị trí thường gặp khác còn bao gồm:"],
+
+["l11","学历：大专及以上。","Xuélì: dàzhuān jí yǐshàng.","Trình độ học vấn: cao đẳng trở lên."],
+["l11","学历：硕士及以上。","Xuélì: shuòshì jí yǐshàng.","Trình độ học vấn: thạc sĩ trở lên."],
+["l11","学历：不限。","Xuélì: bùxiàn.","Trình độ học vấn: không giới hạn."],
+["l11","学历：初中及以上，能识字看懂图纸即可。","Xuélì: chūzhōng jí yǐshàng, néng shízì kàndǒng túzhǐ jíkě.","Trình độ học vấn: trung học cơ sở trở lên, biết chữ và xem hiểu bản vẽ là được."],
+["l11","学历：大专及以上，机械、电子、自动化相关专业优先。","Xuélì: dàzhuān jí yǐshàng, jīxiè, diànzǐ, zìdònghuà xiāngguān zhuānyè yōuxiān.","Trình độ học vấn: cao đẳng trở lên, ưu tiên các chuyên ngành liên quan đến cơ khí, điện tử, tự động hóa."],
+["l11","语言要求：普通话流利。","Yǔyán yāoqiú: pǔtōnghuà liúlì.","Yêu cầu ngôn ngữ: tiếng phổ thông (Quan thoại) lưu loát."],
+["l11","语言要求：会讲中文/越南语。","Yǔyán yāoqiú: huì jiǎng Zhōngwén/Yuènányǔ.","Yêu cầu ngôn ngữ: biết nói tiếng Trung / tiếng Việt."],
+["l11","语言要求：中越文兼通者优先。","Yǔyán yāoqiú: Zhōng-Yuè wén jiān tōng zhě yōuxiān.","Yêu cầu ngôn ngữ: ưu tiên người thông thạo cả tiếng Trung và tiếng Việt."],
+["l11","语言要求：中文听说读写流利。","Yǔyán yāoqiú: Zhōngwén tīng shuō dú xiě liúlì.","Yêu cầu ngôn ngữ: nghe, nói, đọc, viết tiếng Trung lưu loát."],
+["l11","语言要求：英语CET-4及以上，能进行日常业务沟通。","Yǔyán yāoqiú: Yīngyǔ CET-4 jí yǐshàng, néng jìnxíng rìcháng yèwù gōutōng.","Yêu cầu ngôn ngữ: tiếng Anh CET-4 trở lên, có thể giao tiếp công việc hàng ngày."],
+["l11","普工：语言要求不限（或：会简单越南语沟通即可）。","Pǔgōng: yǔyán yāoqiú bùxiàn (huò: huì jiǎndān Yuènányǔ gōutōng jíkě).","Công nhân phổ thông: không giới hạn ngôn ngữ (hoặc: biết giao tiếp tiếng Việt đơn giản là được)."],
+["l11","技术员：能用中文或越南语进行基本工作沟通。","Jìshùyuán: néng yòng Zhōngwén huò Yuènányǔ jìnxíng jīběn gōngzuò gōutōng.","Kỹ thuật viên: có thể dùng tiếng Trung hoặc tiếng Việt để giao tiếp công việc cơ bản."],
+["l11","翻译/行政岗：中越文/中英文双语精通，持有相关等级证书优先。","Fānyì/xíngzhèng gǎng: Zhōng-Yuè wén/Zhōng-Yīng wén shuāngyǔ jīngtōng, chíyǒu xiāngguān děngjí zhèngshū yōuxiān.","Phiên dịch / vị trí hành chính: thông thạo song ngữ Trung-Việt hoặc Trung-Anh, ưu tiên người có chứng chỉ cấp độ liên quan."],
+["l11","公司限制录用名单（黑名单）人员不予录用。","Gōngsī xiànzhì lùyòng míngdān (hēi míngdān) rényuán bù yǔ lùyòng.","Nhân viên nằm trong danh sách hạn chế tuyển dụng (danh sách đen) của công ty sẽ không được tuyển dụng."],
+["l11","手指完整，无缺指 = 没有缺乏手指。","Shǒuzhǐ wánzhěng, wú quē zhǐ = méiyǒu quēfá shǒuzhǐ.","Ngón tay đầy đủ, không thiếu ngón (nghĩa là không bị mất/thiếu ngón tay)."],
+["l11","无纹身。","Wú wénshēn.","Không xăm hình."],
+
+["l13","工作经验：1-2年以上技术员工作经验，有自动化设备安装、维修、调试（Debug）经验。","Gōngzuò jīngyàn: yī-liǎng nián yǐshàng jìshùyuán gōngzuò jīngyàn, yǒu zìdònghuà shèbèi ānzhuāng, wéixiū, tiáoshì (Debug) jīngyàn.","Trên 1-2 năm kinh nghiệm làm kỹ thuật viên, có kinh nghiệm lắp đặt, sửa chữa, hiệu chỉnh (Debug) thiết bị tự động hóa."],
+["l13","工作经验：不限，能吃苦耐劳即可。","Gōngzuò jīngyàn: bùxiàn, néng chīkǔ nàiláo jíkě.","Không yêu cầu kinh nghiệm, chỉ cần chăm chỉ, chịu khó."],
+["l13","工作经验：3年以上相关技术领域工作经验，熟悉设备维护及项目管理者优先。","Gōngzuò jīngyàn: sān nián yǐshàng xiāngguān jìshù lǐngyù gōngzuò jīngyàn, shúxī shèbèi wéihù jí xiàngmù guǎnlǐ zhě yōuxiān.","Trên 3 năm kinh nghiệm trong lĩnh vực kỹ thuật liên quan, ưu tiên người am hiểu bảo trì thiết bị và quản lý dự án."],
+["l13","工作经验：5年以上相关行业管理经验，有团队管理及生产统筹经验者优先。","Gōngzuò jīngyàn: wǔ nián yǐshàng xiāngguān hángyè guǎnlǐ jīngyàn, yǒu tuánduì guǎnlǐ jí shēngchǎn tǒngchóu jīngyàn zhě yōuxiān.","Trên 5 năm kinh nghiệm quản lý trong ngành liên quan, ưu tiên người có kinh nghiệm quản lý đội nhóm và điều phối sản xuất."],
+["l13","工作经验：8年以上高管工作经验，有成功带领团队完成重大项目案例者优先。","Gōngzuò jīngyàn: bā nián yǐshàng gāoguǎn gōngzuò jīngyàn, yǒu chénggōng dàilǐng tuánduì wánchéng zhòngdà xiàngmù ànlì zhě yōuxiān.","Trên 8 năm kinh nghiệm quản lý cấp cao, ưu tiên người có thành tích dẫn dắt đội ngũ hoàn thành các dự án lớn."],
+["l13","学历要求：会写字，具备基本加、减、乘、除运算能力（需参加测试，测试内容为越南语）。","Xuélì yāoqiú: huì xiězì, jùbèi jīběn jiā, jiǎn, chéng, chú yùnsuàn nénglì (xū cānjiā cèshì, cèshì nèiróng wèi Yuènányǔ).","Yêu cầu học vấn: biết viết chữ, có khả năng tính toán cơ bản cộng trừ nhân chia (cần tham gia kiểm tra, nội dung kiểm tra bằng tiếng Việt)."],
+["l13","有中国或海外留学经历者优先。","Yǒu Zhōngguó huò hǎiwài liúxué jīnglì zhě yōuxiān.","Ưu tiên ứng viên từng du học Trung Quốc / nước ngoài."],
+["l13","熟悉财务结算、财务报表编制。","Shúxī cáiwù jiésuàn, cáiwù bàobiǎo biānzhì.","Thành thạo quyết toán tài chính, lập báo cáo tài chính (kế toán tài chính)."],
+["l13","有与政府部门对接工作的经验。","Yǒu yǔ zhèngfǔ bùmén duìjiē gōngzuò de jīngyàn.","Có kinh nghiệm phối hợp làm việc với cơ quan nhà nước."],
+["l13","有三星（Samsung）、豪雅（Hoya）等知名企业工作经历者优先。","Yǒu Sānxīng (Samsung), Háoyǎ (Hoya) děng zhīmíng qǐyè gōngzuò jīnglì zhě yōuxiān.","Ưu tiên ứng viên từng làm ở doanh nghiệp nổi tiếng như Samsung, Hoya."],
+["l13","手指完整，无缺指（=没有缺乏手指）。","Shǒuzhǐ wánzhěng, wú quē zhǐ (= méiyǒu quēfá shǒuzhǐ).","Ngón tay đầy đủ, không cụt ngón (= không thiếu ngón tay)."],
+
+["l14","客户看完报价后会尽快回复。","Kèhù kàn wán bàojià hòu huì jǐnkuài huífù.","Khách hàng xem xong báo giá sẽ phản hồi sớm."],
+["l14","我们想跟您商量一下价格。","Wǒmen xiǎng gēn nín shāngliang yíxià jiàgé.","Chúng tôi muốn thương lượng với anh/chị về giá."],
+["l14","这个条款需要双方重新确认。","Zhège tiáokuǎn xūyào shuāngfāng chóngxīn quèrèn.","Điều khoản này cần hai bên xác nhận lại."],
+["l14","这个方案更有利于双方的合作。","Zhège fāng'àn gèng yǒulì yú shuāngfāng de hézuò.","Phương án này có lợi hơn cho việc hợp tác giữa hai bên."],
+["l14","新员工要先参加一周的培训。","Xīn yuángōng yào xiān cānjiā yì zhōu de péixùn.","Nhân viên mới phải tham gia đào tạo một tuần trước."],
+["l14","双方约定明天签合同。","Shuāngfāng yuēdìng míngtiān qiān hétong.","Hai bên hẹn ngày mai ký hợp đồng."],
+["l14","合同我会用快递寄给您。","Hétong wǒ huì yòng kuàidì jì gěi nín.","Hợp đồng tôi sẽ gửi chuyển phát nhanh cho anh/chị."],
+["l14","请把签好的合同寄回给我们。","Qǐng bǎ qiān hǎo de hétong jì huí gěi wǒmen.","Vui lòng gửi lại hợp đồng đã ký cho chúng tôi."],
+["l14","合同里明确写明服务保证两个月。","Hétong lǐ míngquè xiěmíng fúwù bǎozhèng liǎng gè yuè.","Trong hợp đồng ghi rõ bảo hành dịch vụ 2 tháng."],
+["l14","这位候选人是由我们介绍的。","Zhè wèi hòuxuǎnrén shì yóu wǒmen jièshào de.","Ứng viên này là do chúng tôi giới thiệu."],
+["l14","现在有三位候选人正在面试。","Xiànzài yǒu sān wèi hòuxuǎnrén zhèngzài miànshì.","Hiện có ba ứng viên đang phỏng vấn."],
+["l14","他因为个人原因离职了。","Tā yīnwèi gèrén yuányīn lízhí le.","Anh ấy nghỉ việc vì lý do cá nhân."],
+["l14","由于政策调整，招聘计划有所变化。","Yóuyú zhèngcè tiáozhěng, zhāopìn jìhuà yǒu suǒ biànhuà.","Do điều chỉnh chính sách, kế hoạch tuyển dụng có thay đổi."],
+["l14","如果无法安排合适的工作，员工也可以离职。","Rúguǒ wúfǎ ānpái héshì de gōngzuò, yuángōng yě kěyǐ lízhí.","Nếu không thể bố trí được công việc phù hợp, nhân viên cũng có thể nghỉ việc."],
+["l14","第一次补招是完全免费的。","Dì yī cì bǔzhāo shì wánquán miǎnfèi de.","Lần tuyển bù đầu tiên là hoàn toàn miễn phí."],
+["l14","费用会按实际情况计算，多退少补。","Fèiyòng huì àn shíjì qíngkuàng jìsuàn, duō tuì shǎo bǔ.","Chi phí sẽ được tính theo thực tế, thừa trả lại, thiếu bù thêm."],
+["l14","新招的员工工资跟原来的人相同。","Xīn zhāo de yuángōng gōngzī gēn yuánlái de rén xiāngtóng.","Nhân viên tuyển mới có mức lương tương đương người cũ."],
+["l14","这个职位要求三年工作经验。","Zhège zhíwèi yāoqiú sān nián gōngzuò jīngyàn.","Vị trí này yêu cầu 3 năm kinh nghiệm làm việc."],
+["l14","这是未含税的价格。","Zhè shì wèi hán shuì de jiàgé.","Đây là giá chưa bao gồm thuế."],
+["l14","服务费是按正式薪资总额来计算的。","Fúwùfèi shì àn zhèngshì xīnzī zǒng'é lái jìsuàn de.","Phí dịch vụ được tính theo tổng lương chính thức."],
+["l14","普通职位的服务费是两个月工资。","Pǔtōng zhíwèi de fúwùfèi shì liǎng gè yuè gōngzī.","Phí dịch vụ cho vị trí thông thường là 2 tháng lương."],
+["l14","公司还需要一名文员和一名翻译。","Gōngsī hái xūyào yì míng wényuán hé yì míng fānyì.","Công ty còn cần thêm một văn thư và một phiên dịch."],
+["l14","这位工程师有五年经验。","Zhè wèi gōngchéngshī yǒu wǔ nián jīngyàn.","Kỹ sư này có 5 năm kinh nghiệm."],
+["l14","部门经理和副经理都参加了这次面试。","Bùmén jīnglǐ hé fù jīnglǐ dōu cānjiāle zhè cì miànshì.","Trưởng phòng và phó phòng đều tham gia buổi phỏng vấn này."],
+["l14","我们邀请了一位行业专家担任顾问。","Wǒmen yāoqǐngle yí wèi hángyè zhuānjiā dānrèn gùwèn.","Chúng tôi mời một chuyên gia trong ngành làm cố vấn."],
+["l14","培训期间可以商量薪酬。","Péixùn qījiān kěyǐ shāngliang xīnchóu.","Trong thời gian đào tạo có thể thương lượng về lương."],
+["l14","这次培训是一周的培训班。","Zhè cì péixùn shì yì zhōu de péixùnbān.","Đợt đào tạo này là lớp đào tạo một tuần."],
+["l14","补招的员工薪酬相同（=薪资）。","Bǔzhāo de yuángōng xīnchóu xiāngtóng (=xīnzī).","Nhân viên tuyển bù có mức lương tương đương."],
+].map((r,i)=>({id:'s'+i, lesson:r[0], zh:r[1], py:r[2], vi:r[3]}));
+
+document.getElementById('statVocab').textContent = VOCAB.length;
+document.getElementById('statSent').textContent = SENTENCES.length;
+
+/* ============================= STATE ============================= */
+let activeLesson = 'all';
+let cardIdx = 0;
+let quizQuestions = [], quizIdx = 0, quizScore = 0, quizAnswered = false;
+let listenQueue = [], listenIdx = 0;
+
+function lessonLabel(id){ const l = LESSONS.find(l=>l.id===id); return l ? l.label : id; }
+function filteredVocab(){ return activeLesson==='all' ? VOCAB : VOCAB.filter(v=>v.lesson===activeLesson); }
+function filteredSentences(){ return activeLesson==='all' ? SENTENCES : SENTENCES.filter(v=>v.lesson===activeLesson); }
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* TTS */
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'zh-CN';
+  u.rate = 0.85;
+  const voices = window.speechSynthesis.getVoices();
+  const zhVoice = voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('zh'));
+  if(zhVoice) u.voice = zhVoice;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = ()=>{}; }
+
+/* ============================= FILE BAR ============================= */
+function renderFilebar(){
+  const bar = document.getElementById('filebar');
+  const tabs = [{id:'all', label:'Tất cả'}].concat(LESSONS.map(l=>({id:l.id, label:l.label})));
+  bar.innerHTML = tabs.map(t=>`<button class="tab ${t.id===activeLesson?'active':''}" data-lesson="${t.id}">${t.label}</button>`).join('');
+  bar.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeLesson = btn.dataset.lesson;
+      renderFilebar();
+      cardIdx = 0;
+      renderAll();
+    });
+  });
+}
+
+/* ============================= FLASHCARDS ============================= */
+function renderCards(){
+  const stage = document.getElementById('cardStage');
+  const deck = filteredVocab();
+  if(deck.length===0){ stage.innerHTML = '<div class="empty">Không có từ vựng trong mục này.</div>'; return; }
+  if(cardIdx >= deck.length) cardIdx = 0;
+  if(cardIdx < 0) cardIdx = deck.length-1;
+  const item = deck[cardIdx];
+  stage.innerHTML = `
+    <div class="card-counter">THẺ ${cardIdx+1} / ${deck.length} · ${lessonLabel(item.lesson)}</div>
+    <div class="flip-scene"><div class="flip-card" id="flipCard">
+      <div class="face front">
+        <div class="tag-lesson">${lessonLabel(item.lesson)}</div>
+        <button class="speak-btn" id="cardSpeak" title="Nghe phát âm">🔊</button>
+        <div class="hanzi-big">${item.zh}</div>
+        <div class="pinyin-med">${item.py}</div>
+        <div class="hint">Nhấn thẻ để xem nghĩa tiếng Việt</div>
+      </div>
+      <div class="face back">
+        <div class="tag-lesson">${lessonLabel(item.lesson)}</div>
+        <div class="vi-big">${item.vi}</div>
+        <div class="note-small">${item.zh} · ${item.py}</div>
+      </div>
+    </div></div>
+    <div class="deck-controls">
+      <button class="round-btn" id="prevCard">←</button>
+      <div class="grade-row">
+        <button class="grade-btn grade-again" id="dontKnow">Chưa nhớ</button>
+        <button class="grade-btn grade-good" id="knowIt">Đã nhớ →</button>
+      </div>
+      <button class="round-btn" id="nextCard">→</button>
+    </div>`;
+  const flip = document.getElementById('flipCard');
+  flip.addEventListener('click', ()=> flip.classList.toggle('flipped'));
+  document.getElementById('cardSpeak').addEventListener('click', (e)=>{ e.stopPropagation(); speak(item.zh); });
+  document.getElementById('prevCard').addEventListener('click', ()=>{ cardIdx--; renderCards(); });
+  document.getElementById('nextCard').addEventListener('click', ()=>{ cardIdx++; renderCards(); });
+  document.getElementById('dontKnow').addEventListener('click', ()=>{ cardIdx++; renderCards(); });
+  document.getElementById('knowIt').addEventListener('click', ()=>{ cardIdx++; renderCards(); });
+}
+
+/* ============================= LIST ============================= */
+function renderList(){
+  const grid = document.getElementById('vocabGrid');
+  const q = (document.getElementById('listSearch').value || '').trim().toLowerCase();
+  let deck = filteredVocab();
+  if(q){ deck = deck.filter(v => v.zh.toLowerCase().includes(q) || v.py.toLowerCase().includes(q) || v.vi.toLowerCase().includes(q)); }
+  if(deck.length===0){ grid.innerHTML = '<div class="empty">Không tìm thấy từ nào.</div>'; return; }
+  grid.innerHTML = deck.map(v=>`
+    <div class="vcard">
+      <button class="mini-speak" data-zh="${v.zh.replace(/"/g,'&quot;')}" title="Nghe">🔊</button>
+      <div class="zh">${v.zh}</div>
+      <div class="py">${v.py}</div>
+      <div class="vi">${v.vi}</div>
+    </div>`).join('');
+  grid.querySelectorAll('.mini-speak').forEach(btn=>{
+    btn.addEventListener('click', ()=> speak(btn.dataset.zh));
+  });
+}
+document.getElementById('listSearch').addEventListener('input', renderList);
+
+/* ============================= QUIZ ============================= */
+function buildQuiz(){
+  let pool = filteredVocab();
+  if(pool.length < 4){ pool = VOCAB; }
+  quizQuestions = shuffle(pool).slice(0, Math.min(10, pool.length));
+  quizIdx = 0; quizScore = 0;
+  renderQuiz();
+}
+function renderQuiz(){
+  const wrap = document.querySelector('#panel-quiz .quiz-card');
+  if(quizQuestions.length===0){ return; }
+  if(quizIdx >= quizQuestions.length){
+    document.getElementById('quizProgress').textContent = 'Hoàn thành!';
+    document.getElementById('quizZh').textContent = '完成';
+    document.getElementById('quizPy').textContent = 'wánchéng — hoàn thành';
+    document.getElementById('quizChoices').innerHTML = '';
+    document.getElementById('quizScore').textContent = `Kết quả: ${quizScore} / ${quizQuestions.length} câu đúng`;
+    const nextBtn = document.getElementById('quizNext');
+    nextBtn.textContent = 'Làm lại bộ câu hỏi khác ↻';
+    nextBtn.classList.add('show');
+    nextBtn.onclick = buildQuiz;
+    return;
+  }
+  quizAnswered = false;
+  const item = quizQuestions[quizIdx];
+  document.getElementById('quizProgress').textContent = `Câu ${quizIdx+1} / ${quizQuestions.length} · ${lessonLabel(item.lesson)}`;
+  document.getElementById('quizZh').textContent = item.zh;
+  document.getElementById('quizPy').textContent = item.py;
+  document.getElementById('stampMark').classList.remove('show');
+
+  let distractPool = VOCAB.filter(v=>v.id!==item.id && v.vi!==item.vi);
+  const distractors = shuffle(distractPool).slice(0,3).map(v=>v.vi);
+  const options = shuffle([item.vi, ...distractors]);
+
+  const choicesEl = document.getElementById('quizChoices');
+  choicesEl.innerHTML = options.map(opt=>`<button class="choice-btn" data-opt="${opt.replace(/"/g,'&quot;')}">${opt}</button>`).join('');
+  choicesEl.querySelectorAll('.choice-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizAnswered) return;
+      quizAnswered = true;
+      const correct = btn.dataset.opt === item.vi;
+      if(correct){
+        btn.classList.add('correct');
+        quizScore++;
+        document.getElementById('stampMark').classList.add('show');
+      } else {
+        btn.classList.add('wrong');
+        choicesEl.querySelectorAll('.choice-btn').forEach(b=>{ if(b.dataset.opt===item.vi) b.classList.add('correct'); });
+      }
+      document.getElementById('quizScore').textContent = `Điểm: ${quizScore} / ${quizIdx+1}`;
+      document.getElementById('quizNext').classList.add('show');
+      speak(item.zh);
+    });
+  });
+  document.getElementById('quizScore').textContent = `Điểm: ${quizScore} / ${quizIdx}`;
+  const nextBtn = document.getElementById('quizNext');
+  nextBtn.textContent = 'Câu tiếp theo →';
+  nextBtn.classList.remove('show');
+  nextBtn.onclick = ()=>{ quizIdx++; renderQuiz(); };
+}
+
+/* ============================= LISTENING ============================= */
+function buildListen(){
+  let pool = filteredVocab();
+  if(pool.length < 1){ pool = VOCAB; }
+  listenQueue = shuffle(pool).slice(0, Math.min(10, pool.length));
+  listenIdx = 0;
+  renderListen();
+}
+function renderListen(){
+  if(listenIdx >= listenQueue.length){ listenIdx = 0; }
+  const item = listenQueue[listenIdx];
+  document.getElementById('listenProgress').textContent = `Câu ${listenIdx+1} / ${listenQueue.length} · ${lessonLabel(item.lesson)}`;
+  document.getElementById('listenInput').value = '';
+  document.getElementById('listenReveal').classList.remove('show');
+  document.getElementById('revealZh').textContent = item.zh;
+  document.getElementById('revealPy').textContent = item.py;
+  document.getElementById('revealVi').textContent = item.vi;
+  setTimeout(()=>speak(item.zh), 200);
+}
+document.getElementById('listenPlay').addEventListener('click', ()=>{
+  const item = listenQueue[listenIdx]; if(item) speak(item.zh);
+});
+document.getElementById('listenReplay').addEventListener('click', ()=>{
+  const item = listenQueue[listenIdx]; if(item) speak(item.zh);
+});
+document.getElementById('listenCheck').addEventListener('click', ()=>{
+  document.getElementById('listenReveal').classList.add('show');
+});
+document.getElementById('listenInput').addEventListener('keydown', (e)=>{
+  if(e.key==='Enter') document.getElementById('listenReveal').classList.add('show');
+});
+document.getElementById('listenSkip').addEventListener('click', ()=>{
+  listenIdx++;
+  if(listenIdx >= listenQueue.length){ listenIdx = 0; }
+  renderListen();
+});
+
+/* ============================= SENTENCES ============================= */
+function renderSentences(){
+  const list = document.getElementById('sentList');
+  const q = (document.getElementById('sentSearch').value || '').trim().toLowerCase();
+  let deck = filteredSentences();
+  if(q){ deck = deck.filter(s => s.zh.toLowerCase().includes(q) || s.py.toLowerCase().includes(q) || s.vi.toLowerCase().includes(q)); }
+  if(deck.length===0){ list.innerHTML = '<div class="empty">Không tìm thấy câu ví dụ nào.</div>'; return; }
+  list.innerHTML = deck.map(s=>`
+    <div class="sent-item">
+      <button data-zh="${s.zh.replace(/"/g,'&quot;')}" title="Nghe">🔊</button>
+      <div>
+        <div class="sent-zh">${s.zh}</div>
+        <div class="sent-py">${s.py}</div>
+        <div class="sent-vi">${s.vi}</div>
+      </div>
+    </div>`).join('');
+  list.querySelectorAll('.sent-item button').forEach(btn=>{
+    btn.addEventListener('click', ()=> speak(btn.dataset.zh));
+  });
+}
+document.getElementById('sentSearch').addEventListener('input', renderSentences);
+
+/* ============================= MODE SWITCH ============================= */
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+btn.dataset.mode).classList.add('active');
+    if(btn.dataset.mode==='quiz') buildQuiz();
+    if(btn.dataset.mode==='listen') buildListen();
+  });
+});
+
+function renderAll(){
+  renderCards();
+  renderList();
+  renderSentences();
+}
+renderFilebar();
+renderAll();
+</script>
+</body>
+</html>
